@@ -1,0 +1,9 @@
+<h1 class = "text-center">Confirm Your Trip Report</h1>
+<div class = "well">
+<h1 class = "text-center"><%= @report.title %></h1>
+<h3 class = "reportlength"><%= @report.duration %>
+(<%= @report.season %>)</h3>
+<p class = "<%= @font %> reporttext"><%= simple_format(@report.text) %></p>
+</div>
+
+<%= button_to "Post Trip Report", "/reports/confirm/#{@report.id}", method: :post %>

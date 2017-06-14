@@ -1,50 +1,26 @@
 class ReportsController < ApplicationController
 
-  def search
-    @city_state_country = "country"
-    if params[:country]
-        @locations = []
-        Location.where(country: params[:country]).each do |location|
-            @locations << location.state
-        end
-        @city_state_country = "state"
-        render "search.html.erb"
-    elsif params[:state]
-      @locations = []
-        Location.where(state: params[:state]).each do |location|
-            @locations << location.city
-        end
-        @city_state_country = "city"
-        render "search.html.erb"
-    elsif params[:city]
-      # @locations = []
-      # Location.where(city: params[:city]).each do |location|
-      # #   @locations << location.destinations.report.title
-      # end
-        redirect_to "/reports/city/#{params[:city]}"
-    else
-        @locations = []
-        Location.all.each do |location|
-            @locations << location.country
-        end
-    end
-    # render "search.html.erb"
+  def city
+    @reports = Location.find_by(city: params[:city]).reports.where(posted_live: true)
+    @title = "All " + params[:city] + " Trip Reports"
+    render "index.html.erb"
   end
 
   def index
-    @reports = Location.find_by(city: params[:city]).reports
+    @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
+    @title = "Latest Trip Reports"
     render "index.html.erb"
   end
 
   def create
-    @report = Report.create(title: params[:title], duration: params[:duration], season: params[:season], text: params[:text], text_font: "handlee", posted_live: false,  user_id: current_user.id)
-    if Location.find_by(city: params[:city].downcase.capitalize, state: params[:state].downcase.capitalize, country: params[:country].downcase.capitalize)
-        @location = Location.find_by(city: params[:city].downcase.capitalize, state: params[:state].downcase.capitalize, country: params[:country].downcase.capitalize)
+    @report = Report.create(title: params[:title].titleize, duration: params[:duration], season: params[:season].titleize, text: params[:text], text_font: "handlee", posted_live: false,  user_id: current_user.id)
+    if Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
+        @location = Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
     else
-    @location = Location.create(city: params[:city].downcase.capitalize, state: params[:state].downcase.capitalize, country: params[:country].downcase.capitalize)
+    @location = Location.create(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
     end
     @destination = Destination.create(location_id: @location.id, report_id: @report.id)
-    redirect_to "/reports/#{@report.id}"
+    redirect_to "/reports/confirm/#{@report.id}"
   end
 
   def confirm
@@ -54,17 +30,35 @@ class ReportsController < ApplicationController
     redirect_to "/reports/#{@report.id}"
    end
 
+   def post
+    @report = Report.find_by(id: params[:id])
+    render "post.html.erb"
+   end
+
    def show
     @report = Report.find_by(id: params[:id])
+    @comments = Comment.where(report_id: @report.id)
     render "show.html.erb"
     end
 
     def edit
-        @report = Report.find_by(id: params[:id])
-        render "edit.html.erb"
+    @report = Report.find_by(id: params[:id])
+    render "edit.html.erb"
     end
 
     def update
+        @report = Report.find_by(id: params[:id])
+        @report.update(title: params[:title].titleize, duration: params[:duration], season: params[:season].titleize, text: params[:text])
+        if Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country:params[:country].titleize)
+                 @location = Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
+        else
+                 @location = Location.create(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
+        end
+        @destination = @report.destinations.first
+        @destination.update(location_id: @location.id)
+        flash["success"] = "Changes have been saved!"
+        redirect_to "/reports/#{@report.id}"
+
     end
 
 end

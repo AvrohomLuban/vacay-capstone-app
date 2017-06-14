@@ -1,7 +1,8 @@
+<h1 class = "text-center"><%= @title %></h1>
 <% @reports.each do |report| %>
 <div class = "well">
 <h2><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
-<h4><%= report.duration %>
-(<%= report.season %>)
+<h4><%= report.duration %> (<%= report.season %>)</h4>
+<h5>Posted: <%= report.created_at.strftime("%b %e, %l:%M %p") %>
 </div>
 <% end %>

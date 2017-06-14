@@ -1,11 +1,26 @@
 <div class = "well">
 <h1 class = "text-center"><%= @report.title %></h1>
-<h3 class = "reportlength"><%= @report.duration %>
-(<%= @report.season %>)</h3>
-<p class = "<%= @font %> reporttext"><%= @report.text %></p>
+<h3><%= @report.duration %>(<%= @report.season %>)</h3>
+<%= simple_format(@report.text) %>
 </div>
 <% if @report.posted_live == false %>
   <%= button_to "Post Trip Report", "/reports/confirm/#{@report.id}", method: :post %>
 <% end %>
 
-<%= button_to "Edit Post", "/reports/edit/#{@report.id}", method: :get %>
+<% button_to "Edit Post", "/reports/edit/#{@report.id}", method: :get %>
+
+<div>
+<h4>Add A comment</h4>
+<%= form_tag "/comments/#{@report.id}/new", method: :post do %>
+  Comment: <input type="text" name = "text">
+  <input type = "submit" value = "Add Comment">
+  <% end %>
+
+<div class = "well">
+<h4>Comments:</h4>
+<% @comments.each_with_index do |comment, index| %>
+<b><%= index + 1 %></b>
+<h6><%= comment.created_at.strftime("%b %e, %l:%M %p") %><br></h6>
+<%= comment.text %><br><br>
+<%= comment.user.username %>
+<% end %>

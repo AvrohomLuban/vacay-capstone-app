@@ -2,9 +2,10 @@
 
 <% @locations.uniq.each do |location| %>
 <div class = "well">
-<h2><a href = "/reports/?<%= @city_state_country %>=<%= location %>"><%= location %></a></h2>
+<h2><a href = "/locations/?<%= @city_state_country %>=<%= location %>"><%= location %></a></h2>
 </div>
 <% end %>
+
 
 <%= button_to "Sign Out", "/users/sign_out", method: :delete %>
 <%= button_to "Add Trip Notes", "/reports/new", method: :get %>

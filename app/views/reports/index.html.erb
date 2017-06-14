@@ -1,0 +1,7 @@
+<% @reports.each do |report| %>
+<div class = "well">
+<h2><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
+<h4><%= report.duration %>
+(<%= report.season %>)
+</div>
+<% end %>

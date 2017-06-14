@@ -1,0 +1,11 @@
+<div class = "well">
+<h1 class = "text-center"><%= @report.title %></h1>
+<h3 class = "reportlength"><%= @report.duration %>
+(<%= @report.season %>)</h3>
+<p class = "<%= @font %> reporttext"><%= @report.text %></p>
+</div>
+<% if @report.posted_live == false %>
+  <%= button_to "Post Trip Report", "/reports/confirm/#{@report.id}", method: :post %>
+<% end %>
+
+<%= button_to "Edit Post", "/reports/edit/#{@report.id}", method: :get %>

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  season: MyString
+  duration: MyString
+  text: MyString
+  posted_live: false
+  title_font: MyString
+  destination_font: MyString
+  season_font: MyString
+  duration_font: MyString
+  text_font: MyString
+  user_id: MyString
+
+two:
+  title: MyString
+  season: MyString
+  duration: MyString
+  text: MyString
+  posted_live: false
+  title_font: MyString
+  destination_font: MyString
+  season_font: MyString
+  duration_font: MyString
+  text_font: MyString
+  user_id: MyString

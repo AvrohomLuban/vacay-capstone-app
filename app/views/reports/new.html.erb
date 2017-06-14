@@ -1,0 +1,20 @@
+<div class = "well">
+<h1>Add your trip notes to our database</h1>
+<%= form_tag "/reports/new", method: :post %>
+<div>Title:</div>
+<input type="text" name = "title">
+<div>City:</div>
+<input type="text" name = "city">
+<div>State:</div>
+<input type="text" name = "state">
+<div>Country:</div>
+<input type="text" name = "country">
+<div>Duration</div>
+<input type="text" name = "duration">
+<div>Season:</div>
+<input type="text" name = "season">
+<div>Report:</div>
+<textarea name="text" cols="50" rows="10"></textarea>
+<div>
+<input type = "submit" value = "Submit Post">
+</div>

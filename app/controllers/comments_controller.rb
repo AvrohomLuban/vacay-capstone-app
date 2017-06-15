@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
 
   def create
     @comment = Comment.create(report_id: params[:id], text: params[:text], user_id: current_user.id)

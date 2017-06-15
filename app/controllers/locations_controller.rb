@@ -4,11 +4,20 @@ class LocationsController < ApplicationController
     @city_state_country = "country"
     if params[:country]
         @locations = []
-        Location.where(country: params[:country]).each do |location|
-            @locations << location.state
+        if Location.where(country: params[:country]).first.state != ""
+              Location.where(country: params[:country]).each do |location|
+                  @locations << location.state
+              end
+              @city_state_country = "state"
+              render "index.html.erb"
+        else 
+              @locations = []
+              Location.where(country: params[:country]).each do |location|
+                  @locations << location.city
         end
-        @city_state_country = "state"
+        @city_state_country = "city"
         render "index.html.erb"
+        end
     elsif params[:state]
       @locations = []
         Location.where(state: params[:state]).each do |location|
@@ -17,10 +26,6 @@ class LocationsController < ApplicationController
         @city_state_country = "city"
         render "index.html.erb"
     elsif params[:city]
-      # @locations = []
-      # Location.where(city: params[:city]).each do |location|
-      # #   @locations << location.destinations.report.title
-      # end
         redirect_to "/reports/city/#{params[:city]}"
     else
         @locations = []

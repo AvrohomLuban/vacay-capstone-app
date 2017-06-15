@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+    before_action :authenticate_user!, only: [:create, :edit, :confirm, :post, :update, :new]
 
   def city
     @reports = Location.find_by(city: params[:city]).reports.where(posted_live: true)
@@ -12,6 +13,10 @@ class ReportsController < ApplicationController
     render "index.html.erb"
   end
 
+  def new
+    render "new.html.erb"
+  end
+
   def create
     @report = Report.create(title: params[:title].titleize, duration: params[:duration], season: params[:season].titleize, text: params[:text], text_font: "handlee", posted_live: false,  user_id: current_user.id)
     if Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
@@ -20,6 +25,35 @@ class ReportsController < ApplicationController
     @location = Location.create(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
     end
     @destination = Destination.create(location_id: @location.id, report_id: @report.id)
+
+    if Location.find_by(city: params[:city2].titleize, state: params[:state2].titleize, country: params[:country2].titleize)
+        @location = Location.find_by(city: params[:city2].titleize, state: params[:state2].titleize, country: params[:country2].titleize)
+    else
+    @location = Location.create(city: params[:city2].titleize, state: params[:state2].titleize, country: params[:country2].titleize)
+    end
+    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
+
+    if Location.find_by(city: params[:city3].titleize, state: params[:state3].titleize, country: params[:country3].titleize)
+        @location = Location.find_by(city: params[:city3].titleize, state: params[:state3].titleize, country: params[:country3].titleize)
+    else
+    @location = Location.create(city: params[:city3].titleize, state: params[:state3].titleize, country: params[:country3].titleize)
+    end
+    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
+
+    if Location.find_by(city: params[:city4].titleize, state: params[:state4].titleize, country: params[:country4].titleize)
+        @location = Location.find_by(city: params[:city4].titleize, state: params[:state4].titleize, country: params[:country4].titleize)
+    else
+    @location = Location.create(city: params[:city4].titleize, state: params[:state4].titleize, country: params[:country4].titleize)
+    end
+    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
+
+    if Location.find_by(city: params[:city5].titleize, state: params[:state5].titleize, country: params[:country5].titleize)
+        @location = Location.find_by(city: params[:city5].titleize, state: params[:state5].titleize, country: params[:country5].titleize)
+    else
+    @location = Location.create(city: params[:city5].titleize, state: params[:state5].titleize, country: params[:country5].titleize)
+    end
+    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
+
     redirect_to "/reports/confirm/#{@report.id}"
   end
 

@@ -2,7 +2,11 @@
 <% @reports.each do |report| %>
 <div class = "well">
 <h2><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
+<% report.locations.each do | location | %>
+<%= location.city %>, <% if location.state != "" %><%= location.state %>,<% end %> <%= location.country %><br>
+<% end %>
 <h4><%= report.duration %> (<%= report.season %>)</h4>
-<h5>Posted: <%= report.created_at.strftime("%b %e, %l:%M %p") %>
+<h5>Posted: <%= report.created_at.strftime("%b %e, %l:%M %p") %></h5>
+<h5>By: <%= report.user.username %></h5>
 </div>
 <% end %>

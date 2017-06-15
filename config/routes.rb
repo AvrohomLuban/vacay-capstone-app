@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         registrations: 'users/registrations'
       }
   
-  get "/", to: 'locations#index'
+  get "/", to: 'reports#index'
 
   get "/reports", to: 'reports#index'
   get "/reports/new", to: 'reports#new'
@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   get "/locations", to: 'locations#index'
 
   post "/comments/:id/new", to: 'comments#create'
+
+  post "/likes/:id", to: 'likes#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

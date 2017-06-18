@@ -1,0 +1,21 @@
+<h1>All Our Trip Guides</h1>
+<% @guides.each_slice(3) do | three_guides | %>
+<div class = "row">
+<% three_guides.each do | guide | %>
+<div class = "col-md-4">
+<div class="well">
+<h3 class = "text-center"><a href = "/guides/<%= guide.id %>">
+<%= guide.first_name %>
+<%= guide.last_name %><br></a></h3>
+Price: <%= guide.price %><br><br>
+Locations: <br>
+<% guide.locations.each do | location |  %>
+<%= location.city %>,<% if location.state != "" %> <%= location.state %>,<% end %> <%= location.country %><br>
+<% end %>
+</div>
+</div>
+<% end %>
+</div>
+<% end %>
+
+  

@@ -1,0 +1,19 @@
+<h1 class = "text-center">Sign Up To Become A Guide</h1>
+<%= form_tag "/guides/new", method: :post %>
+First Name: <input type="text" name = "first_name"><br>
+Last Name: <input type="text" name = "last_name"><br>
+Price: <input type="text" name = "price"><br>
+Location: 
+ <select name="location_id">
+    <% @locations.each do |location| %>
+        <option value="<%= location.id %>"><%= location.city %></option>
+     <% end %>
+</select><br>
+
+<div>Description:</div>
+<textarea name="description" cols="50" rows="10"></textarea>
+<div>
+
+
+<input type= "submit" value = "Submit">
+

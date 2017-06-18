@@ -10,14 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614231414) do
+ActiveRecord::Schema.define(version: 20170618180209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.string   "answer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string   "text"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "tip_id"
@@ -25,11 +33,28 @@ ActiveRecord::Schema.define(version: 20170614231414) do
   end
 
   create_table "destinations", force: :cascade do |t|
-    t.string   "tip_id"
+    t.integer  "tip_id"
     t.integer  "report_id"
     t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "guide_locations", force: :cascade do |t|
+    t.integer  "guide_id"
+    t.integer  "location_id"
+    t.string   "text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "guides", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
@@ -48,6 +73,14 @@ ActiveRecord::Schema.define(version: 20170614231414) do
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "location_id"
+    t.integer  "user_id"
+    t.string   "question"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "reports", force: :cascade do |t|

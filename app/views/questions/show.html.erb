@@ -1,0 +1,24 @@
+<h3 class = "qanda">Q:</h3>
+<h3><%= @question.question %></h3>
+Location: <%= @question.location.city %><br>
+By:<%= @question.user.username %><br>
+Asked: <%= @question.created_at.strftime("%b %e, %l:%M %p") %><br>
+
+<h1 class = "qanda">A:</h1>
+<% if @answers != nil %> 
+<% @answers.each do | answer | %>
+<div class = "well">
+<%= answer.user.username %>
+<%= answer.created_at.strftime("%b %e, %l:%M %p") %>
+<%= answer.answer %>
+</div>
+<% end %>
+<% else %>
+<h3>There are no answers to this question yet.</h3>
+<% end %>
+
+<%= form_tag "/answers/new/#{@question.id}", method: :post %>
+<div>Answer:</div>
+<textarea name="answer" cols="75" rows="7"></textarea>
+<div>
+<input type="submit" value = "submit">

@@ -1,0 +1,12 @@
+<% @questions.each do | question | %>
+<a href = "questions/<%= question.id %>">
+<div class = "link">
+<div class = "well">
+<h4><%= question.question %></h4>
+Location: <%= question.location.city %><br>
+By:<%= question.user.username %><br>
+Asked: <%= question.created_at.strftime("%b %e, %l:%M %p") %><br>
+</div>
+</div>
+</a>
+<% end %>

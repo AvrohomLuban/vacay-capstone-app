@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.create(title: params[:title].titleize, duration: params[:duration], season: params[:season].titleize, text: params[:text], text_font: "handlee", posted_live: false,  user_id: current_user.id)
+    @report = Report.new(title: params[:title].titleize, duration: params[:duration], season: params[:season].titleize, text: params[:text], text_font: "handlee", posted_live: false,  user_id: current_user.id)
     if Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
         @location = Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
     else
@@ -54,7 +54,13 @@ class ReportsController < ApplicationController
     end
     @destination = Destination.create(location_id: @location.id, report_id: @report.id)
 
-    redirect_to "/reports/confirm/#{@report.id}"
+    if @report.save 
+        flash[:success] = "Your report has been added"
+        redirect_to "/reports/confirm/#{@report.id}"
+    else
+        flash[:warning] = @report.errors.full_messages.join(", ")
+        render "new.html.erb"
+    end
   end
 
   def confirm
@@ -71,7 +77,7 @@ class ReportsController < ApplicationController
 
    def show
     @report = Report.find_by(id: params[:id])
-    @comments = Comment.where(report_id: @report.id)
+    @comments = Comment.where(report_id: params[:id])
     render "show.html.erb"
     end
 

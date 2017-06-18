@@ -1,0 +1,7 @@
+<h1><%= @guide.first_name %> <%= @guide.last_name %></h1>
+Price: <%= @guide.price %><br>
+Locations:<br>
+<% @guide.locations.each do | location |  %>
+<strong><%= location.city %>,<% if location.state != "" %> <%= location.state %>,<% end %> <%= location.country %></strong><br>
+<%= location.guide_locations.first.text %><br>
+<% end %>

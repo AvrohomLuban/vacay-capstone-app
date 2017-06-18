@@ -1,0 +1,13 @@
+<h1 class = "text-center">Ask The Community A Question</h1>
+<%= form_tag "/questions/new", method: :post %>
+Location: 
+ <select name="location_id">
+    <% @locations.each do |location| %>
+        <option value="<%= location.id %>"><%= location.city %></option>
+     <% end %>
+</select><br>
+<div>Question:</div>
+<textarea name="question" cols="75" rows="7"></textarea>
+<div>
+
+<input type= "submit" value = "Submit">

@@ -1,4 +1,6 @@
 class Report < ApplicationRecord
+  validates :title, :season, :duration, :text, :user_id, presence: true
+
   belongs_to :user 
   has_many :tips
   has_many :comments

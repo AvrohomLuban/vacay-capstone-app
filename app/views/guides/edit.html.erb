@@ -1,0 +1,18 @@
+<h1 class = "text-center">Update Your Guide Profile</h1>
+<% form_tag "/guides/#{@guide.id}/edit", method: :post -%>
+First Name: <input type="text" name = "first_name" value = "<%= @guide.first_name %>"><br>
+Last Name: <input type="text" name = "last_name" value = "<%= @guide.last_name %>"><br>
+Price: <input type="text" name = "price" value = "<%= @guide.price %>"><br>
+Location: 
+ <select name="location_id">
+    <% @locations.each do |location| %>
+        <option value="<%= location.id %>"><%= location.city %></option>
+     <% end %>
+</select><br>
+
+<div>Description:</div>
+<textarea name="description" cols="50" rows="10"><%= @guide.guide_locations.first.text %></textarea>
+<div>
+
+
+<input type= "submit" value = "Submit">

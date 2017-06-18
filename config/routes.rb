@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post "/reports/confirm/:id", to: 'reports#confirm'
   get "/reports/confirm/:id", to: 'reports#post'
   get "/reports/:id", to: 'reports#show'
-  get "/reports/edit/:id", to: 'reports#edit'
+  get "/reports/:id/edit", to: 'reports#edit'
   patch "/reports/edit/:id", to: 'reports#update'
   get "/reports/city/:city", to: 'reports#city'
 
@@ -22,5 +22,20 @@ Rails.application.routes.draw do
   post "/comments/:id/new", to: 'comments#create'
 
   post "/likes/:id", to: 'likes#create'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get "/guides/new", to: 'guides#new'
+  post "/guides/new", to: 'guides#create'
+  get "/guides", to: 'guides#index'
+  get "/guides/:id", to: 'guides#show'
+  get "/guides/:id/edit", to: 'guides#edit'
+  patch "/guides/:id/edit", to: 'guides#edit'
+
+  get "/questions/new", to: 'questions#new'
+  post "/questions/new", to: 'questions#create'
+  get "/questions", to: 'questions#index'
+  get "/questions/:id", to: 'questions#show'
+
+
+  post "/answers/new/:id", to: 'answers#create'
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

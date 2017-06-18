@@ -8,4 +8,7 @@ class User < ApplicationRecord
   has_many :tips
   has_many :likes
   has_many :comments
+  has_many :guides
+  has_many :questions
+  has_many :answers
 end

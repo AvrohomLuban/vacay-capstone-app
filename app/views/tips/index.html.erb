@@ -11,9 +11,27 @@
 <strong><%= tip.location.city %>: </strong>
 <i><%= tip.venue %></i><br>
 <%= tip.text %>
+<p>See Comments(# of comments)....... Leave a comment</p>
+<button id = "buttonToComment" onclick = "addComment()">Add A Comment</button>
+<button id = "buttonToSeeComments" onclick = "seeComments()">Read Comments <%= @comments.where(tip_id: tip.id).count %></button>
+<div id = "addComment" class = "hide">
+<%= form_tag "/comments/#{tip.id}/new/?tip=new", method: :post do %>
+  Comment: <input type="text" name = "text">
+  <input type = "submit" value = "Add Comment">
+  <% end %>
+  </div>
+<div id = "tipComments" class = "tipComments hide">
+<h4>Comments:</h4>
+<% @comments.where(tip_id: tip.id).each do | comment | %>
+<%= comment.text %><br>
+<% end %>
+</div>
 </div>
 <div class = "col-md-1">
-<%= button_to "Like", "/likes/#{tip.id}/?tip?like=true", method: :post %>
+<%= button_to "Like", "/likes/#{tip.id}/?tip=true", method: :post %>
+<%= tip.likes.where(like: true).count  %>
+<%= button_to "Dislike", "/likes/#{tip.id}/?tip=false", method: :post %>
+<%= tip.likes.where(like: false).count  %>
 </div>
 </div>
 </div>

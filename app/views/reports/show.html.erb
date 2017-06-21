@@ -6,9 +6,9 @@
 <h3><%= @report.duration %>(<%= @report.season %>)</h3>
 <h5><%= @report.user.username %></h5>
 <%= simple_format(@report.text) %>
-<%= button_to "Like", "/likes/#{@report.id}/?like=true", method: :post %>
+<%= button_to "Like", "/likes/#{@report.id}/?report=true", method: :post %>
 <%= @report.likes.where(like: true).count  %>
-<%= button_to "Dislike", "/likes/#{@report.id}/?like=false", method: :post %>
+<%= button_to "Dislike", "/likes/#{@report.id}/?report=false", method: :post %>
 </div>
 
 
@@ -23,7 +23,7 @@
 
 <div>
 <h4>Add A comment</h4>
-<%= form_tag "/comments/#{@report.id}/new", method: :post do %>
+<%= form_tag "/comments/#{@report.id}/new/?report=new", method: :post do %>
   Comment: <input type="text" name = "text">
   <input type = "submit" value = "Add Comment">
   <% end %>

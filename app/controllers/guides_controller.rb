@@ -1,5 +1,5 @@
 class GuidesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! , only: [:create, :edit]
 
   def new
     @locations = Location.all

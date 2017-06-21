@@ -37,5 +37,13 @@ Rails.application.routes.draw do
 
 
   post "/answers/new/:id", to: 'answers#create'
+  get "/answers/edit/:id", to: 'answers#edit'
+  post "/answers/edit/:id", to: 'answers#update'
+  delete "/answers/delete/:id", to: 'answers#destroy'
+
+  get "/tips", to: 'tips#index'
+  get "/tips/new", to: 'tips#new'
+  post "/tips/new", to: 'tips#create'
+
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

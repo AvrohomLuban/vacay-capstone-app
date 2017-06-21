@@ -1,0 +1,21 @@
+<h1 class = "text-center">Add a new Tip to our database</h1>
+<%= form_tag "/tips/new", method: :post %>
+Location: 
+ <select name="location_id">
+    <% @locations.each do |location| %>
+        <option value="<%= location.id %>"><%= location.city %></option>
+     <% end %>
+</select><br>
+Name of place: <input type="text" name = "name"><br>
+Select Category:
+<select name="category">
+        <option value="dining">Dining</option>
+        <option value="lodging">Lodging</option>
+        <option value="activites">Activites</option>
+        <option value="transportation">Transportation</option>
+        <option value="other">Other</option>
+</select><br>
+<div>Tip:</div>
+<textarea name="text" cols="50" rows="10"></textarea>
+<div>
+<input type = "submit" value = "submit">

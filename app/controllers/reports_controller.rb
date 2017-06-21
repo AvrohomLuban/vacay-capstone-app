@@ -8,7 +8,11 @@ class ReportsController < ApplicationController
   end
 
   def index
-    @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
+    if params[:rating]
+         @reports = Report.all.order(:likes.count => "desc").where(posted_live: true)
+    else
+         @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
+    end
     @title = "Latest Trip Reports"
     render "index.html.erb"
   end

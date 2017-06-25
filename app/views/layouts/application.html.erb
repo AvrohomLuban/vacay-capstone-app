@@ -6,65 +6,212 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- from here till end of head is theme-->
+    <meta content='blog, business, clean, multipurpose template, twitter bootstrap 3, responsive' name='keywords'>
+    <meta content='Jednotka is multipurpose Twitter Bootstrap 3 template which is suitable for any type of business or online project. ' name='description'>
+    <meta content='BublinaStudio.com' name='author'>
+    <meta content='all' name='robots'>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <!--[if IE]> <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'> <![endif]-->
+    <link href='/assets/images/meta_icons/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+    <link href='/assets/images/meta_icons/apple-touch-icon.png' rel='apple-touch-icon-precomposed'>
+    <!-- / required stylesheets -->
+    <link href="/assets/stylesheets/jednotka/bootstrap/bootstrap.min.css" media="all" id="bootstrap" rel="stylesheet" type="text/css" />
+    <link href="/assets/stylesheets/jednotka/jednotka_green.scss" media="all" id="colors" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 9]>
+      <script src="assets/javascripts/ie/html5shiv.js" type="text/javascript"></script>
+      <script src="assets/javascripts/ie/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
   </head>
 
   <body>
-          <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Vacay.com</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="/questions">Questions</a></li>
-        <li><a href="/guides">Guides</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/reports">Latest</a></li>
-            <li><a href="/locations">By Location</a></li>
-            <li><a href="#">By Rating</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/reports/new">Post New Report</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/guides">Guides</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+     <!--theme nav bar-->
+     <header id='header'>
+        <div class='container'>
+          <nav class='navbar navbar-collapsed-sm navbar-default' id='nav' role='navigation'>
+            <div class='navbar-header'>
+              <button class='navbar-toggle' data-target='.navbar-header-collapse' data-toggle='collapse' type='button'>
+                <span class='sr-only'>Toggle navigation</span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+              </button>
+              <a class='navbar-brand' href='index.html'>
+                <img alt="Jednotka" width="117" height="39" src="assets/images/logo.svg" />
+              </a>
+            </div>
+            <div class='collapse navbar-collapse navbar-header-collapse'>
+              <ul class='nav navbar-nav navbar-right'>
+                <li class='active dropdown'>
+                  <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
+                    <span>
+                      Home
+                      <i class='fa fa-angle-down'></i>
+                    </span>
+                  </a>
+                  <ul class='dropdown-menu' role='menu'>
+                    <li class=' dropdown-submenu'>
+                      <a href='index.html'>Home</a>
+                    </li>
+                    <li class=''>
+                      <a href='index2.html'>Home 2</a>
+                    </li>
+                    <li class='active'>
+                      <a href='index3.html'>Home 3</a>
+                    </li>
+                    <li class=''>
+                      <a href='boxed.html'>Boxed layout</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class='dropdown'>
+                  <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
+                    <span>
+                      Pages
+                      <i class='fa fa-angle-down'></i>
+                    </span>
+                  </a>
+                  <ul class='dropdown-menu' role='menu'>
+                    <li class=''>
+                      <a href='about_us.html'>About us</a>
+                    </li>
+                    <li class=''>
+                      <a href='services.html'>Services</a>
+                    </li>
+                    <li class=''>
+                      <a href='faq.html'>FAQ</a>
+                    </li>
+                    <li>
+                      <a href='404.html'>404 Error</a>
+                    </li>
+                    <li>
+                      <a href='500.html'>500 Error</a>
+                    </li>
+                    <li>
+                      <a href='coming_soon.html'>Coming soon</a>
+                    </li>
+                    <li>
+                      <a href='under_construction.html'>Under construction</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class='dropdown'>
+                  <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
+                    <span>
+                      Features
+                      <i class='fa fa-angle-down'></i>
+                    </span>
+                  </a>
+                  <ul class='dropdown-menu' role='menu'>
+                    <li class=''>
+                      <a href='animations.html'>Animations</a>
+                    </li>
+                    <li class=''>
+                      <a href='elements.html'>Elements</a>
+                    </li>
+                    <li class=''>
+                      <a href='icons.html'>Icons</a>
+                    </li>
+                    <li class=''>
+                      <a href='forms.html'>Forms</a>
+                    </li>
+                    <li class=''>
+                      <a href='tables.html'>Tables</a>
+                    </li>
+                    <li class=''>
+                      <a href='typography.html'>Typography</a>
+                    </li>
+                    <li class=''>
+                      <a href='pricing_tables.html'>Pricing tables</a>
+                    </li>
+                    <li class='dropdown-submenu'>
+                      <a href='index.html'>
+                        Submenu
+                        <i class='fa fa-angle-right'></i>
+                      </a>
+                      <ul class='dropdown-menu' role='menu'>
+                        <li>
+                          <a href='index.html'>Submenu item</a>
+                        </li>
+                        <li>
+                          <a href='index.html'>Submenu item</a>
+                        </li>
+                        <li>
+                          <a href='index.html'>Submenu item</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class='dropdown'>
+                  <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
+                    <span>
+                      Blog
+                      <i class='fa fa-angle-down'></i>
+                    </span>
+                  </a>
+                  <ul class='dropdown-menu' role='menu'>
+                    <li class=''>
+                      <a href='blog_small.html'>Small image</a>
+                    </li>
+                    <li class=''>
+                      <a href='blog_large.html'>Large image</a>
+                    </li>
+                    <li class=''>
+                      <a href='blog_single_post.html'>Single post</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class='dropdown'>
+                  <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
+                    <span>
+                      Portfolio
+                      <i class='fa fa-angle-down'></i>
+                    </span>
+                  </a>
+                  <ul class='dropdown-menu' role='menu'>
+                    <li class=''>
+                      <a href='portfolio.html'>2 columns</a>
+                    </li>
+                    <li class=''>
+                      <a href='portfolio_three_cols.html'>3 columns</a>
+                    </li>
+                    <li class=''>
+                      <a href='portfolio_four_cols.html'>4 columns</a>
+                    </li>
+                    <li class=''>
+                      <a href='portfolio_detail.html'>Project detail</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class='dropdown'>
+                  <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
+                    <span>
+                      Contact
+                      <i class='fa fa-angle-down'></i>
+                    </span>
+                  </a>
+                  <ul class='dropdown-menu' role='menu'>
+                    <li class=''>
+                      <a href='contact.html'>Contact</a>
+                    </li>
+                    <li class=''>
+                      <a href='contact2.html'>Contact 2</a>
+                    </li>
+                    <li class=''>
+                      <a href='contact3.html'>Contact 3</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+      </header>
+      <!--end theme nav bar-->   
 
-
+      
 
 
 
@@ -72,5 +219,138 @@
      <div class="alert alert-<%= name %> alert-dismissible"" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= messege %></div>
      <% end %>
     <%= yield %>
+
+    <!--start theme footer-->
+    <footer id='footer'>
+        <div id='footer-main'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-md-3 col-sm-6 info-box'>
+                <h2 class='title'>About us</h2>
+                <p class='no-mg-b'>Vacay.com is an open community platform for vacation planning and recaping. Read reports, get helpful tips, ask questions, and get all the answers you need to make your next vacationa most enjoyable one. </p>
+              </div>
+              <div class='col-md-3 col-sm-6 info-box social-box'>
+                <h2 class='title'>Latest tweets</h2>
+                <div class='icon-boxes'>
+                  <div class='icon-box'>
+                    <div class='icon icon-wrap'>
+                      <i class='fa fa-twitter text-contrast'></i>
+                    </div>
+                    <div class='content'>
+                      <p>
+                        Phasellus vulputate lobortis sem. Mauris id velit in urna.
+                        <br>
+                        <a class='time' href='#'>
+                          <i>1 hour ago</i>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                  <div class='icon-box'>
+                    <div class='icon icon-wrap'>
+                      <i class='fa fa-twitter text-contrast'></i>
+                    </div>
+                    <div class='content'>
+                      <p>
+                        Etiam luctus, dui congue tempus blandit, dui.
+                        <br>
+                        <a class='time' href='#'>
+                          <i>3 hours ago</i>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='col-md-3 col-sm-6 button-cloud-box'>
+                <h2 class='title'>Tag cloud</h2>
+                <p>
+                  <a class="btn btn-light btn-bordered btn-sm text-medium-light" href="#">web</a>
+                  <a class="btn btn-light btn-bordered btn-sm text-medium-light" href="#">business</a>
+                  <a class="btn btn-light btn-bordered btn-sm text-medium-light" href="#">work</a>
+                  <a class="btn btn-light btn-bordered btn-sm text-medium-light" href="#">portfolio</a>
+                  <a class="btn btn-light btn-bordered btn-sm text-medium-light" href="#">corporate</a>
+                  <a class="btn btn-light btn-bordered btn-sm text-medium-light" href="#">services</a>
+                  <a class="btn btn-light btn-bordered btn-sm text-medium-light" href="#">blog</a>
+                </p>
+              </div>
+              <div class='col-md-3 col-sm-6 info-box'>
+                <h2 class='title'>Links</h2>
+                <ul class='list-unstyled list-padded'>
+                  <li>
+                    <i class='fa fa-angle-right fa fa-fixed-width text-contrast'></i>
+                    <a href="#">Quisque et fringilla</a>
+                  </li>
+                  <li>
+                    <i class='fa fa-angle-right fa fa-fixed-width text-contrast'></i>
+                    <a href="#">Etiam bibendum</a>
+                  </li>
+                  <li>
+                    <i class='fa fa-angle-right fa fa-fixed-width text-contrast'></i>
+                    <a href="#">Vestibulum</a>
+                  </li>
+                  <li>
+                    <i class='fa fa-angle-right fa fa-fixed-width text-contrast'></i>
+                    <a href="#">Mauris gravida</a>
+                  </li>
+                  <li>
+                    <i class='fa fa-angle-right fa fa-fixed-width text-contrast'></i>
+                    <a href="#">Magna dui</a>
+                  </li>
+                  <li>
+                    <i class='fa fa-angle-right fa fa-fixed-width text-contrast'></i>
+                    <a href="#">Adipiscing elementum</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id='footer-copyright'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-lg-12 clearfix'>
+                <p class='copyright'>
+                  Copyright
+                  &copy;
+                  2013 Jednotka
+                </p>
+                <div class='links'>
+                  <a class='btn btn-circle btn-medium-light btn-sm' href='#'>
+                    <i class='fa fa-twitter text-dark'></i>
+                  </a>
+                  <a class='btn btn-circle btn-medium-light btn-sm' href='#'>
+                    <i class='fa fa-dribbble text-dark'></i>
+                  </a>
+                  <a class='btn btn-circle btn-medium-light btn-sm' href='#'>
+                    <i class='fa fa-facebook text-dark'></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- end theme footer-->
+    
+      <!--theme scripts-->
+      <script src="assets/javascripts/jednotka/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/jednotka/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/jednotka/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/jednotka/plugins/modernizr/modernizr.custom.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/jednotka/plugins/hover_dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/jednotka/plugins/retina/retina.min.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/plugins/knob/jquery.knob.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/plugins/isotope/jquery.isotope.min.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/plugins/isotope/jquery.isotope.sloppy-masonry.min.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/plugins/validate/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/plugins/flexslider/jquery.flexslider.min.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/plugins/countdown/countdown.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/plugins/nivo_lightbox/nivo-lightbox.min.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/plugins/cycle/jquery.cycle.all.min.js" type="text/javascript"></script>
+    <script src="/assets/javascripts/jednotka/jednotka.js" type="text/javascript"></script>
+    <!-- end theme scripts"-->
+
+
   </body>
 </html>

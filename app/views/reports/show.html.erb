@@ -21,18 +21,33 @@
 
 <% button_to "Edit Post", "/reports/edit/#{@report.id}", method: :get %>
 
-<div>
-<h4>Add A comment</h4>
-<%= form_tag "/comments/#{@report.id}/new/?report=new", method: :post do %>
-  Comment: <input type="text" name = "text">
-  <input type = "submit" value = "Add Comment">
-  <% end %>
 
 <div class = "well">
 <h4>Comments:</h4>
 <% @comments.each_with_index do |comment, index| %>
-<b><%= index + 1 %></b>
-<h6><%= comment.created_at.strftime("%b %e, %l:%M %p") %><br></h6>
-<%= comment.text %><br><br>
-<%= comment.user.username %>
+<div id="comment-<%= comment.id %>">
+  <div class = "well">
+    <div class = "row">
+      <div class = "col-md-2">
+        <%= comment.user.username %>
+      </div>
+      <div class = "col-md-8">
+        <h6><%= comment.created_at.strftime("%b %e, %l:%M %p") %><br></h6>
+        <%= simple_format(comment.text.html_safe) %><br><br>
+       </div>
+      <div class = "col-md-2">
+        <p onclick = "reply(<%= comment.id %>, '<%= comment.user.username %>')">Reply</p>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
+</div>
+
+<div id = "addComment">
+<h4>Add A comment</h4>
+<%= form_tag "/comments/#{@report.id}/new/?report=new", method: :post do %>
+ <textarea name="text" cols="50" rows="10" id="replybox"></textarea>
+  <input type = "submit" value = "Add Comment">
+  <% end %>
+  </div>

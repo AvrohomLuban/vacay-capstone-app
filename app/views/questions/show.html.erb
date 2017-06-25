@@ -6,7 +6,7 @@ Asked: <%= @question.created_at.strftime("%b %e, %l:%M %p") %><br>
 
 <h1 class = "qanda">A:</h1>
 <% if @answers.empty? %> 
-  <h3>There are no answers to this question yet.</h3>
+  <h3>There are no answers to this question yet. Be the first to answer.</h3>
 <% else %>
   <% @answers.each do | answer | %>
     <div class = "well">
@@ -18,12 +18,11 @@ Asked: <%= @question.created_at.strftime("%b %e, %l:%M %p") %><br>
         </div>
         <div class = "col-md-8">
           <strong><%= answer.created_at.strftime("%b %e, %l:%M %p") %></strong><br>
-          <%= answer.answer %>
+          <%= simple_format(answer.answer) %>
         </div>
         <div class = "col-md-2">
-        <%= button_to "Report Inapropirate", "/", method: :get %>
+        <%= button_to "Report Inapropirate", "/inappropriates//?answer=#{answer.id}", method: :post %>
         <%= button_to "Edit Post", "/answers/edit/#{answer.id}", method: :get %>
-        <%= button_to "Delete Post", "/answers/delete/#{answer.id}", method: :delete %>
 
         </div>
       </div>

@@ -6,4 +6,5 @@ class Report < ApplicationRecord
   has_many :likes
   has_many :destinations
   has_many :locations, through: :destinations
+  has_many :images
 end

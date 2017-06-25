@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.create(user_id: current_user.id, location_id: params[:location_id], question: params[:question])
-    redirect_to "/"
+    redirect_to "/questions"
   end
 
   def show

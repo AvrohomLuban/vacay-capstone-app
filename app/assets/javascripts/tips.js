@@ -1,9 +1,18 @@
-function addComment(){
-  var show = document.getElementById('addComment');
-  show.classList.remove('hide');
+function seeAddComment(){
+  var show = document.getElementById('tipComments');
+  show.classList.toggle('hide');
+  var top = document.getElementById('addTipComment').offsetTop;
+  window.scrollTo(0, top); 
 }
 
-function seeComments(){
+function seeTipComments(){
   var show = document.getElementById('tipComments');
-  show.classList.remove('hide')
+  show.classList.toggle('hide')
+}
+
+function tipReply(id, username){
+  var replybox = document.getElementById('tipComment');
+  replybox.value += "<a href = '#comment-" + id + "'>" + "@" + username + ":" + "</a>" + "<br>";
+  var top = document.getElementById('addTipComment').offsetTop;
+  window.scrollTo(0, top);                   
 }

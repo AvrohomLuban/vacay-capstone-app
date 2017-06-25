@@ -45,5 +45,7 @@ Rails.application.routes.draw do
   get "/tips/new", to: 'tips#new'
   post "/tips/new", to: 'tips#create'
 
+  post "/inappropriates", to: 'inappropriates#create'
+
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

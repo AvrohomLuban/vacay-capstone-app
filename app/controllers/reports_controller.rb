@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
 
   def index
     if params[:rating]
-         @reports = Report.all.order(:likes.count => "desc").where(posted_live: true)
+         @reports = Report.all.order("likes DESC").where(posted_live: true)
     else
          @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
     end
@@ -59,7 +59,7 @@ class ReportsController < ApplicationController
     @destination = Destination.create(location_id: @location.id, report_id: @report.id)
 
     if @report.save 
-        flash[:success] = "Your report has been added"
+        flash[:success] = "Your Report will not be visible untill you confirm"
         redirect_to "/reports/confirm/#{@report.id}"
     else
         flash[:warning] = @report.errors.full_messages.join(", ")

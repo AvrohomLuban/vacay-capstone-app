@@ -1,8 +1,15 @@
-<%= form_tag "/answers/edit/#{@answer.id}", method: :post %>
+<%= form_tag "/answers/edit/#{@answer.id}", method: :post do %>
 <div>Answer:</div>
 <textarea name="answer" cols="75" rows="7"><%= @answer.answer %></textarea>
 <div>
 <input type="submit" value = "submit">
+
+<% end %>
+
+<%= button_to "Delete Post", "/answers/delete/#{@answer.id}", method: :delete %>
+
+
+
 
 
 

@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       @comment = Comment.new(tip_id: params[:id], text: params[:text], user_id: current_user.id)
         if @comment.save
           flash[:success] = "Your comment has been added"
-          redirect_to "/"
+          redirect_to "/tips"
         else
           flash[:warning] = "Comment not saved."
           redirect_to "/"

@@ -5,9 +5,9 @@ Rails.application.routes.draw do
         registrations: 'users/registrations'
       }
   
-  get "/", to: 'reports#index'
+  get "/", to: 'reports#home'
 
-  get "/reports", to: 'reports#index'
+  get "/reports/index", to: 'reports#index'
   get "/reports/new", to: 'reports#new'
   post "/reports/new", to: 'reports#create'
   post "/reports/confirm/:id", to: 'reports#confirm'
@@ -46,6 +46,10 @@ Rails.application.routes.draw do
   post "/tips/new", to: 'tips#create'
 
   post "/inappropriates", to: 'inappropriates#create'
+
+  get "/testing", to: 'reports#testing'
+  post "/testing", to: 'reports#state'
+  post "/states", to: 'reports#city'
 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -6,6 +6,15 @@
 <h3><%= @report.duration %>(<%= @report.season %>)</h3>
 <h5><%= @report.user.username %></h5>
 <%= simple_format(@report.text) %>
+
+<% @report.images.each do |image| %>
+<div class = "col-md-6">
+<img src = "<%= image.url %>">
+</div>
+<% end %>
+
+
+
 <%= button_to "Like", "/likes/#{@report.id}/?report=true", method: :post %>
 <%= @report.likes.where(like: true).count  %>
 <%= button_to "Dislike", "/likes/#{@report.id}/?report=false", method: :post %>

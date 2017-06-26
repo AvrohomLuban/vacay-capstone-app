@@ -58,6 +58,14 @@ class ReportsController < ApplicationController
     end
     @destination = Destination.create(location_id: @location.id, report_id: @report.id)
 
+    @images = Image.create(report_id: @report.id, url: params[:image1], subtitle: params[:subtitle1])
+
+    if @report.save
+    @image = Image.create(report_id: @report.id, url: params[:image1], subtitle: params[:subtitle1])
+    @image = Image.create(report_id: @report.id, url: params[:image2], subtitle: params[:subtitle2])
+    @image = Image.create(report_id: @report.id, url: params[:image2], subtitle: params[:subtitle2])
+    end
+
     if @report.save 
         flash[:success] = "Your Report will not be visible untill you confirm"
         redirect_to "/reports/confirm/#{@report.id}"
@@ -82,7 +90,7 @@ class ReportsController < ApplicationController
    def show
     @report = Report.find_by(id: params[:id])
     @comments = Comment.where(report_id: params[:id])
-    render "show.html.erb"
+    render "show2.html.erb"
     end
 
     def edit
@@ -103,6 +111,30 @@ class ReportsController < ApplicationController
         flash["success"] = "Changes have been saved!"
         redirect_to "/reports/#{@report.id}"
 
+    end
+
+    def testing
+        @countries = CS.countries
+        render "testing.html.erb"
+    end
+
+    def state
+        @country = params[:countries]
+        @states = CS.states(@country.to_sym)
+        render "states.html.erb"
+    end
+
+    def city
+        @country = params[:country]
+        @state = params[:state]
+        @cities = CS.cities(@state.to_sym, @country.to_sym)
+        render "city.html.erb"
+    end
+
+    def home
+        reports = Report.all.order(:created_at => "desc").where(posted_live: true)
+        @reports = reports[0...3]
+        render "home.html.erb"
     end
 
 end

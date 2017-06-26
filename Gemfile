@@ -23,6 +23,9 @@ gem 'devise'
 
 gem 'pry'
 
+gem 'city-state'
+gem 'compass-rails'
+
 # gem 'bootstrap-sass'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

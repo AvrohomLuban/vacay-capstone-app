@@ -47,9 +47,16 @@ Rails.application.routes.draw do
 
   post "/inappropriates", to: 'inappropriates#create'
 
+  
+
   get "/testing", to: 'reports#testing'
   post "/testing", to: 'reports#state'
   post "/states", to: 'reports#city'
+  post "/after", to: 'reports#after'
+
+  get "/contact", to: 'contacts#index'
+
+  get "/vue", to: 'reports#vue'
 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

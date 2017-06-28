@@ -49,7 +49,7 @@
                       </form>
                     </div>
                     <div class='box'>
-                      <h3 class='title'>More City Reports</h3>
+                      <h3 class='title'>More <%= @city %> Reports</h3>
                       <div class='list-group'>
                           <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
                         Quisque et fringilla
@@ -174,15 +174,22 @@
                       <div class='row'>
                         <div class='col-sm-12'>
                           <a href='blog_single_post.html'>
-                            <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="848" height="364" src="<%= @report.images.first.url %>" />
+                            <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="848" height="364" src="<%= @report.images.first_image %>" />
                           </a>
                         </div>
+
+                     
+
+
+
+
+
                         <div class='col-sm-12'>
                           <p><%= simple_format(@report.text) %></p>
                         </div>
                       </div>
 
-                    
+                    <% if @report.images %>
                       <hr class='hr-half'>
                         <% @report.images.each_slice(3) do |three_images| %>
                               <div class = "row">
@@ -196,7 +203,7 @@
                                 <% end %>
                               </div>
                             <% end %>
-                    
+                    <% end %>
 
                     </div>
                   </div>
@@ -239,10 +246,10 @@
                           <div class='content'>
                             <div class='toolbar'>
                               <h4 class='title'><%= comment.user.username %></h4>
-                              <a class='btn btn-link link-contrast btn-sm' href='#'>
+                              <p class='btn btn-link link-contrast btn-sm'>
                                 <i class='fa fa-reply'></i>
-                                <span>Reply</span>
-                              </a>
+                                <span onclick = "reply(<%= comment.id %>, '<%= comment.user.username %>')">Reply</span>
+                              </p>
                             </div>
                             <p><%= simple_format(comment.text.html_safe) %></p>
                             <p class='time'>
@@ -339,10 +346,10 @@
                             </div>
                           </div>
                         </div> -->
-                        <div class='row'>
+                        <div class='row' id="post_message">
                           <div class='col-sm-12'>
                             <div class='form-group control-group'>
-                              <textarea class='form-control' data-rule-required='true' id='comment_message' name="text" placeholder='Comment...' rows='5' id="replybox"></textarea>
+                              <textarea class='form-control' data-rule-required='true' id='comment_message' name="text" rows='5' ></textarea>
                             </div>
                           </div>
                         </div>

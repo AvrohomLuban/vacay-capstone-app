@@ -23,6 +23,10 @@ gem 'devise'
 
 gem 'pry'
 
+gem 'bootstrap-sass'
+
+gem 'font-awesome-rails'
+
 gem 'city-state'
 gem 'compass-rails'
 

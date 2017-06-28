@@ -13,7 +13,7 @@ class TipsController < ApplicationController
   def index
     @tips = Tip.all 
     @comments = Comment.all
-    render "index.html.erb"
+    render "index2.html.erb"
   end
 
 

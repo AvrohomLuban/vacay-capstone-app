@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
          @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
     end
     @title = "Latest Trip Reports"
-    render "index.html.erb"
+    render "index2.html.erb"
   end
 
   def new
@@ -89,6 +89,10 @@ class ReportsController < ApplicationController
 
    def show
     @report = Report.find_by(id: params[:id])
+    if @report.locations
+        @city = @report.locations.first.city
+        @others = Location.find_by(city: @city).reports.first(5)
+    end
     @comments = Comment.where(report_id: params[:id])
     render "show2.html.erb"
     end
@@ -115,26 +119,38 @@ class ReportsController < ApplicationController
 
     def testing
         @countries = CS.countries
-        render "testing.html.erb"
+        render "testing2.html.erb"
     end
 
     def state
+        @title = params[:title]
+        @duration = params[:duration]
+        @season = params[:season]
         @country = params[:countries]
         @states = CS.states(@country.to_sym)
-        render "states.html.erb"
+        render "states2.html.erb"
     end
 
     def city
         @country = params[:country]
         @state = params[:state]
         @cities = CS.cities(@state.to_sym, @country.to_sym)
-        render "city.html.erb"
+        render "city2.html.erb"
+    end
+
+    def after
+        render "after.html.erb"
     end
 
     def home
         reports = Report.all.order(:created_at => "desc").where(posted_live: true)
         @reports = reports[0...3]
         render "home.html.erb"
+    end
+
+    def vue
+         @countries = CS.countries
+        render "vueversion.html.erb"
     end
 
 end

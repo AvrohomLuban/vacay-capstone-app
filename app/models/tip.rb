@@ -4,4 +4,5 @@ class Tip < ApplicationRecord
   has_many :likes
   has_many :comments
   has_many :destination
+  has_many :images
 end

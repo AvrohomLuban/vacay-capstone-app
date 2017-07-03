@@ -4,18 +4,31 @@ Rails.application.routes.draw do
         sessions: 'users/sessions',
         registrations: 'users/registrations'
       }
-  
-  get "/", to: 'reports#home'
 
+  namespace :api do
+    namespace :v1 do
+      get "/reports", to: "reports#index"
+      post "/reports", to: "reports#create"
+    end
+  end
+
+  
+  # get "/", to: 'reports#home'
+
+  get "/reports/newvue", to: 'reports#newvue'
+  get "/reports/new", to: 'reports#new_part_1'
+  post "/reports/new_part_1", to: 'reports#new_part_2'
+  post "/reports/new_part_2", to: 'reports#new_part_3'
+  post "/reports/new_part_3", to: 'reports#new_part_4'
+  post "/reports/new_part_4", to: 'reports#new_part_5'
   get "/reports/index", to: 'reports#index'
-  get "/reports/new", to: 'reports#new'
   post "/reports/new", to: 'reports#create'
   post "/reports/confirm/:id", to: 'reports#confirm'
-  get "/reports/confirm/:id", to: 'reports#post'
   get "/reports/:id", to: 'reports#show'
   get "/reports/:id/edit", to: 'reports#edit'
   patch "/reports/edit/:id", to: 'reports#update'
   get "/reports/city/:city", to: 'reports#city'
+ 
 
   get "/locations", to: 'locations#index'
 
@@ -47,16 +60,13 @@ Rails.application.routes.draw do
 
   post "/inappropriates", to: 'inappropriates#create'
 
-  
-
-  get "/testing", to: 'reports#testing'
-  post "/testing", to: 'reports#state'
-  post "/states", to: 'reports#city'
-  post "/after", to: 'reports#after'
-
   get "/contact", to: 'contacts#index'
 
   get "/vue", to: 'reports#vue'
+
+  get "/photos/new", to: 'photos#new'
+  post "/photos", to: 'photos#create'
+  get "/photos", to: 'photos#index'
 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

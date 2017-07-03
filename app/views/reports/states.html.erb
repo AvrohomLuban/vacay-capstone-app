@@ -1,9 +1,0 @@
-<%= form_tag "/states/?country=#{@country}", method: :post do %>
-City: 
- <select name="state">
-    <% @states.each do |key, value| %>
-        <option value="<%= key %>"><%= value %></option>
-     <% end %>
-</select><br>
-<input type = "submit" value = "sumbmit">
-<% end %>

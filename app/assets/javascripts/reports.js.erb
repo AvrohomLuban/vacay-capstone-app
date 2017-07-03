@@ -1,0 +1,44 @@
+/* global Vue */
+/* global $ */
+
+function reply(id, username) {
+  var replybox = document.getElementById('comment_message');
+  replybox.value += "<a href = '#comment-" + id + "'>" + "@" + username + ":" + "</a>" + "<br>";
+  var top = document.getElementById('add-new-comment').offsetTop;
+  window.scrollTo(0, top);                        
+}
+
+function displayImages() {
+  var show = document.getElementById('more_images');
+  show.classList.toggle('hide_more_images');
+}
+
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+  var app = new Vue({
+    el: '#app',
+    data: {
+      reports: [],
+      title: '',
+      season: '',
+      duration: '',
+      text: '',
+      userId: document.getElementById('currentUserId').value,
+      posted_live: true
+    },
+      mounted: function() {
+        $.get('/api/v1/reports.json', function(result) {
+         this.reports = result;
+        }.bind(this));
+     },
+     methods: {
+       addCoolReport: function() {
+        console.log("hi");
+            var params = { title: this.title, season: this.season, duration: this.duration, text: this.text, user_id: this.userId, posted_live: this.posted_live };
+           $.post('/api/v1/reports', params, function(result) {
+             this.reports.push(result);
+           }.bind(this));
+         }
+     },
+  });
+});

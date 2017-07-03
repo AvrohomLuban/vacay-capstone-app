@@ -1,0 +1,23 @@
+<h1>Upload Photo</h1>
+
+<%= form_tag "/photos", method: :post, multipart: true do %>
+
+Add images from computer. To add more then one, press command, and add more.
+  <div>
+    <%= label_tag :title %>
+    <%= text_field_tag :title %>
+  </div>
+
+  
+
+  <div>
+    <%= label_tag :image %>
+    <%= file_field_tag "images[]", multiple: true %>
+  </div>
+
+<input type = "text" name = "weburl" placeholder="url goes here">
+
+
+  <%= submit_tag 'Upload' %>
+<% end %>
+

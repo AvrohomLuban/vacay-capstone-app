@@ -1,0 +1,270 @@
+    <div id='main' role='main'>
+        <!-- <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  Add A New Trip Report
+                  <small>Lorem ipsum dolor sit amet, integer vulputate porta augue</small>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon no-mg-t'>
+                  <i class='fa fa-code-fork'></i>
+                  <h2>
+                    Add Trip Notes
+                  </h2>
+                </div>
+
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <%= form_tag "/reports/new_part_5", method: :post, class: 'form' do %>
+                      <hr class='hr-dashed'>
+                      <fieldset class='row'>
+                        <div class='col-sm-4 mg-b-md'>
+                          <div class='lead'>Step 4</div>
+                          <small class='text-muted'>Your Trip Notes are almost complete. As a final step, add images to make your trip truly stand out. Best if add real pictures that you took, but if not, can also add url of pictures from online just to show readers where you want and better idea of what looked like.</small>
+                        </div>
+                        <div class='col-sm-7 col-sm-offset-1'>
+                          <div class='form-group'>
+                            <label>Add Images</label>
+                            
+
+                          </div>
+                         
+                         <div>
+                            <%= label_tag :title %>
+                            <%= text_field_tag :title %>
+                          </div>
+                          <div>
+                            <%= label_tag :image %>
+                            <%= file_field_tag "images[]", multiple: true %>
+                          </div>
+                          <%= submit_tag 'Upload' %>
+
+                          
+
+                        </div>
+                      </fieldset>
+
+
+                      <div class='mg-t-lg'>
+                        <div class='row'>
+                          <div class='col-sm-7 col-sm-offset-5'>
+                            <div class='text-center-xs'>
+
+                    <input type="hidden" name="title" value="<%= @title %>">
+                    <input type="hidden" name="duration" value="<%= @duration %>">
+                    <input type="hidden" name="season" value="<%= @season %>">
+                    <input type="hidden" name="full_country" value="<%= @full_country %>">
+                    <input type="hidden" name="country" value="<%= @country %>"> 
+                    <input type="hidden" name="state" value="<%= @state %>"> 
+                    <input type="hidden" name="full_state" value="<%= @full_state %>"> 
+                    <input type="hidden" name="city" value="<%= @city %>">
+
+                              
+                                <input type = "submit" value = "Continue" class='btn btn-contrast btn-lg'>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+  
+            <!-- <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon'>
+                  <i class='fa fa-list'></i>
+                  <h2>
+                    List of all form elements
+                  </h2>
+                </div>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                                <form class="form form-horizontal" method="post" action="#" accept-charset="UTF-8"><input name="authenticity_token" type="hidden" /><div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-text'>Text field</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-text' placeholder='Text field' type='text'>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-password'>Password field</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-password' placeholder='Password field' type='password' value='Top secret!'>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-textarea'>Textarea</label>
+                      <div class='col-md-5'>
+                        <textarea class='form-control' id='input-textarea' placeholder='Textarea' rows='3'></textarea>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-disabled-input-1'>Disabled input</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' disabled='' id='input-disabled-input-1' placeholder='Disabled input here...' type='text'>
+                      </div>
+                    </div>
+                    <hr class='hr-dashed'>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label'>Checkboxes</label>
+                      <div class='col-md-9'>
+                        <div class='checkbox'>
+                          <label>
+                            <input type='checkbox' value=''>
+                            itaque qui eius in sunt debitis aut et porro ad
+                          </label>
+                        </div>
+                        <div class='checkbox'>
+                          <label>
+                            <input type='checkbox' value=''>
+                            distinctio rem cum qui nihil
+                          </label>
+                        </div>
+                        <div class='checkbox'>
+                          <label>
+                            <input type='checkbox' value=''>
+                            hic ratione recusandae
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label'>Inline checkboxes</label>
+                      <div class='col-md-9'>
+                        <label class='checkbox-inline'>
+                          <input type='checkbox' value=''>
+                          Qui
+                        </label>
+                        <label class='checkbox-inline'>
+                          <input type='checkbox' value=''>
+                          Nemo
+                        </label>
+                        <label class='checkbox-inline'>
+                          <input type='checkbox' value=''>
+                          Hic
+                        </label>
+                      </div>
+                    </div>
+                    <hr class='hr-dashed'>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label'>Radios</label>
+                      <div class='col-md-9'>
+                        <div class='radio'>
+                          <label>
+                            <input name='radio' type='radio' value=''>
+                            commodi est in corporis expedita numquam eum sed voluptatem
+                          </label>
+                        </div>
+                        <div class='radio'>
+                          <label>
+                            <input name='radio' type='radio' value=''>
+                            dolor cupiditate quas voluptate aut qui nobis quod
+                          </label>
+                        </div>
+                        <div class='radio'>
+                          <label>
+                            <input name='radio' type='radio' value=''>
+                            dolores excepturi officia quisquam
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label'>Inline radios</label>
+                      <div class='col-md-9'>
+                        <label class='radio radio-inline'>
+                          <input name='radio' type='radio' value=''>
+                          Voluptas
+                        </label>
+                        <label class='radio radio-inline'>
+                          <input name='radio' type='radio' value=''>
+                          Et
+                        </label>
+                        <label class='radio radio-inline'>
+                          <input name='radio' type='radio' value=''>
+                          Ut
+                        </label>
+                      </div>
+                    </div>
+                    <hr class='hr-dashed'>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-select'>Select</label>
+                      <div class='col-md-5'>
+                        <select class='form-control' id='input-select'>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-select-multi'>Multiple select</label>
+                      <div class='col-md-5'>
+                        <select class='form-control' id='input-select-multi' multiple='multiple'>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <hr class='hr-dashed'>
+                    <div class='form-group has-warning'>
+                      <label class='col-md-3 control-label' for='input-warning'>Input with warning</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-warning' type='text'>
+                        <span class='help-block'>Something may have gone wrong</span>
+                      </div>
+                    </div>
+                    <div class='form-group has-error'>
+                      <label class='col-md-3 control-label' for='input-error'>Input with error</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-error' type='text'>
+                        <span class='help-block'>Please correct the error</span>
+                      </div>
+                    </div>
+                    <div class='form-group has-success'>
+                      <label class='col-md-3 control-label' for='input-success'>Input with success</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-success' type='text'>
+                        <span class='help-block'>Woohoo!</span>
+                      </div>
+                    </div>
+                    <div class='form-actions mg-t-lg'>
+                      <div class='row'>
+                        <div class='col-md-9 col-md-offset-3'>
+                          <button class='btn btn-contrast' type='submit'>
+                            <i class='icon-save'></i>
+                            Save
+                          </button>
+                          <button class='btn btn-very-light' type='submit'>Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                    </form>
+        
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>

@@ -1,14 +1,220 @@
-<h1 class = "text-center"><%= @title %></h1>
-<% @reports.each do |report| %>
-<div class = "well">
-<h2><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
-<% report.locations.each do | location | %>
-<%= location.city %>, <% if location.state != "" %><%= location.state %>,<% end %> <%= location.country %><br>
-<% end %>
-<h4><%= report.duration %> (<%= report.season %>)</h4>
-<h5>Posted: <%= report.created_at.strftime("%b %e, %l:%M %p") %></h5>
-<h5>By: <%= report.user.username %></h5>
-</div>
-<% end %>
+<div id='main' role='main'>
+        <!-- <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  Blog (Small image)
+                </h1>
+                <ol class='breadcrumb'>
+                  <li>
+                    <a href='index.html'>
+                      <i class='fa fa-home'></i>
+                    </a>
+                  </li>
+                  <li class='active'>Blog</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-md-push-9 col-sm-push-8 col-sm-4 col-md-3'>
+                <nav class='sidebar'>
+                  <button class='btn btn-block btn-contrast sidebar-toggle' data-target='.sidebar-collapse' data-toggle='collapse' type='button'>
+                    <span class='sr-only'>Toggle navigation</span>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                  </button>
+                  <div class='sidebar-collapse collapse'>
+                    <div class='box'>
+                      <h3 class='title'>Search in blog</h3>
+                      <form action='blog_large.html' method='get'>
+                        <div class='input-group'>
+                          <input class='form-control' placeholder='Search...' type='text'>
+                          <span class='input-group-btn'>
+                            <button class='btn btn-contrast' type='button'>
+                              <i class='fa fa-search'></i>
+                            </button>
+                          </span>
+                        </div>
+                      </form>
+                    </div>
+                    <div class='box'>
+                      <h3 class='title'>Categories</h3>
+                      <div class='list-group'>
+                          <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                        Quisque et fringilla
+                        </a>
+                      
+                          <a class="list-group-item active" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                        Etiam bibendum
+                        </a>
+                      
+                          <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                        Vestibulum
+                        </a>
+                      
+                          <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                        Mauris gravida
+                        </a>
+                      
+                          <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                        Magna dui
+                        </a>
+                      
+                          <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                        Adipiscing elementum
+                        </a>
+                      
+                      </div>
+                    </div>
+                    <div class='box'>
+                      <h3 class='title'>Photostream</h3>
+                      <ul class='list-unstyled list-inline image-list-box'>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class='box social-box'>
+                      <h3 class='title'>Latest tweets</h3>
+                      <div class='icon-boxes icon-boxes-nowrap'>
+                        <div class='icon-box'>
+                          <div class='icon icon-wrap'>
+                            <i class='fa fa-twitter text-contrast'></i>
+                          </div>
+                          <div class='content'>
+                            <p>
+                              Phasellus vulputate lobortis sem. Mauris id velit in urna.
+                              <br>
+                              <a class='time' href='#'>
+                                <i>1 hour ago</i>
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                        <div class='icon-box'>
+                          <div class='icon icon-wrap'>
+                            <i class='fa fa-twitter text-contrast'></i>
+                          </div>
+                          <div class='content'>
+                            <p>
+                              Etiam luctus, dui congue tempus blandit, dui.
+                              <br>
+                              <a class='time' href='#'>
+                                <i>3 hours ago</i>
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+              <div class='col-md-pull-3 col-sm-pull-4 col-sm-8 col-md-9'>
+                <div class='text-boxes'>
 
-<%= @cities %>
+        <% @reports.each do |report| %>
+                  <div class='row text-box text-box-title-above'>
+                    <div class='col-sm-12'>
+                      <h2 class='title'><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
+                      <div class='toolbar'>
+                      <a class='btn btn-link' href='#'>
+                          <i class='fa fa-map'></i>
+                          <span><%= report.locations.first.city %>, <%= report.locations.first.state %>, <%= report.locations.first.country %></span>
+                        </a>
+                        <a class='btn btn-link' href='#'>
+                          <i class='fa fa-clock-o'></i>
+                          <span><%= report.duration %></span>
+                        </a>
+                        <a class='btn btn-link' href='#'>
+                          <i class='fa fa-calendar'></i>
+                          <span><%= report.season %></span>
+                        </a>
+                        <a class='btn btn-link' href='#'>
+                          <i class='fa fa-user'></i>
+                          <span><%= report.user.username %></span>
+                        </a>
+                      </div>
+                      <div class='row'>
+                        <div class='col-sm-3'>
+                          <a href='blog_single_post.html'>
+                            <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="189" height="129" src="<%= report.images.first_image %>" />
+                          </a>
+                        </div>
+                        <div class='col-sm-9'>
+                          <p><%= report.text.first(400) %> ...</p>
+                          <a class='btn btn-contrast btn-bordered btn-xs' href='/reports/<%= report.id %>'>Read more</a>
+                        </div>
+                      </div>
+                      <hr class='hr-half'>
+                    </div>
+                  </div>
+       <% end %>
+
+
+
+</div>
+                <div class='text-center'>
+                  <ul class='pagination'>
+                    <li>
+                      <a href='#'>
+                        <i class='fa fa-angle-left'></i>
+                      </a>
+                    </li>
+                    <li class='active'>
+                      <a href='#'>1</a>
+                    </li>
+                    <li>
+                      <a href='#'>2</a>
+                    </li>
+                    <li>
+                      <a href='#'>3</a>
+                    </li>
+                    <li class='disabled'>
+                      <a href='#'>
+                        <i class='fa fa-angle-right'></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>

@@ -23,9 +23,13 @@ gem 'devise'
 
 gem 'pry'
 
+gem 'gon'
+
 gem 'bootstrap-sass'
 
 gem 'font-awesome-rails'
+
+gem "paperclip", "~> 5.0.0"
 
 gem 'city-state'
 gem 'compass-rails'

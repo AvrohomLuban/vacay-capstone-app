@@ -1,12 +1,6 @@
 class ReportsController < ApplicationController
     before_action :authenticate_user!, only: [:create, :edit, :confirm, :post, :update, :new]
 
-  def city
-    @reports = Location.find_by(city: params[:city]).reports.where(posted_live: true)
-    @title = "All " + params[:city] + " Trip Reports"
-    render "index.html.erb"
-  end
-
   def index
     if params[:rating]
          @reports = Report.all.order("likes DESC").where(posted_live: true)
@@ -14,133 +8,112 @@ class ReportsController < ApplicationController
          @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
     end
     @title = "Latest Trip Reports"
-    render "index2.html.erb"
+    render "index.html.erb"
   end
-
-  def new
-    render "new.html.erb"
-  end
-
-  def create
-    @report = Report.new(title: params[:title].titleize, duration: params[:duration], season: params[:season].titleize, text: params[:text], text_font: "handlee", posted_live: false,  user_id: current_user.id)
-    if Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
-        @location = Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
-    else
-    @location = Location.create(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
-    end
-    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
-
-    if Location.find_by(city: params[:city2].titleize, state: params[:state2].titleize, country: params[:country2].titleize)
-        @location = Location.find_by(city: params[:city2].titleize, state: params[:state2].titleize, country: params[:country2].titleize)
-    else
-    @location = Location.create(city: params[:city2].titleize, state: params[:state2].titleize, country: params[:country2].titleize)
-    end
-    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
-
-    if Location.find_by(city: params[:city3].titleize, state: params[:state3].titleize, country: params[:country3].titleize)
-        @location = Location.find_by(city: params[:city3].titleize, state: params[:state3].titleize, country: params[:country3].titleize)
-    else
-    @location = Location.create(city: params[:city3].titleize, state: params[:state3].titleize, country: params[:country3].titleize)
-    end
-    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
-
-    if Location.find_by(city: params[:city4].titleize, state: params[:state4].titleize, country: params[:country4].titleize)
-        @location = Location.find_by(city: params[:city4].titleize, state: params[:state4].titleize, country: params[:country4].titleize)
-    else
-    @location = Location.create(city: params[:city4].titleize, state: params[:state4].titleize, country: params[:country4].titleize)
-    end
-    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
-
-    if Location.find_by(city: params[:city5].titleize, state: params[:state5].titleize, country: params[:country5].titleize)
-        @location = Location.find_by(city: params[:city5].titleize, state: params[:state5].titleize, country: params[:country5].titleize)
-    else
-    @location = Location.create(city: params[:city5].titleize, state: params[:state5].titleize, country: params[:country5].titleize)
-    end
-    @destination = Destination.create(location_id: @location.id, report_id: @report.id)
-
-    @images = Image.create(report_id: @report.id, url: params[:image1], subtitle: params[:subtitle1])
-
-    if @report.save
-    @image = Image.create(report_id: @report.id, url: params[:image1], subtitle: params[:subtitle1])
-    @image = Image.create(report_id: @report.id, url: params[:image2], subtitle: params[:subtitle2])
-    @image = Image.create(report_id: @report.id, url: params[:image2], subtitle: params[:subtitle2])
-    end
-
-    if @report.save 
-        flash[:success] = "Your Report will not be visible untill you confirm"
-        redirect_to "/reports/confirm/#{@report.id}"
-    else
-        flash[:warning] = @report.errors.full_messages.join(", ")
-        render "new.html.erb"
-    end
-  end
-
-  def confirm
-    @report = Report.find_by(id: params[:id])
-    @report.update(posted_live: true)
-    flash[:success] = "Your trip has succeesfuly been added."
-    redirect_to "/reports/#{@report.id}"
-   end
-
-   def post
-    @report = Report.find_by(id: params[:id])
-    render "post.html.erb"
-   end
 
    def show
     @report = Report.find_by(id: params[:id])
-    if @report.locations
-        @city = @report.locations.first.city
-        @others = Location.find_by(city: @city).reports.first(5)
-    end
+    @city = @report.locations.first.city
+    @others = Location.find_by(city: @city).reports.first(5)
     @comments = Comment.where(report_id: params[:id])
-    render "show2.html.erb"
+    render "show.html.erb"
     end
 
     def edit
     @report = Report.find_by(id: params[:id])
-    render "edit.html.erb"
+    render "edit2.html.erb"
     end
 
     def update
         @report = Report.find_by(id: params[:id])
-        @report.update(title: params[:title].titleize, duration: params[:duration], season: params[:season].titleize, text: params[:text])
-        if Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country:params[:country].titleize)
-                 @location = Location.find_by(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
-        else
-                 @location = Location.create(city: params[:city].titleize, state: params[:state].titleize, country: params[:country].titleize)
-        end
-        @destination = @report.destinations.first
-        @destination.update(location_id: @location.id)
+        @report.update(title: params[:title], duration: params[:duration], season: params[:season], text: params[:text])
         flash["success"] = "Changes have been saved!"
         redirect_to "/reports/#{@report.id}"
 
     end
 
-    def testing
+    def new_part_1
         @countries = CS.countries
-        render "testing2.html.erb"
+        render "new_part_1.html.erb"
     end
 
-    def state
+    def new_part_2
         @title = params[:title]
         @duration = params[:duration]
         @season = params[:season]
-        @country = params[:countries]
+        @country = params[:country].split(',')[0]
+        @full_country = params[:country].split(',')[1]
         @states = CS.states(@country.to_sym)
-        render "states2.html.erb"
+        render "new_part_2.html.erb"
     end
 
-    def city
+    def new_part_3
+        @title = params[:title]
+        @duration = params[:duration]
+        @season = params[:season]
         @country = params[:country]
-        @state = params[:state]
+        @full_country = params[:full_country]
+        @state = params[:state].split(',')[0]
+        @full_state = params[:state].split(',')[1]
         @cities = CS.cities(@state.to_sym, @country.to_sym)
-        render "city2.html.erb"
+        render "new_part_3.html.erb"
     end
 
-    def after
-        render "after.html.erb"
+    def new_part_4
+        @title = params[:title]
+        @duration = params[:duration]
+        @season = params[:season]
+        @country = params[:country]
+        @full_country = params[:full_country]
+        @state = params[:state]
+        @full_state = params[:full_state]
+        @city = params[:city]
+        render "new_part_4_version2.html.erb"
     end
+
+    def new_part_5
+      @report = Report.new(title: params[:title], duration: params[:duration], season: params[:season], text: params[:text], user_id: current_user.id, posted_live: true)
+      if @report.save
+        if Location.find_by(city: params[:city], state: params[:full_state], country: params[:full_country])
+            @location = Location.find_by(city: params[:city], state: params[:full_state], country: params[:full_country])
+        else
+            @location = Location.create(country: params[:full_country], state: params[:full_state], city: params[:city])
+        end
+        @destination = Destination.create(location_id: @location.id, report_id: @report.id )
+        # @image1 = Image.create(url: params[:image1], report_id: @report.id)
+        # @image2 = Image.create(url: params[:image2], report_id: @report.id)
+        # @image3 = Image.create(url: params[:image3], report_id: @report.id)
+        # @image4 = Image.create(url: params[:image4], report_id: @report.id)          
+        # @image5 = Image.create(url: params[:image5], report_id: @report.id)
+        # @image6 = Image.create(url: params[:image6], report_id: @report.id)
+        # @image7 = Image.create(url: params[:image7], report_id: @report.id)
+        # @image8 = Image.create(url: params[:image8], report_id: @report.id)
+        # @image9 = Image.create(url: params[:image9], report_id: @report.id)
+        # @image10 = Image.create(url: params[:image10], report_id: @report.id)
+        # @image11 = Image.create(url: params[:image11], report_id: @report.id)
+        # @image12 = Image.create(url: params[:image12], report_id: @report.id)
+
+        img_array = params[:images]
+        success_arr =[]
+        img_array.each do | image | 
+          success_arr << Photo.create(image: image, report_id: @report.id)
+        end
+             # if success_arr.all?{|photo_object| photo_object.save}
+             #     flash[:success] = "The photos have been added!"
+             #     redirect_to "/photos"
+             # else
+             #       flash[:danger] = "Unsupported file type"
+             #      render :new
+             # end
+
+        flash[:success] = "Your Trip Report has successfully been posted."
+        redirect_to "/reports/#{@report.id}"
+    else
+        flash[:warning] = "Report could not be saved." + @report.errors.full_messages.join(',')
+        redirect_to "/reports/testing"
+      end
+    end
+
 
     def home
         reports = Report.all.order(:created_at => "desc").where(posted_live: true)
@@ -148,9 +121,7 @@ class ReportsController < ApplicationController
         render "home.html.erb"
     end
 
-    def vue
-         @countries = CS.countries
-        render "vueversion.html.erb"
+    def newvue
+        render "new_vue.html.erb"
     end
-
 end

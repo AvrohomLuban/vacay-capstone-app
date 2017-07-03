@@ -1,8 +1,0 @@
-<%= form_tag "/city", method: :post do %>
-City: 
- <select name="city">
-    <% @cities.each do | city | %>
-        <option value="<%= city %>"><%= city %></option>
-     <% end %>
-</select><br>
-<% end %>

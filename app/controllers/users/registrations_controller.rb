@@ -19,7 +19,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   # def create
   #   super
-  # end
+  #   Photo.create()...
+  # # end
 
   # GET /resource/edit
   # def edit

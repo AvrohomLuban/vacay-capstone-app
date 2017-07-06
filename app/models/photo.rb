@@ -3,4 +3,23 @@ class Photo < ApplicationRecord
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   belongs_to :reports, optional: true
+  belongs_to :tips, optional: true
+
+  def self.first_image
+    if first
+      first.image.url
+    else
+      'http://purplehippodesign.co.uk/wp-content/uploads/2016/06/favicon.png'
+    end
+  end
+
+  def self.tip_image
+    if first
+      first.image.url
+    else
+      'http://purplehippodesign.co.uk/wp-content/uploads/2016/06/favicon.png'
+    end
+  end
+
+
 end

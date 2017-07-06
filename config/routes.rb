@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post "/reports/new_part_1", to: 'reports#new_part_2'
   post "/reports/new_part_2", to: 'reports#new_part_3'
   post "/reports/new_part_3", to: 'reports#new_part_4'
-  post "/reports/new_part_4", to: 'reports#new_part_5'
+  post "/reports/new_part_4", to: 'reports#create'
   get "/reports/index", to: 'reports#index'
   post "/reports/new", to: 'reports#create'
   post "/reports/confirm/:id", to: 'reports#confirm'
@@ -43,8 +43,14 @@ Rails.application.routes.draw do
   get "/guides/:id/edit", to: 'guides#edit'
   patch "/guides/:id/edit", to: 'guides#edit'
 
-  get "/questions/new", to: 'questions#new'
-  post "/questions/new", to: 'questions#create'
+  get "/questions/new", to: 'questions#new_part_1'
+  post "/questions/new_part_1", to: 'questions#new_part_2'
+  post "/questions/new_part_2", to: 'questions#new_part_3'
+  post "/questions/new_part_3", to: 'questions#new_part_4'
+  post "/questions/new_part_4", to: 'questions#create'
+
+  # get "/questions/new", to: 'questions#new'
+  # post "/questions/new", to: 'questions#create'
   get "/questions", to: 'questions#index'
   get "/questions/:id", to: 'questions#show'
 
@@ -55,8 +61,14 @@ Rails.application.routes.draw do
   delete "/answers/delete/:id", to: 'answers#destroy'
 
   get "/tips", to: 'tips#index'
-  get "/tips/new", to: 'tips#new'
-  post "/tips/new", to: 'tips#create'
+  get "/tips/new", to: 'tips#new_part_1'
+  post "/tips/new_part_1", to: 'tips#new_part_2'
+  post "/tips/new_part_2", to: 'tips#new_part_3'
+  post "/tips/new_part_3", to: 'tips#new_part_4'
+  post "/tips/new_part_4", to: 'tips#create'
+
+
+  # post "/tips/new", to: 'tips#create'
 
   post "/inappropriates", to: 'inappropriates#create'
 
@@ -67,6 +79,10 @@ Rails.application.routes.draw do
   get "/photos/new", to: 'photos#new'
   post "/photos", to: 'photos#create'
   get "/photos", to: 'photos#index'
+
+  post "/bookmarks/new/:id", to: 'bookmarks#create'
+  get "/bookmarks", to: 'bookmarks#index'
+  delete "/bookmarks/:id", to: 'bookmarks#destroy'
 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

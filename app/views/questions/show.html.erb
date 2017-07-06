@@ -1,6 +1,6 @@
 <h3 class = "qanda">Q:</h3>
 <h3><%= @question.question %></h3>
-Location: <%= @question.location.city %><br>
+Location: <%= @question.location.country %>, <%= @question.location.state %>, <%= @question.location.city %><br>
 By:<%= @question.user.username %><br>
 Asked: <%= @question.created_at.strftime("%b %e, %l:%M %p") %><br>
 
@@ -24,14 +24,20 @@ Asked: <%= @question.created_at.strftime("%b %e, %l:%M %p") %><br>
         <%= button_to "Report Inapropirate", "/inappropriates//?answer=#{answer.id}", method: :post %>
         <%= button_to "Edit Post", "/answers/edit/#{answer.id}", method: :get %>
 
+
         </div>
       </div>
     </div>
   <% end %>
 <% end %>
 
-<%= form_tag "/answers/new/#{@question.id}", method: :post %>
+<%= form_tag "/answers/new/#{@question.id}", method: :post do %>
 <div>Answer:</div>
 <textarea name="answer" cols="75" rows="7"></textarea>
 <div>
 <input type="submit" value = "submit">
+<% end %>
+
+<%= form_tag "/bookmarks/new/#{@question.id}/?question=true", method: :post do %>
+    <button class='btn btn-contrast btn-bordered btn-xs'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
+<% end %>

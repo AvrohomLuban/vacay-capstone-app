@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702191355) do
+ActiveRecord::Schema.define(version: 20170705005701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20170702191355) do
     t.integer  "question_id"
     t.integer  "user_id"
     t.string   "answer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "report_id"
+    t.integer  "tip_id"
+    t.string   "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -108,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170702191355) do
     t.datetime "image_updated_at"
     t.string   "weburl"
     t.integer  "report_id"
+    t.integer  "tip_id"
   end
 
   create_table "questions", force: :cascade do |t|

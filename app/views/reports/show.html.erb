@@ -166,9 +166,11 @@
                       <div class='row'>
                         <div class='col-sm-12'>
                           <a href='blog_single_post.html'>
-                            <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="848" height="364" src="<%= @report.images.first_image %>" />
+                            <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="848" height="364" src="<%= @report.photos.first_image %>" />
                           </a>
                         </div>
+
+                       
 
                      
 
@@ -181,15 +183,14 @@
                         </div>
                       </div>
 
-                    <% if @report.images %>
+                    <% if @report.photos %>
                       <hr class='hr-half'>
-                        <% @report.images.each_slice(3) do |three_images| %>
+                        <% @report.photos.each_slice(3) do |three_photos| %>
                               <div class = "row">
-                                <% three_images.each do |image| %>
+                                <% three_photos.each do |photo| %>
                                   <div class = "col-md-4">
                                     <div class="well showPageImage">
-                                      <img src = "<%= image.url %>"><br>
-                                      Subtitle: <%= image.subtitle %><br>
+                                      <img src = "<%= photo.image.url %>"><br>
                                     </div>
                                   </div>
                                 <% end %>
@@ -197,6 +198,21 @@
                             <% end %>
                     <% end %>
 
+                    </div>
+                  </div>
+
+                  <hr class = "hr-half">
+                  
+                  <div class = "row">
+                    <div class = "col-sm-2 ">
+                      <%= form_tag "/likes/#{@report.id}/?report=true", method: :post do %>
+                         <button id = "likebutton" class='btn btn-contrast btn-md' onclick="clicked()" type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like (<%= @report.likes.count %>)</button>
+                      <% end %>
+                    </div>
+                    <div class = "col-sm-2">
+                      <%= form_tag "/bookmarks/new/#{@report.id}/?report=true", method: :post do %>
+                          <button class='btn btn-contrast btn-md'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
+                      <% end %>
                     </div>
                   </div>
 

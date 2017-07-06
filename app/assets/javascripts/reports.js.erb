@@ -13,6 +13,11 @@ function displayImages() {
   show.classList.toggle('hide_more_images');
 }
 
+function clicked() {
+  var button = document.getElementById('likebutton');
+  button.classList.toggle('btn-contrast')
+}
+
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var app = new Vue({

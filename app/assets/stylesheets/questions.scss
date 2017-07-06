@@ -2,6 +2,10 @@ a:hover {
    text-decoration:none;
 }
 .qanda {font-size: 100px;}
+.bigq {font-size: 75px !important;
+      font-family: 'Kaushan Script', cursive;}
+.borderright {border-right: 1px solid #000;
+              border-color: #8DC153}
 
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

@@ -23,11 +23,14 @@
       <script src="assets/javascripts/ie/html5shiv.js" type="text/javascript"></script>
       <script src="assets/javascripts/ie/respond.min.js" type="text/javascript"></script>
     <![endif]-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Mrs+Sheppards" rel="stylesheet">
   </head>
 
   <body>
      <!--theme nav bar-->
-     <header id='header'>
+     <header id='header' class = "headerclass">
         <div class='container'>
           <nav class='navbar navbar-collapsed-sm navbar-default' id='nav' role='navigation'>
             <div class='navbar-header'>
@@ -38,7 +41,8 @@
                 <span class='icon-bar'></span>
               </button>
               <a class='navbar-brand' href='index.html'>
-                <img alt="Jednotka" width="117" height="39" src="/assets/images/logo.svg" />
+                <!-- <img alt="Jednotka" width="117" height="39" src="/assets/images/logo.svg" /> -->
+                <div class ="logo">Vacay.com</div>
               </a>
             </div>
             <div class='collapse navbar-collapse navbar-header-collapse'>
@@ -208,8 +212,43 @@
             </div>
           </nav>
         </div>
+
+
+           <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  <%= @pagetitle %>
+                </h1>
+                <!-- <ol class='breadcrumb'>
+                  <li>
+                    <a href='index.html'>
+                      <i class='fa fa-home'></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href='blog_large.html'>
+                      Report goes here
+                    </a>
+                  </li>
+                  <li class='active'>Trip Notes</li> -->
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--end theme nav bar--> 
+
+
+
+
       </header>
-      <!--end theme nav bar-->   
+
+
+
+
+     
 
    <% flash.each do |name, messege| %>
      <div class="alert alert-<%= name %> alert-dismissible"" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= messege %></div>

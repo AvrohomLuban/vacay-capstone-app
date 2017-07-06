@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :guides
   has_many :questions
   has_many :answers
+  has_many :bookmarks
 
   def posts
     return self.comments.count + self.reports.count + self.questions.count + self.answers.count

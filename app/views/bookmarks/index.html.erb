@@ -1,0 +1,178 @@
+<div id='main' role='main'>
+        <!-- <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  Tables
+                  <small>Lorem ipsum dolor sit amet, integer vulputate porta augue</small>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'> 
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon'>
+                  <i class='fa fa-save'></i>
+                  <h2>
+                   My Bookmarks
+                  </h2>
+                </div>
+
+                <h1>Reports</h1>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <div class='table-responsive'>
+                      <table class='table table-hover'>
+                        <thead>
+                          <tr>
+                            <th>
+                              <i class='fa fa-newspaper-o text-contrast'></i>
+                              Title
+                            </th>
+                            <th>
+                              <i class='fa fa-map text-contrast'></i>
+                              Location
+                            </th>
+                            <th>
+                              <i class='fa fa-clock-o text-contrast'></i>
+                              Length
+                            </th>
+                            <th>
+                              <i class='fa fa-calendar text-contrast'></i>
+                              Season
+                            </th>
+                             <th>
+                              <!-- <i class='fa fa-trash text-contrast'></i> -->
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @bookmarked_reports.each do | bookmark | %>
+                          <!--  if <% bookmark.report %>  -->
+                            
+                              <tr onClick="goToReportBookmark(<%= bookmark.report.id %>)">
+                                <td>
+                                  <%= bookmark.report.title %>
+                                </td>
+                                <td>
+                                  <%= bookmark.report.locations.first.country %>,<%= bookmark.report.locations.first.state %>,<%= bookmark.report.locations.first.city %>
+                                </td>
+                                <td>
+                                 <%= bookmark.report.duration %>
+                                </td>
+                                <td>
+                                <%= bookmark.report.season %>
+                                </td>
+                                <td>
+                                <%= link_to "Remove", "/bookmarks/#{bookmark.id}", method: :delete %>
+                                </td>
+                              </tr> 
+                             
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <h1>Tips</h1>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <div class='table-responsive'>
+                      <table class='table table-hover'>
+                        <thead>
+                          <tr>
+                            <th>
+                              <i class='fa fa-tag text-contrast'></i>
+                              Place
+                            </th>
+                            <th>
+                              <i class='fa fa-map text-contrast'></i>
+                              Location
+                            </th>
+                            <th>
+                              <i class='fa fa-comment text-contrast'></i>
+                              Tip
+                            </th>
+                            <th>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @bookmarked_tips.each do | bookmark | %>
+                            <tr class='  '>
+                              <td>
+                                <%= bookmark.tip.venue %>
+                              </td>
+                              <td>
+                                <%= bookmark.tip.location.country %>,<%= bookmark.tip.location.state %>,<%= bookmark.tip.location.city %>
+                              </td>
+                              <td>
+                                <%= bookmark.tip.text.first(75) %> ...
+                              </td>
+                              <td>
+                                <%= link_to "Remove", "/bookmarks/#{bookmark.id}", method: :delete %>
+                                </td>
+                            </tr>
+                          <% end %>
+                         
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <h1>Questions</h1>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <div class='table-responsive'>
+                      <table class='table table-hover'>
+                        <thead>
+                          <tr>
+                            <th>
+                              <i class='fa fa-tag text-contrast'></i>
+                              Location
+                            </th>
+                            <th>
+                              <i class='fa fa-map text-contrast'></i>
+                              Question
+                            </th>
+                            <th>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @bookmarked_questions.each do | bookmark | %>
+                            <tr class='  '>
+                              <td>
+                                <%= bookmark.question.location.country %>,<%= bookmark.question.location.state %>,<%= bookmark.question.location.city %>
+                              </td>
+                              <td>
+                                <%= bookmark.question.question %>
+                              </td>
+                              <td>
+                                <%= link_to "Remove", "/bookmarks/#{bookmark.id}", method: :delete %>
+                                </td>
+                            </tr>
+                          <% end %>
+                         
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>
+      
+  

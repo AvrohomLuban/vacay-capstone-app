@@ -175,7 +175,7 @@
                           </a>
                         </div>
                         <div class='col-sm-9'>
-                          <p><%= report.text.first(400) %> ...</p>
+                          <p><%= simple_format(report.text.first(400)) %> ...</p>
                           <a class='btn btn-contrast btn-bordered btn-xs' href='/reports/<%= report.id %>'>Read more</a>
                         </div>
                       </div>

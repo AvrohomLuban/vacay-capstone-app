@@ -8,4 +8,5 @@ class Report < ApplicationRecord
   has_many :locations, through: :destinations
   has_many :images
   has_many :photos
+  has_many :bookmarks
 end

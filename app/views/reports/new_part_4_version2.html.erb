@@ -24,7 +24,7 @@
 
                 <div class='row'>
                   <div class='col-sm-12'>
-                    <%= form_tag "/reports/new_part_4", method: :post, class: 'form' do %>
+                    <%= form_tag "/reports/new_part_4", method: :post, class: 'form',multipart: true do %>
                       <fieldset class='row'>
                         <div class='col-sm-4 mg-b-md'>
                           <div class='lead'>Step 3</div>
@@ -51,15 +51,15 @@
 
                           </div>
                          
-                         <div>
+                        <!--  <div class='form-control'>
                             <%= label_tag :title %>
                             <%= text_field_tag :title %>
-                          </div>
+                          </div> -->
                           <div>
-                            <%= label_tag :image %>
-                            <%= file_field_tag "images[]", multiple: true %>
+                           <!-- <%= label_tag :image %>-->
+                           <%= file_field_tag "images[]", multiple: true %>
                           </div>
-                          <%= submit_tag 'Upload' %>
+                         <!--  <div class='form-control'><%= submit_tag 'Upload' %></div> -->
 
                           
 
@@ -82,7 +82,7 @@
                     <input type="hidden" name="city" value="<%= @city %>">
 
                               
-                                <input type = "submit" value = "Continue" class='btn btn-contrast btn-lg'>
+                                <input type = "submit" value = "Post" class='btn btn-contrast btn-lg'>
                               
                             </div>
                           </div>

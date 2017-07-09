@@ -14,4 +14,12 @@ class Api::V1::ReportsController < ApplicationController
     end
   end
 
+   def show
+    @report = Report.find_by(id: params[:id])
+    @city = @report.locations.first.city
+    @others = Location.find_by(city: @city).reports.first(5)
+    @comments = Comment.where(report_id: params[:id])
+    render "show.json.jbuilder"
+  end
+
 end

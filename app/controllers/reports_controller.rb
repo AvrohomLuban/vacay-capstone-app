@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
     @city = @report.locations.first.city
     @others = Location.find_by(city: @city).reports.first(5)
     @comments = Comment.where(report_id: params[:id])
-    render "show.html.erb"
+    render "show_v2.html.erb"
     end
 
     def edit
@@ -83,8 +83,8 @@ class ReportsController < ApplicationController
             if params[:images] !=nil
                 img_array = params[:images]
                 success_arr =[]
-                img_array.each do | image | 
-                  success_arr << Photo.create(image: image, report_id: @report.id)
+                img_array.each do | key, image | 
+                  success_arr << Photo.create(image: image, report_id: @report.id, subtitle: params[:subtitles][key])
             end
             
         end
@@ -112,6 +112,6 @@ class ReportsController < ApplicationController
     end
 
     def newvue
-        render "new_vue.html.erb"
+        render "vue_new.html.erb"
     end
 end

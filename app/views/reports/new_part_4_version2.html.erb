@@ -47,17 +47,35 @@
                         <div class='col-sm-7 col-sm-offset-1'>
                           <div class='form-group'>
                             <label>Add Images</label>
-                            
-
                           </div>
                          
-                        <!--  <div class='form-control'>
-                            <%= label_tag :title %>
-                            <%= text_field_tag :title %>
-                          </div> -->
+                        
                           <div>
-                           <!-- <%= label_tag :image %>-->
-                           <%= file_field_tag "images[]", multiple: true %>
+                           <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['one']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-4">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='input-name' type='text' name="subtitles['one']" placeholder="View of the falls from top of mountain">
+                              </div>
+                            </div>
+                           <%= file_field_tag "images['two']", id: "images_field" %>
+                           <input type="text" name="subtitles['two']">
+                           <%= file_field_tag "images['three']", id: "images_field" %>
+                           <input type="text" name="subtitles['three']">
+                           <%= file_field_tag "images['four']", id: "images_field" %>
+                           <input type="text" name="subtitles['four']">
+                           <%= file_field_tag "images['five']", id: "images_field" %>
+                           <input type="text" name="subtitles['five']">
+                           <%= file_field_tag "images['six']", id: "images_field" %>
+                           <input type="text" name="subtitles['six']">
+                           <%= file_field_tag "images['seven']", id: "images_field" %>
+                           <input type="text" name="subtitles['seven']">
+                           <%= file_field_tag "images['eight']", id: "images_field" %>
+                           <input type="text" name="subtitles['eight']">
+                        
                           </div>
                          <!--  <div class='form-control'><%= submit_tag 'Upload' %></div> -->
 

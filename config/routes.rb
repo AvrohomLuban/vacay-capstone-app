@@ -9,6 +9,17 @@ Rails.application.routes.draw do
     namespace :v1 do
       get "/reports", to: "reports#index"
       post "/reports", to: "reports#create"
+      get "/reports/:id", to: "reports#show"
+      get "/locations", to: "locations#index"
+      post "/locations", to: "locations#create"
+      get "/destinations", to: "destinations#index"
+      post "/destinations", to: "destinations#create"
+      get "/photos", to: "photos#index"
+      post "/photos", to: "photos#create"
+      get "/tips", to: "tips#index"
+      post "tips", to: "tips#create"
+      get "/bookmarks", to: "bookmarks#index"
+      post "/bookmarks", to: "bookmarks#create"
     end
   end
 

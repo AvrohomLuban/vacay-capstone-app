@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706235912) do
+ActiveRecord::Schema.define(version: 20170709200735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20170706235912) do
   end
 
   create_table "destinations", force: :cascade do |t|
-    t.integer  "tip_id"
     t.integer  "report_id"
     t.integer  "location_id"
     t.datetime "created_at",  null: false
@@ -110,7 +109,6 @@ ActiveRecord::Schema.define(version: 20170706235912) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string   "title"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -121,6 +119,7 @@ ActiveRecord::Schema.define(version: 20170706235912) do
     t.integer  "report_id"
     t.integer  "tip_id"
     t.integer  "user_id"
+    t.string   "subtitle"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -137,31 +136,9 @@ ActiveRecord::Schema.define(version: 20170706235912) do
     t.string   "duration"
     t.text     "text"
     t.boolean  "posted_live"
-    t.string   "title_font"
-    t.string   "destination_font"
-    t.string   "season_font"
-    t.string   "duration_font"
-    t.string   "text_font"
-    t.string   "title_size"
-    t.string   "destination_size"
-    t.string   "season_size"
-    t.string   "text_size"
-    t.string   "duration_size"
     t.string   "user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "city2"
-    t.string   "state2"
-    t.string   "country2"
-    t.string   "city3"
-    t.string   "state3"
-    t.string   "country3"
-    t.string   "city4"
-    t.string   "state4"
-    t.string   "country4"
-    t.string   "city5"
-    t.string   "state5"
-    t.string   "country5"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tips", force: :cascade do |t|

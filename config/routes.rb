@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   end
 
   
-  # get "/", to: 'reports#home'
-
+ 
+  get"/", to: 'reports#index'
   get "/reports/newvue", to: 'reports#newvue'
   get "/reports/new", to: 'reports#new_part_1'
   post "/reports/new_part_1", to: 'reports#new_part_2'

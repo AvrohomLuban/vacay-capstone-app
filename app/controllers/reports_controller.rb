@@ -80,12 +80,13 @@ class ReportsController < ApplicationController
             @location = Location.create(country: params[:full_country], state: params[:full_state], city: params[:city])
         end
         @destination = Destination.create(location_id: @location.id, report_id: @report.id )
-            if params[:image]
+            if params[:images] !=nil
                 img_array = params[:images]
                 success_arr =[]
                 img_array.each do | image | 
                   success_arr << Photo.create(image: image, report_id: @report.id)
             end
+            
         end
              # if success_arr.all?{|photo_object| photo_object.save}
              #     flash[:success] = "The photos have been added!"

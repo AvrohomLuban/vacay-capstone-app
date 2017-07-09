@@ -1,0 +1,174 @@
+<div id='main' role='main'>
+       <!--  <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  About us
+                  <small>Nam porta lectus a sodales pulvinar. Morbi sed auctor magna.</small>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon no-mg-t'>
+                  <i class='fa fa-question-circle'></i>
+                  <h2 class = "bigq">
+                    Question:
+                  </h2>
+                </div>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <p class='lead lead-xs text-center question'><%= @question.question %></p>
+                    <p class = "questionuser" align="center"><%= @question.user.username %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <% if @answers.empty? == false  %>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='page-header page-header-with-icon'>
+                    <i class='fa fa-info-circle'></i>
+                    <h2 class = "bigq">
+                      Answers:
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            
+              
+        
+            <% @answers.each_with_index do |answer, index| %>
+              <div class='media'>
+                <div class='pull-left'>
+                  <div class='media-object without-image'></div>
+                  </div>
+                  <div class='media-body'>
+                    <div class='content'>
+                      <div class='toolbar'>
+                        <h4 class='title'><%= answer.user.username %></h4>
+                        <p class='btn btn-link link-contrast btn-sm'>
+                        <i class='fa fa-reply'></i> Reply
+                        </p>
+                      </div>
+                        <p><%= simple_format(answer.answer.html_safe) %></p>
+                        <p class='time'>
+                        <%= answer.created_at.strftime("%b %e, %l:%M %p") %>
+                        </p>
+
+                    <div class="buttons-div">
+                        <%= form_tag "/likes/#{answer.id}/?answer=true", method: :post do %>
+                           <button id = "like_answer" class='btn btn-contrast btn-md' onclick="clicked_like_answer()" type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> <span class="badge green_badge"><%= answer.likes.where(like: true).count %></span></button>
+                        <% end %>
+                        <%= form_tag "/likes/#{answer.id}/?answer=false", method: :post do %>
+                           <button id = "dislike_answer" class='btn btn-contrast btn-md padding_left' onclick="clicked_dislike_answer()" type="submit"><i class="fa fa-thumbs-down" aria-hidden="true"></i> <span class="badge green_badge"><%= answer.likes.where(like: false).count %></span></button>
+                        <% end %>
+                        <button class = "btn btn-contrast btn-md padding_left" onclick="seeAnswerComments()">See Comments (<%= answer.comments.count %>)</button>
+                    </div>
+
+                    <div id="answerComments" class = "answercomments">
+                      <% answer.comments.each do | comment | %>
+                        <hr>
+                        <div class = "row">
+                          <div class = "col-xs-2 borderright">
+                            <%= comment.user.username %>
+                          </div>
+                          <div class = "col-xs-10">
+                            <%= comment.text %>
+                            <p class='time'>
+                            <%= comment.created_at.strftime("%b %e, %l:%M %p") %>
+                            </p>
+                          </div>
+                        </div>
+                      <% end %>
+
+
+                      <!--testing this -->
+                      <hr>
+                      <div class='row'>
+                        <div class='col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2'>
+                          <%= form_tag "/comments/#{answer.id}/new/?answer=new", method: :post do %>
+                            <div class='row'>
+                              <div class='col-sm-12'>
+                                <div class='form-group control-group'>
+                                  <h6 class = "text-center">Comment On Answer</h6>
+                                  <textarea class='form-control' data-rule-required='true' name='text' placeholder='Type comment here...' rows='5'></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-12'>
+                                <button class='btn btn-contrast btn-block form-contact-submit' data-loading-text="&lt;i class='fa fa-refresh fa-spin'&gt;&lt;/i&gt; Sending..." type='submit'>
+                                      Add Comment
+                                </button>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+
+                      <!-- till here-->
+
+
+
+
+                    </div>
+
+
+
+                    </div>
+                  </div>
+                </div>   
+
+            <% end %>
+          </div>
+        </div>
+        <div class='page-header page-header-with-icon no-mg-t'>
+          <i class='fa fa-question-circle'></i>
+          <h2 class = "bigq">
+                    Add An Answer:
+          </h2>
+        </div>
+
+
+
+        <div class='row'>
+              <div class='col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2'>
+                
+                <!-- <form class='form form-validation form-contact' method='post'> -->
+                <%= form_tag "/answers/new/#{@question.id}", method: :post do %>
+                  <div class='row'>
+                    <div class='col-sm-12'>
+                      <div class='form-group control-group'>
+                        <textarea class='form-control' data-rule-required='true' name='answer' placeholder='Type answer here...' rows='10'></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-sm-12'>
+                      <button class='btn btn-contrast btn-block form-contact-submit' data-loading-text="&lt;i class='fa fa-refresh fa-spin'&gt;&lt;/i&gt; Sending..." type='submit'>
+                        Post
+                      </button>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+
+      
+
+
+
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>
+      

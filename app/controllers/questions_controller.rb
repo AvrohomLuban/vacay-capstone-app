@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find_by(id: params[:id])
     @answers = Answer.where(question_id: @question.id)
-    render "show.html.erb"
+    render "show2.html.erb"
   end
 
   def index

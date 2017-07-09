@@ -3,4 +3,5 @@ class Question < ApplicationRecord
   belongs_to :location
   has_many :answers
   has_many :bookmarks
+  has_many :likes
 end

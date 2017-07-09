@@ -1,5 +1,5 @@
 <div id='main' role='main'>
-        <div id='main-content-header'>
+        <!-- <div id='main-content-header'>
           <div class='container'>
             <div class='row'>
               <div class='col-sm-12'>
@@ -17,7 +17,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div id='main-content'>
           <div class='container'>
             <div class='row'>
@@ -164,11 +164,16 @@
                         </div>
                         <div class='row'>
                           <div class='col-sm-2 borderright'>
-                              <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="194" height="65" src="http://placehold.it/189x129" />
+                              <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="194" height="65" src="<%= question.user.photos.user_image %>" />
                           </div>
                           <div class='col-sm-9'>
                             <p><%= question.question %></p>
-                            <a class='btn btn-contrast btn-bordered btn-xs' href='/questions/<%= question.id %>'>See answers (<%= question.answers.count %>)</a>
+                            <div class = "buttons-div">
+                               <a class='btn btn-contrast btn-bordered btn-xs' href='/questions/<%= question.id %>'>  See answers (<%= question.answers.count %>)</a>
+                               <%= form_tag "/bookmarks/new/#{question.id}/?question=true", method: :post do %>
+                                 <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
+                              <% end %>
+                            </div>
                           </div>
                         </div>
                         <hr class='hr-half'>

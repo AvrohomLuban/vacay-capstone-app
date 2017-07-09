@@ -4,6 +4,7 @@ class Photo < ApplicationRecord
 
   belongs_to :reports, optional: true
   belongs_to :tips, optional: true
+  belongs_to :user, optional: true
 
   def self.first_image
     if first
@@ -21,5 +22,12 @@ class Photo < ApplicationRecord
     end
   end
 
+  def self.user_image
+    if first
+      first.image.url
+    else
+      'http://iseh.co.uk/images/noimage.png'
+    end
+  end
 
 end

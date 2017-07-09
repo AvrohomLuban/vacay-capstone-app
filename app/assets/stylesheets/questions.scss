@@ -2,10 +2,25 @@ a:hover {
    text-decoration:none;
 }
 .qanda {font-size: 100px;}
-.bigq {font-size: 75px !important;
+.bigq {font-size: 50px !important;
       font-family: 'Kaushan Script', cursive;}
 .borderright {border-right: 1px solid #000;
               border-color: #8DC153}
+.question {font-size: 45px !important;
+       font-family: 'Yellowtail', cursive !important;
+        line-height: 1em !important;}
+.questionuser {font-size: 30px;
+              font-family: 'Allura', cursive;
+              }
+.padding {padding-top: 25px;}
+.green_badge {background-color: white !important;
+        color: #8dc153 !important;}
+.buttons-div {
+  display: flex;
+}
+.padding_left {margin-left: 20px !important;}
+.answercomments { display: none;}
+
 
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

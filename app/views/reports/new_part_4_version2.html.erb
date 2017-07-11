@@ -48,36 +48,369 @@
                           <div class='form-group'>
                             <label>Add Images</label>
                           </div>
-                         
-                        
                           <div>
                            <div class = "row">
                             <div class = "col-xs-4">
                              <label>Image</label>
                                <%= file_field_tag "images['one']", id: "images_field" %>
                               </div>
-                             <div class = "col-xs-4">
+                             <div class = "col-xs-7">
                                <label>Subtitle</label>
-                               <input class='form-control' id='input-name' type='text' name="subtitles['one']" placeholder="View of the falls from top of mountain">
+                               <input class='form-control' id='input-name' type='text' name="subtitles['one']" placeholder="Note: First image will be big image on report page">
                               </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['two']", id: "images_field" %>
                             </div>
-                           <%= file_field_tag "images['two']", id: "images_field" %>
-                           <input type="text" name="subtitles['two']">
-                           <%= file_field_tag "images['three']", id: "images_field" %>
-                           <input type="text" name="subtitles['three']">
-                           <%= file_field_tag "images['four']", id: "images_field" %>
-                           <input type="text" name="subtitles['four']">
-                           <%= file_field_tag "images['five']", id: "images_field" %>
-                           <input type="text" name="subtitles['five']">
-                           <%= file_field_tag "images['six']", id: "images_field" %>
-                           <input type="text" name="subtitles['six']">
-                           <%= file_field_tag "images['seven']", id: "images_field" %>
-                           <input type="text" name="subtitles['seven']">
-                           <%= file_field_tag "images['eight']", id: "images_field" %>
-                           <input type="text" name="subtitles['eight']">
-                        
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['two']" class = "form-control">
+                            </div>
                           </div>
-                         <!--  <div class='form-control'><%= submit_tag 'Upload' %></div> -->
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['three']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['three']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['four']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['four']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['five']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['five']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['six']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['six']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['seven']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['seven']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['eight']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['eight']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class ="col-xs-4">
+                            </div>
+                            <div class = "col-xs-7">
+                             <a onclick="displayMoreImagesForm()">Add More Images</a>
+                            </div>
+                          </div>
+                        </div>
+
+                          <div id="more_images" class = "hide_more_images">
+                                <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['nine']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='first_image' type='text' name="subtitles['nine']" placeholder="Note: First image will be big image on report page">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['ten']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['ten']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['eleven']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['eleven']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twelve']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twelve']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['thirteen']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirteen']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['fourteen]", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['fourteen]" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['fifteen']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['fifteen']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['sixteen']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['sixteen']" class = "form-control">
+                             <div class = "col-xs-7">
+                             <a onclick="displayEvenMoreImagesForm()">Add More Images</a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="even_more_images" class = "hide_more_images">
+                                <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['seventeen']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='first_image' type='text' name="subtitles['seventeen']" placeholder="Note: First image will be big image on report page">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['eighteen']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['eighteen']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['nineteen']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['nineteen']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twentyzero']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twentyzero']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['twenty_one']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_one']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twenty_two']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_two']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['twenty_three']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_three']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twenty_four']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['twenty_four']" class = "form-control">
+                             <div class = "col-xs-7">
+                             <a onclick="displayEvenEvenMoreImagesForm()">Add More Images</a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="even_even_more_images" class = "hide_more_images">
+                                <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['twenty_five']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='first_image' type='text' name="subtitles['twenty_five']" placeholder="Note: First image will be big image on report page">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twenty_six']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_six']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['twenty_seven']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_seven']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twenty_eight']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['twenty_nine']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_nine']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['thirtyzero]", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirtyzero]" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['thirty_one']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_one']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['thirty_two']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['thirty_two']" class = "form-control">
+                             <div class = "col-xs-7">
+                             <a onclick="displayEvenEvenEvenMoreImagesForm()">Add More Images</a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="even_even_even_more_images" class = "hide_more_images">
+                                <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['thirty_three']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='first_image' type='text' name="subtitles['thirty_three']" placeholder="Note: First image will be big image on report page">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['thirty_four']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_four']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['thirty_five']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_five']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['thirty_six']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_six']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['thirty_seven']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_seven']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['fourtyzero]", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['fourtyzero]" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['forty_one']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['forty_one']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['forty_two']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['forty_two']" class = "form-control">
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+
 
                           
 

@@ -4,6 +4,8 @@ class ReportsController < ApplicationController
   def index
     if params[:rating]
          @reports = Report.all.order("likes DESC").where(posted_live: true)
+    elsif params[:city]
+        @reports = Location.where(city: params[:city]).first.reports
     else
          @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
     end

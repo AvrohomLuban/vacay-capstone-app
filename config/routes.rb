@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get "/reports/city/:city", to: 'reports#city'
  
 
-  get "/locations", to: 'locations#index'
+  get "/locations/", to: 'locations#index'
 
   post "/comments/:id/new", to: 'comments#create'
 

@@ -1,0 +1,380 @@
+<div id='main' role='main'>
+        <!-- <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  <%= @report.title %>
+                </h1>
+                <ol class='breadcrumb'>
+                  <li>
+                    <a href='index.html'>
+                      <i class='fa fa-home'></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href='blog_large.html'>
+                      <%= @report.user.username %>
+                    </a>
+                  </li>
+                  <li class='active'>Trip Notes</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-md-push-9 col-sm-push-8 col-sm-4 col-md-3'>
+                <nav class='sidebar'>
+                  <button class='btn btn-block btn-contrast sidebar-toggle' data-target='.sidebar-collapse' data-toggle='collapse' type='button'>
+                    <span class='sr-only'>Toggle navigation</span>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                  </button>
+                  <div class='sidebar-collapse collapse'>
+                    <div class='box'>
+                      <h3 class='title'>Search in blog</h3>
+                      <form action='blog_large.html' method='get'>
+                        <div class='input-group'>
+                          <input class='form-control' placeholder='Search...' type='text'>
+                          <span class='input-group-btn'>
+                            <button class='btn btn-contrast' type='button'>
+                              <i class='fa fa-search'></i>
+                            </button>
+                          </span>
+                        </div>
+                      </form>
+                    </div>
+                    <div class='box'>
+                      <h3 class='title'>More <%= @city %> Reports</h3>
+                      <div class='list-group'>
+
+                      <% @others.each do | other_report | %>
+                          <a class="list-group-item" href="/reports/<%= other_report.id %>"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                        <%= other_report.title %>
+                        </a>
+                        <% end %>
+                      
+                          
+                      </div>
+                    </div>
+                    <div class='box'>
+                      <h3 class='title'>Photostream</h3>
+                      <ul class='list-unstyled list-inline image-list-box'>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='#'>
+                            <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class='box social-box'>
+                      <h3 class='title'>Latest tweets</h3>
+                      <div class='icon-boxes icon-boxes-nowrap'>
+                        <div class='icon-box'>
+                          <div class='icon icon-wrap'>
+                            <i class='fa fa-twitter text-contrast'></i>
+                          </div>
+                          <div class='content'>
+                            <p>
+                              Phasellus vulputate lobortis sem. Mauris id velit in urna.
+                              <br>
+                              <a class='time' href='#'>
+                                <i>1 hour ago</i>
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                        <div class='icon-box'>
+                          <div class='icon icon-wrap'>
+                            <i class='fa fa-twitter text-contrast'></i>
+                          </div>
+                          <div class='content'>
+                            <p>
+                              Etiam luctus, dui congue tempus blandit, dui.
+                              <br>
+                              <a class='time' href='#'>
+                                <i>3 hours ago</i>
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+              <div class='col-md-pull-3 col-sm-pull-4 col-sm-8 col-md-9'>
+                <div class='text-boxes'>
+                  <div class='row text-box text-box-title-above text-box-big-image'>
+                    <div class='col-sm-12'>
+                      <h2 class='title'><a href="/blog_single_post.html"><%= @report.title %></a></h2>
+                      <div class='toolbar'>
+                        <a class='btn btn-link' href='#'>
+                          <i class='fa fa-map'></i>
+                          <span><%= @report.locations.first.city %>, <%= @report.locations.first.state %>, <%= @report.locations.first.country %></span>
+                        </a>
+                        <a class='btn btn-link' href='#'>
+                          <i class='fa fa-clock-o'></i>
+                          <span><%= @report.duration %></span>
+                        </a>
+                        <a class='btn btn-link' href='#'>
+                          <i class='fa fa-calendar'></i>
+                          <span><%= @report.season %></span>
+                        </a>
+                        <a class='btn btn-link' href='#'>
+                          <i class='fa fa-user'></i>
+                          <span><%= @report.user.username %></span>
+                        </a>
+                        <!-- <a class='btn btn-link' href='#'>
+                          <i class='fa fa-user'></i>
+                          <span>Posted <%= @report.created_at.strftime("%A, %b %d")%></span> -->
+                        </a>
+                        <a class='btn btn-link' href='#comments'>
+                          <i class='fa fa-comments'></i>
+                          <span><%= @report.comments.count %> Comments</span>
+                        </a>
+                      </div>
+                      <div class='row'>
+                        <div class='col-sm-12'>
+                          <a href='blog_single_post.html'>
+                            <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="848" height="364" src="<%= @report.photos.first_image %>" />
+                          </a>
+                        </div>
+
+                        <div class='col-sm-12'>
+                          <p><%= simple_format(@report.text) %></p>
+                        </div>
+                      </div>
+
+
+       <!-- <img onclick="enlarge()" id="myImg" src="http://az616578.vo.msecnd.net/files/2016/07/21/636047332914342794-620055947_Colorful-New-York-City-1920x1200.jpg" alt="Trolltunga, Norway" width="300" height="200"> -->
+
+      <!-- The Modal -->
+    <div id="myModal" class="modal">
+     <span class="close" onclick="closeModal()">&times;</span>
+                          <img onclick="closeModal()" class="modal-content" id="img01">
+                          <div id="caption"></div>
+                        </div>
+
+
+
+                    <% if @report.photos %>
+                      <hr class='hr-half'>
+                        <% @report.photos.each_slice(3) do |three_photos| %>
+                              <div class = "row">
+                                <% three_photos.each do |photo| %>
+                                  <div class='portfolio-boxes'>
+                                    <div class='col-sm-4 col-xs-6 no-mb-t-xs portfolio-box'>
+                                      <div onclick="enlarge(<%= photo.id %>)" id="myImg-<%= photo.id %>" class="img" style="background-image:url('<%= photo.image.url %>);"></div>
+                                      <div><%= photo.subtitle %></div>
+                                    </div>
+                                  </div>
+                                  
+                                <% end %>
+                              </div>
+                            <% end %>
+                    <% end %>
+
+                    </div>
+                  </div>
+
+                  <hr class = "hr-half">
+                  
+                  <div class = "row">
+                    <div class = "col-sm-2 ">
+                      <%= form_tag "/likes/#{@report.id}/?report=true", method: :post do %>
+                         <button id = "likebutton" class='btn btn-contrast btn-md' onclick="clicked()" type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like (<%= @report.likes.count %>)</button>
+                      <% end %>
+                    </div>
+                    <div class = "col-sm-2">
+                      <%= form_tag "/bookmarks/new/#{@report.id}/?report=true", method: :post do %>
+                          <button class='btn btn-contrast btn-md'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
+                      <% end %>
+                    </div>
+                  </div>
+
+     
+                  <div class='row'>
+                    <div class='col-sm-12'>
+                      <div class='author-box'>
+                        <div class='row'>
+                          <div class='col-sm-3 col-lg-2'>
+                            <img alt="Author" width="165" height="165" class="img-circle img-responsive center-block" src="http://placehold.it/165x165" />
+                          </div>
+                          <div class='col-sm-9 col-lg-10'>
+                            <h3 class='title'>About author</h3>
+                            <p>Avrohom & Rivky Luban are a young couple with two daughters, aged 2 years, and 2 months. They love to travel, explore, and see lots of new places.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-sm-12' id='comments'>
+                      <h3>
+                        Comments (<%= @report.comments.count %>)
+                      </h3>
+                      <% @comments.each_with_index do |comment, index| %>
+                      <div class='media'>
+                        <div class='pull-left'>
+                          <div class='media-object without-image'></div>
+                        </div>
+                        <div class='media-body'>
+                          <div class='content'>
+                            <div class='toolbar'>
+                              <h4 class='title'><%= comment.user.username %></h4>
+                              <p class='btn btn-link link-contrast btn-sm'>
+                                <i class='fa fa-reply'></i>
+                                <span onclick = "reply(<%= comment.id %>, '<%= comment.user.username %>')">Reply</span>
+                              </p>
+                            </div>
+                            <p><%= simple_format(comment.text.html_safe) %></p>
+                            <p class='time'>
+                              <a href="#"><%= comment.created_at.strftime("%b %e, %l:%M %p") %></a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <% end %>
+                      <!-- <div class='media'>
+                        <div class='pull-left'>
+                          <div class='media-object without-image'></div>
+                        </div>
+                        <div class='media-body'>
+                          <div class='content'>
+                            <div class='toolbar'>
+                              <h4 class='title'>David Doe</h4>
+                              <a class='btn btn-link link-contrast btn-sm' href='#'>
+                                <i class='fa fa-reply'></i>
+                                <span>Reply</span>
+                              </a>
+                            </div>
+                            <p>Etiam ac consectetur dui, id mollis neque. Phasellus rutrum augue nec convallis bibendum. Etiam vitae aliquam leo, laoreet venenatis massa. Aliquam erat volutpat.</p>
+                            <p class='time'>
+                              <a href="#">14 April, 2013</a>
+                            </p>
+                          </div>
+                          <div class='media'>
+                            <div class='pull-left'>
+                              <img class="media-object" width="60" height="60" alt="Jessica Doe" src="http://placehold.it/60x60" />
+                            </div>
+                            <div class='media-body'>
+                              <div class='content staff'>
+                                <div class='toolbar'>
+                                  <h4 class='title'>
+                                    Jessica Doe
+                                    <span class='label label-contrast'>Staff</span>
+                                  </h4>
+                                  <a class='btn btn-link link-contrast btn-sm' href='#'>
+                                    <i class='fa fa-reply'></i>
+                                    <span>Reply</span>
+                                  </a>
+                                </div>
+                                <p>Proin eu ullamcorper urna. Nullam eu mi vel metus faucibus mollis. Nulla rutrum fermentum dui quis ullamcorper. Integer metus nunc, interdum non libero a, semper fringilla ligula.</p>
+                                <p class='time'>
+                                  <a href="#">14 April, 2013</a>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class='media'>
+                        <div class='pull-left'>
+                          <div class='media-object without-image'></div>
+                        </div>
+                        <div class='media-body'>
+                          <div class='content'>
+                            <div class='toolbar'>
+                              <h4 class='title'>Mike Doe</h4>
+                              <a class='btn btn-link link-contrast btn-sm' href='#'>
+                                <i class='fa fa-reply'></i>
+                                <span>Reply</span>
+                              </a>
+                            </div>
+                            <p>Praesent sed viverra lacus. Aliquam congue porttitor ipsum sed vulputate. Nam lacus nunc, malesuada a massa sed, commodo placerat sem.</p>
+                            <p class='time'>
+                              <a href="#">11 April, 2013</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <hr class='hr-invisible hr-half'>
+                    <div class='col-sm-12' id='add-new-comment'>
+                      <h3>Add Comment</h3>
+                      <%= form_tag "/comments/#{@report.id}/new/?report=new", method: :post do %>
+                        <!-- <div class='row'>
+                          <div class='col-sm-4'>
+                            <div class='form-group control-group'>
+                              <input class='form-control' data-rule-required='true' id='comment_name' name='comment[name]' placeholder='Name' type='text'>
+                            </div>
+                          </div>
+                          <div class='col-sm-4'>
+                            <div class='form-group control-group'>
+                              <input class='form-control' data-rule-email='true' data-rule-required='true' id='comment_email' name='comment[email]' placeholder='E-Mail' type='text'>
+                            </div>
+                          </div>
+                          <div class='col-sm-4'>
+                            <div class='form-group control-group'>
+                              <input class='form-control' id='comment_website' name='comment[website' placeholder='Website' type='text'>
+                            </div>
+                          </div>
+                        </div> -->
+                        <div class='row' id="post_message">
+                          <div class='col-sm-12'>
+                            <div class='form-group control-group'>
+                              <textarea class='form-control' data-rule-required='true' id='comment_message' name="text" rows='5' ></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class='row'>
+                          <div class='col-sm-12'>
+                            <button class='btn btn-contrast' type='submit' value = "submit">
+                              Add comment
+                            </button>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>

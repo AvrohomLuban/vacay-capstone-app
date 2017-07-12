@@ -6,11 +6,12 @@ class ReportsController < ApplicationController
          @reports = Report.all.order("likes DESC").where(posted_live: true)
     elsif params[:city]
         @reports = Location.where(city: params[:city]).first.reports
+        @city = params[:city]
     else
          @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
     end
     @title = "Latest Trip Reports"
-    render "index.html.erb"
+    render "index2.html.erb"
   end
 
    def show
@@ -18,7 +19,7 @@ class ReportsController < ApplicationController
     @city = @report.locations.first.city
     @others = Location.find_by(city: @city).reports.first(5)
     @comments = Comment.where(report_id: params[:id])
-    render "show_v2.html.erb"
+    render "show_testing_pic.html.erb"
     end
 
     def edit

@@ -3,12 +3,20 @@ class ReportsController < ApplicationController
 
   def index
     if params[:rating]
-         @reports = Report.all.order("likes DESC").where(posted_live: true)
+         @reports = Report.all.order("likes DESC").where(posted_live: true).page(params[:page]).per(15)
+    # elsif params[:like]
+    #     @reports = Report.joins(:likes).where('likes.like = true').page(params[:page]).per(15)
+    #following works but not with paginate
+    # @reports = Report.all.sort_by{|report| report.likes.where(like: true).count}.reverse.page(params[:page]).per(15)
+    elsif params[:abc]
+        @reports = Report.all.order("title ASC").page(params[:page]).per(15)
+    elsif params[:random]
+        @reports = Report.all.order("RANDOM()").page(params[:page]).per(15)
     elsif params[:city]
-        @reports = Location.where(city: params[:city]).first.reports
+        @reports = Location.where(city: params[:city]).first.reports.page(params[:page]).per(15)
         @city = params[:city]
     else
-         @reports = Report.all.order(:created_at => "desc").where(posted_live: true)
+         @reports = Report.all.order(:created_at => "desc").where(posted_live: true).page(params[:page]).per(15)
     end
     @title = "Latest Trip Reports"
     render "index2.html.erb"

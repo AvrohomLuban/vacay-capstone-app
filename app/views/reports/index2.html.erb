@@ -45,11 +45,14 @@
                     </div>
                     <div class='box'>
                       <div class='go_to_tips'>
-                      <h5>Need some <%= @city %> Tips?</h5>
-                      <h1>Visit our tips page</h1>
-                      <h5>And come prepared</h5>
-
-                      
+                      <h6 class = "tip_box text-center">Click Here For</h6>
+                      <h1 class = "tip_box2 text-center">Tips</h1>
+                      </div>
+                    </div>
+                    <div class='box'>
+                      <div class='go_to_tips'>
+                      <h6 class = "tip_box text-center">Click Here For</h6>
+                      <h1 class= "tip_box2 text-center">Q&A</h1>
                       </div>
                     </div>
                     <div class='box'>
@@ -123,8 +126,24 @@
                   </div>
                 </nav>
               </div>
+
+
+
+
+
               <div class='col-md-pull-3 col-sm-pull-4 col-sm-8 col-md-9'>
                 <div class='text-boxes'>
+
+                <div class='row' id='portfolio-filter'>
+              <div class='col-sm-12'>
+                <ul class='nav nav-pills'>
+                  <li class='active'><a data-filter="*" href="/reports/index">Latest</a></li>
+                  <li><a data-filter=".portfolio-filter-photography" href="/reports/index/?abc=true">By Name</a></li>
+                  <li><a data-filter=".portfolio-filter-identity" href="#">Best Rated</a></li>
+                  <li><a data-filter=".portfolio-filter-webdesign" href="/reports/index/?random=true">Random</a></li>
+                </ul>
+              </div>
+            </div>
 
         <% @reports.each do |report| %>
                   <div class='row text-box text-box-title-above'>
@@ -147,6 +166,10 @@
                           <i class='fa fa-user'></i>
                           <span><%= report.user.username %></span>
                         </a>
+                       <!--  <a class='btn btn-link' href='#'>
+                          <i class='fa fa-thumbs-up'></i>
+                          <span>Likes: <%= report.likes.count %></span>
+                        </a> -->
                       </div>
                       <div class='row'>
                         <div class='col-sm-3'>
@@ -167,8 +190,9 @@
 
 
 </div>
+<%= paginate(@reports) %>
                 <div class='text-center'>
-                  <ul class='pagination'>
+                  <!-- <ul class='pagination'>
                     <li>
                       <a href='#'>
                         <i class='fa fa-angle-left'></i>
@@ -188,7 +212,7 @@
                         <i class='fa fa-angle-right'></i>
                       </a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </div>
             </div>

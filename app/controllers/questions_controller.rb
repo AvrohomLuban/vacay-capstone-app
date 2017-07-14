@@ -58,7 +58,12 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    if params[:city]
+        @questions = Location.where(city: params[:city]).first.questions.page(params[:page]).per(15)
+        @city = params[:city]
+    else
+      @questions = Question.all.page(params[:page]).per(15)
+    end
     render "index.html.erb"
   end
 

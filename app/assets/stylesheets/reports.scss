@@ -33,11 +33,24 @@ body { background-image: url(‘fabric_plaid.png’)}
 .tip_box {font-family: 'Jomhuria', cursive;
           font-size: 20px;
           color: #8DC153;
-          margin-bottom: 0;}
+          margin-bottom: 0;
+          }
 .tip_box2{font-family: 'Carter One', cursive;
             color: #8DC153;
-          margin-top: 0px;}
-
+          margin-top: 0px;
+          }
+.tip_qa_boxes {background-color: #8DC153;
+                padding-top: 15px;
+                padding-right: 15px;
+                padding-left: 15px;
+                padding-bottom: 15px;}
+.tip_qa_heading {font-family: 'Carter One', cursive;}
+.tip_qa_city {font-family: 'Carter One', cursive;
+              margin-top:0px;}
+.aboutcity {background-color: #8DC153;
+            margin-top:10px;
+            padding: 15px;
+            font-family: 'Arima Madurai', cursive;}
 
 
 

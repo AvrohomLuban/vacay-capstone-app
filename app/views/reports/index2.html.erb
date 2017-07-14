@@ -43,17 +43,28 @@
                         </div>
                       <% end %>
                     </div>
-                    <div class='box'>
-                      <div class='go_to_tips'>
-                      <h6 class = "tip_box text-center">Click Here For</h6>
-                      <h1 class = "tip_box2 text-center">Tips</h1>
-                      </div>
+                    <div class = "tip_qa_boxes">
+                      <h5 class = "text-center tip_qa_heading">Everything you need to know about</h5>
+                      <h3 class = "text-center tip_qa_city"><%= @city %></h3>
+                        <a href ="/tips/?city=<%= @city %>">
+                        <div class='box'>
+                          <div class='go_to_tips'>
+                          <h6 class = "tip_box text-center">Click Here For</h6>
+                          <h1 class = "tip_box2 text-center">Tips</h1>
+                          </div>
+                        </div>
+                        </a>
+                        <a href = "/questions/?city=<%= @city %>">
+                        <div class='box'>
+                          <div class='go_to_tips'>
+                          <h6 class = "tip_box text-center">Click Here For</h6>
+                          <h1 class= "tip_box2 text-center">Q&A</h1>
+                          </div>
+                        </div>
+                        </a>
                     </div>
-                    <div class='box'>
-                      <div class='go_to_tips'>
-                      <h6 class = "tip_box text-center">Click Here For</h6>
-                      <h1 class= "tip_box2 text-center">Q&A</h1>
-                      </div>
+                    <div class = "aboutcity">
+                      <p>San Diego is a city on the Pacific coast of California known for its beaches, parks and warm climate. Immense Balboa Park is the site of the renowned San Diego Zoo, as well as numerous art galleries, artist studios, museums and gardens. A deep harbor is home to a large active naval fleet, with the USS Midway, an aircraft-carrier-turned-museum, open to the public.</p>
                     </div>
                     <div class='box'>
                       <h3 class='title'>Photostream</h3>
@@ -192,27 +203,7 @@
 </div>
 <%= paginate(@reports) %>
                 <div class='text-center'>
-                  <!-- <ul class='pagination'>
-                    <li>
-                      <a href='#'>
-                        <i class='fa fa-angle-left'></i>
-                      </a>
-                    </li>
-                    <li class='active'>
-                      <a href='#'>1</a>
-                    </li>
-                    <li>
-                      <a href='#'>2</a>
-                    </li>
-                    <li>
-                      <a href='#'>3</a>
-                    </li>
-                    <li class='disabled'>
-                      <a href='#'>
-                        <i class='fa fa-angle-right'></i>
-                      </a>
-                    </li>
-                  </ul> -->
+                  
                 </div>
               </div>
             </div>

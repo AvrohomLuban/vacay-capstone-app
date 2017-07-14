@@ -50,7 +50,12 @@ class TipsController < ApplicationController
   end
 
   def index
-    @tips = Tip.all.order(:created_at => "desc")
+    if params[:city]
+        @tips = Location.where(city: params[:city]).first.tips.page(params[:page]).per(15)
+        @city = params[:city]
+    else
+      @tips = Tip.all.order(:created_at => "desc").page(params[:page]).per(15)
+    end
     @comments = Comment.all
     render "index.html.erb"
   end

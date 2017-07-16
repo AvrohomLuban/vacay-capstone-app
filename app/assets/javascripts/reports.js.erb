@@ -38,6 +38,15 @@ function displayEvenEvenEvenMoreImagesForm() {
   show.classList.toggle('hide_more_images');
 }
 
+function showincarousal(id) {
+  console.log(id)
+  console.log("carousel" + id)
+  var picture = document.getElementById('carousel' + id)
+  $('.active').removeClass('active');
+  picture.classList.add('active');
+  $('#myModal').modal('show');
+}
+
 document.addEventListener("DOMContentLoaded", function(event) { 
   var app = new Vue({
     el: '#app',

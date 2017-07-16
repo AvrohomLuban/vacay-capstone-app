@@ -32,7 +32,7 @@
                   <div class='sidebar-collapse collapse'>
                     <div class='box'>
                       <h3 class='title'>Search by Title</h3>
-                      <%= form_tag "/reports/index", method: :post do %>
+                      <%= form_tag "/reports/index/?search=true", method: :get do %>
                         <div class='input-group'>
                           <input class='form-control' placeholder='Search...' type='text' name = "searchbox">
                           <span class='input-group-btn'>
@@ -41,6 +41,7 @@
                             </button>
                           </span>
                         </div>
+                        <button type = "submit" value = "search">
                       <% end %>
                     </div>
                     <div class = "tip_qa_boxes">

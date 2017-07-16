@@ -15,6 +15,8 @@ class ReportsController < ApplicationController
     elsif params[:city]
         @reports = Location.where(city: params[:city]).first.reports.page(params[:page]).per(15)
         @city = params[:city]
+    elsif params[:search]
+        @reports = Report.where(title: params[:searchbox]).page(params[:page]).per(15)
     else
          @reports = Report.all.order(:created_at => "desc").where(posted_live: true).page(params[:page]).per(15)
     end
@@ -27,7 +29,7 @@ class ReportsController < ApplicationController
     @city = @report.locations.first.city
     @others = Location.find_by(city: @city).reports.first(5)
     @comments = Comment.where(report_id: params[:id])
-    render "show_testing_pic.html.erb"
+    render "show_carousel_popup.html.erb"
     end
 
     def edit

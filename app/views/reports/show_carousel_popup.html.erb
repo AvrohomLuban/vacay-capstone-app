@@ -193,7 +193,7 @@
                                       <div onclick = "showincarousal(<%= photo.id %>)">
                                       <img src = "<%= photo.image.url %>"><br>
                                       </div>
-                                    <p><%= photo.subtitle %></p>
+                                    <!-- <p><%= photo.subtitle %></p> -->
                                     </div>
                                   </div>
                                 <% end %>
@@ -204,7 +204,25 @@
                     </div>
                   </div>
 
-                  <!--carousal-->
+
+
+                  <!--popup-->
+                  <!-- Trigger the modal with a button -->
+                  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+                  <!-- Modal -->
+                  <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title"><%= @report.title %> Images </h4>
+                        </div>
+                        <div class="modal-body">
+                          <!--carousal-->
+               
                   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -215,21 +233,20 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                  <div class="item active" id ="carouselfirst">
+                  <!-- <div class="item active" id ="carouselfirst">
                     <img src="https://media.timeout.com/images/101594229/image.jpg" alt="...">
                     <div class="carousel-caption">
                       ...
                     </div>
-                  </div>
+                  </div> -->
               <% @report.photos.each do | photo| %>
                   <div class="item" id = "carousel<%= photo.id %>">
                     <img class="img-responsive" src="<%= photo.image.url %>" alt="...">
                     <div class="carousel-caption">
-                      ...
-                    </div>
+                  </div>
+                    <p class = "text-center"><%= photo.subtitle %></p>
                   </div>
               <% end %>
-                  ...
                 </div>
 
                 <!-- Controls -->
@@ -242,7 +259,22 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
+
+            
               <!--end carousal-->
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!--end popup-->
+
+
+                  
+
 
              
          

@@ -1,5 +1,5 @@
       <div id='main' role='main'>
-        <div id='main-content-header'>
+        <!-- <div id='main-content-header'>
           <div class='container'>
             <div class='row'>
               <div class='col-sm-12'>
@@ -10,10 +10,19 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div id='main-content'>
           <div class='container'>
-            <div class='row' id='portfolio-filter'>
+          
+          <a href = "/reports/indexall">
+          <div class = "complete_index_link">
+          <h1 class = "text-center">All Trip Reports</h1>
+          </div>
+          </a>
+
+          <h5 class = "text-center other_destinations">Or browse by destination:</h5>
+
+           <!--  <div class='row' id='portfolio-filter'>
               <div class='col-sm-12'>
                 <ul class='nav nav-pills'>
                   <li class='active'><a data-filter="*" href="#">By Name</a></li>
@@ -23,7 +32,7 @@
                   <li><a data-filter=".portfolio-filter-marketing" href="#">Random</a></li>
                 </ul>
               </div>
-            </div>
+            </div> -->
             <div class='row portfolio-boxes' id='portfolio-container'>
 
     <% @locations.uniq.each do |location| %>

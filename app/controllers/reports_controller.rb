@@ -3,9 +3,7 @@ class ReportsController < ApplicationController
 
   def index
     if params[:rating]
-         @reports = Report.all.order("likes DESC").where(posted_live: true).page(params[:page]).per(15)
-    # elsif params[:like]
-    #     @reports = Report.joins(:likes).where('likes.like = true').page(params[:page]).per(15)
+     @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
     #following works but not with paginate
     # @reports = Report.all.sort_by{|report| report.likes.where(like: true).count}.reverse.page(params[:page]).per(15)
     elsif params[:abc]
@@ -26,6 +24,10 @@ class ReportsController < ApplicationController
 
    def show
     @report = Report.find_by(id: params[:id])
+    # # to mark comments as read
+    # if @report.user == current_user
+    #     # mark comments as read
+    # end
     @city = @report.locations.first.city
     @others = Location.find_by(city: @city).reports.first(5)
     @comments = Comment.where(report_id: params[:id])
@@ -124,7 +126,18 @@ class ReportsController < ApplicationController
         render "home.html.erb"
     end
 
-    def newvue
-        render "vue_new.html.erb"
+    def indexall
+        if params[:rating]
+     @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
+    elsif params[:abc]
+        @reports = Report.all.order("title ASC").page(params[:page]).per(15)
+    elsif params[:random]
+        @reports = Report.all.order("RANDOM()").page(params[:page]).per(15)
+    elsif params[:search]
+        @reports = Report.where(title: params[:searchbox]).page(params[:page]).per(15)
+    else
+         @reports = Report.all.order(:created_at => "desc").where(posted_live: true).page(params[:page]).per(15)
+    end
+    render "indexall.html.erb"
     end
 end

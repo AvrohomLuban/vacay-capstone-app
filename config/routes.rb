@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   post "/reports/new_part_3", to: 'reports#new_part_4'
   post "/reports/new_part_4", to: 'reports#create'
   get "/reports/index", to: 'reports#index'
+  get "/reports/indexall", to: 'reports#indexall'
   post "/reports/new", to: 'reports#create'
   post "/reports/confirm/:id", to: 'reports#confirm'
   get "/reports/:id", to: 'reports#show'

@@ -7,4 +7,5 @@ class Tip < ApplicationRecord
   has_many :images
   has_many :photos
   has_many :bookmarks
+  has_many :notifications
 end

@@ -23,6 +23,7 @@ gem 'devise'
 # for wikipedia gem
 # gem 'htmlentities'
 # gem 'hpricot'
+gem 'wikipedia'
 gem 'wikipedia-client'
 
 gem 'pry'

@@ -4,4 +4,5 @@ class Question < ApplicationRecord
   has_many :answers
   has_many :bookmarks
   has_many :likes
+  has_many :notifications
 end

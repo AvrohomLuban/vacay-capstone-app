@@ -7,19 +7,18 @@ class ReportsController < ApplicationController
     #following works but not with paginate
     # @reports = Report.all.sort_by{|report| report.likes.where(like: true).count}.reverse.page(params[:page]).per(15)
     elsif params[:abc]
-        @reports = Report.all.order("title ASC").page(params[:page]).per(15)
+        @reports = Location.where(city: params[:city]).first.reports.all.order("title ASC").page(params[:page]).per(15)
     elsif params[:random]
-        @reports = Report.all.order("RANDOM()").page(params[:page]).per(15)
+        @reports = Location.where(city: params[:city]).first.reports.all.order("RANDOM()").page(params[:page]).per(15)
+    elsif params[:searchbox]
+        @reports = Report.where("title ILIKE ?", "%#{params[:searchbox]}%").page(params[:page]).per(15)
     elsif params[:city]
-        @reports = Location.where(city: params[:city]).first.reports.page(params[:page]).per(15)
-        @city = params[:city]
-    elsif params[:search]
-        @reports = Report.where(title: params[:searchbox]).page(params[:page]).per(15)
-    else
-         @reports = Report.all.order(:created_at => "desc").where(posted_live: true).page(params[:page]).per(15)
+         @reports = Location.where(city: params[:city]).first.reports.all.order(:created_at => "desc").page(params[:page]).per(15)
     end
+    @city = params[:city]
+    @about_city = Wikipedia.find( @city )
     @title = "Latest Trip Reports"
-    render "index2.html.erb"
+    render "indexcity.html.erb"
   end
 
    def show
@@ -127,8 +126,8 @@ class ReportsController < ApplicationController
     end
 
     def indexall
-        if params[:rating]
-     @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
+    if params[:rating]
+         @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
     elsif params[:abc]
         @reports = Report.all.order("title ASC").page(params[:page]).per(15)
     elsif params[:random]

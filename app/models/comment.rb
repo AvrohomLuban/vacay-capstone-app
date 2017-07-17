@@ -5,4 +5,5 @@ class Comment < ApplicationRecord
   belongs_to :report, optional: true
   belongs_to :user 
   belongs_to :answer, optional: true
+  has_many :notifications
 end

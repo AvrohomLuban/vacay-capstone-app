@@ -79,6 +79,8 @@ Rails.application.routes.draw do
   post "/tips/new_part_3", to: 'tips#new_part_4'
   post "/tips/new_part_4", to: 'tips#create'
 
+  get "/notifications", to: 'notifications#index'
+
 
   # post "/tips/new", to: 'tips#create'
 

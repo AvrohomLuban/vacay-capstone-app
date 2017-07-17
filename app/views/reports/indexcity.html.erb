@@ -36,12 +36,12 @@
                         <div class='input-group'>
                           <input class='form-control' placeholder='Search...' type='text' name = "searchbox">
                           <span class='input-group-btn'>
-                            <button class='btn btn-contrast' type='button'>
+                            <button class='btn btn-contrast' type='submit'>
                               <i class='fa fa-search'></i>
                             </button>
                           </span>
                         </div>
-                        <button type = "submit" value = "search">
+                        <!-- <button type = "submit" value = "search"> -->
                       <% end %>
                     </div>
                     <div class = "tip_qa_boxes">
@@ -64,9 +64,14 @@
                         </div>
                         </a>
                     </div>
-                    <div class = "aboutcity">
-                      <p>San Diego is a city on the Pacific coast of California known for its beaches, parks and warm climate. Immense Balboa Park is the site of the renowned San Diego Zoo, as well as numerous art galleries, artist studios, museums and gardens. A deep harbor is home to a large active naval fleet, with the USS Midway, an aircraft-carrier-turned-museum, open to the public.</p>
-                    </div>
+                    <!-- <div class = "aboutcity">
+                      <h3><%= @about_city.title %></h3>
+                      
+                      <img class = "citylogo" width = "70px" height = "70px" src = "<%= @about_city.image_urls.second %>">
+                      <p><%= @about_city.summary %></p>
+                      <p><a href = "<%= @about_city.fullurl %>">Click Here to see Wiki Page</a></p>
+
+                    </div> -->
                     <div class='box'>
                       <h3 class='title'>Photostream</h3>
                       <ul class='list-unstyled list-inline image-list-box'>
@@ -149,10 +154,10 @@
                 <div class='row' id='portfolio-filter'>
               <div class='col-sm-12'>
                 <ul class='nav nav-pills'>
-                  <li class='active'><a data-filter="*" href="/reports/index">Latest</a></li>
-                  <li><a data-filter=".portfolio-filter-photography" href="/reports/index/?abc=true">By Name</a></li>
+                  <li class='active'><a data-filter="*" href="/reports/index/?city=<%= @city %>">Latest</a></li>
+                  <li><a data-filter=".portfolio-filter-photography" href="/reports/index/?city=<%= @city %>&abc=true">By Name</a></li>
                   <li><a data-filter=".portfolio-filter-identity" href="/reports/index/?rating=true">Best Rated</a></li>
-                  <li><a data-filter=".portfolio-filter-webdesign" href="/reports/index/?random=true">Random</a></li>
+                  <li><a data-filter=".portfolio-filter-webdesign" href="/reports/index/?city=<%= @city %>&random=true">Random</a></li>
                 </ul>
               </div>
             </div>

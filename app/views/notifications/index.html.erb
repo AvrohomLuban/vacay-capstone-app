@@ -1,0 +1,18 @@
+<h1>Unread Notications</h1>
+
+<% if @notifications_questions.empty? == false  %>
+  <h1>There are new answers to your question</h1>
+  <% @notifications_questions.each do | notification |%>
+    <p><%= notification.question.question %></p>
+  <% end %>
+<% end %>
+
+
+<% if @notifications_reports.empty? == false  %>
+  <h1>There are new comments to your report</h1>
+  <% @notifications_reports.each do | notification |%>
+    <p><%= notification.report.title %></p>
+  <% end %>
+<% end %>
+
+

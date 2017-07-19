@@ -17,6 +17,8 @@ class ReportsController < ApplicationController
         @reports = Report.where("title ILIKE ?", "%#{params[:searchbox]}%").page(params[:page]).per(15)
     elsif params[:city]
          @reports = Location.where(city: params[:city]).first.reports.all.order(:created_at => "desc").page(params[:page]).per(15)
+     else
+        @reports = Report.all.page(params[:page]).per(15)
     end
     @city = params[:city]
     # @about_city = Wikipedia.find( @city )

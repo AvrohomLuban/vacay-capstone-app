@@ -214,6 +214,18 @@
                     <li class=''>
                       <a href=''>My Posts</a>
                     </li>
+                    <% if !session[:current_user] %>
+                        <li class=''>
+                          <a href='/users/sign_up'>Sign Up</a>
+                        </li>
+                        <li class=''>
+                           <a href='/users/sign_in'>Log In</a>
+                        </li>
+                    <% else %>
+                      <li class ="">
+                        <a href=''>Sign Out</a>
+                      </li>
+                    <% end %>
                   </ul>
                 </li>
               </ul>

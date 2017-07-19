@@ -1,14 +1,82 @@
-<%= form_tag "/answers/edit/#{@answer.id}", method: :post do %>
-<div>Answer:</div>
-<textarea name="answer" cols="75" rows="7"><%= @answer.answer %></textarea>
-<div>
-<input type="submit" value = "submit">
+    <div id='main' role='main'>
+        <!-- <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  Add A New Trip Report
+                  <small>Lorem ipsum dolor sit amet, integer vulputate porta augue</small>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon no-mg-t'>
+                  <i class='fa fa-code-fork'></i>
+                  <h2>
+                    Edit Your Answer
+                  </h2>
+                </div>
 
-<% end %>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <%= form_tag "/answers/#{@answer.id}/edit", method: :patch, class: 'form', multipart: true do %>
+                      <fieldset class='row'>
+                        <div class='col-sm-4 mg-b-md'>
+                          <div class='lead'>Tip Info</div>
+                          <small class='text-muted'>Now that we got the location, its time to fill in the rest. What is this tip for, and finally, lets hear the long awaited tip.</small>
+                        </div>
+                        <div class='col-sm-7 col-sm-offset-1'>
+                          <div class='form-group'>
+                            <label>Question </label>
+                            <p><%= @answer.question.question %></p>
+                          </div>
+                          <div class='form-group'>
+                            <label>Answer</label>
+                            <textarea name="answer" cols="50" rows="10" class='form-control' id='input-name'><%= @answer.answer %></textarea>
+                          </div>
+                      </div>
+                    </div>
 
-<%= button_to "Delete Post", "/answers/delete/#{@answer.id}", method: :delete %>
+                
+                          </div>
+                          </div>
 
 
+                        </div>
+                      </fieldset>
+                      
+
+
+                      <div class='mg-t-lg'>
+                        <div class='row'>
+                          <div class='col-sm-7 col-sm-offset-5'>
+                            <div class='text-center-xs'>
+
+
+                              
+                                <input type = "submit" value = "Save Changes" class='btn btn-contrast btn-lg'>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+          </div>
+        </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>
 
 
 

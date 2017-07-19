@@ -70,8 +70,8 @@ Rails.application.routes.draw do
 
 
   post "/answers/new/:id", to: 'answers#create'
-  get "/answers/edit/:id", to: 'answers#edit'
-  post "/answers/edit/:id", to: 'answers#update'
+  get "/answers/:id/edit/", to: 'answers#edit'
+  patch "/answers/:id/:edit", to: 'answers#update'
   delete "/answers/:id", to: 'answers#destroy'
 
   get "/tips", to: 'tips#index'

@@ -25,6 +25,11 @@
                   <div class='col-sm-12'>
                     <p class='lead lead-xs text-center question'><%= @question.question %></p>
                     <p class = "questionuser" align="center"><%= @question.user.username %></p>
+                    <p class = "text-center" align ="center">
+                      <%= form_tag "/questions/#{@question.id}", method: :delete do %>
+                            <button class='btn btn-contrast btn-bordered btn-xs'><i class="fa fa-save" aria-hidden="true"></i> Delete Question</button>
+                      <% end %>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -71,6 +76,9 @@
                            <button id = "dislike_answer" class='btn btn-contrast btn-md padding_left' onclick="clicked_dislike_answer()" type="submit"><i class="fa fa-thumbs-down" aria-hidden="true"></i> <span class="badge green_badge"><%= answer.likes.where(like: false).count %></span></button>
                         <% end %>
                         <button class = "btn btn-contrast btn-md padding_left" onclick="seeAnswerComments()">See Comments (<%= answer.comments.count %>)</button>
+                        <%= form_tag "/answers/#{answer.id}", method: :delete do %>
+                            <button class='btn btn-contrast btn-md padding_left'><i class="fa fa-save" aria-hidden="true"></i> Delete Answer</button>
+                      <% end %>
                     </div>
 
                     <div id="answerComments" class = "answercomments">

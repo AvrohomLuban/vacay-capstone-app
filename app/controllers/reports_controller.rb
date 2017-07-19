@@ -3,9 +3,12 @@ class ReportsController < ApplicationController
 
   def index
     if params[:rating]
-     @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
+        #following works but didnt add a city to it so just added count model to report
+     # @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
+
     #following works but not with paginate
     # @reports = Report.all.sort_by{|report| report.likes.where(like: true).count}.reverse.page(params[:page]).per(15)
+        @reports = Location.where(city: params[:city]).first.reports.all.order("score ASC").page(params[:page]).per(15)
     elsif params[:abc]
         @reports = Location.where(city: params[:city]).first.reports.all.order("title ASC").page(params[:page]).per(15)
     elsif params[:random]
@@ -16,12 +19,16 @@ class ReportsController < ApplicationController
          @reports = Location.where(city: params[:city]).first.reports.all.order(:created_at => "desc").page(params[:page]).per(15)
     end
     @city = params[:city]
-    @about_city = Wikipedia.find( @city )
+    # @about_city = Wikipedia.find( @city )
     @title = "Latest Trip Reports"
     render "indexcity.html.erb"
   end
 
    def show
+    if params[:notification]
+        notification = Notification.find_by(id: params[:notification])
+        notification.delete
+    end
     @report = Report.find_by(id: params[:id])
     # # to mark comments as read
     # if @report.user == current_user
@@ -139,4 +146,19 @@ class ReportsController < ApplicationController
     end
     render "indexall.html.erb"
     end
+
+    def destroy
+        report = Report.find_by(id: params[:id])
+        report.bookmarks.destroy_all
+        report.notifications.destroy_all
+        report.locations.each do | location |
+            if location.reports.length == 1
+                location.destroy
+            end
+        end
+        report.destroy
+        flash[:warning]= "Report has been deleted."
+        redirect_to "/reports/indexall"
+    end
+
 end

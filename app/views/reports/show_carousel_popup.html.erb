@@ -302,7 +302,19 @@
                           <button class='btn btn-contrast btn-md'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
                       <% end %>
                     </div>
+                    <div class = "col-sm-2">
+                      <%= form_tag "/reports/#{@report.id}/edit", method: :get do %>
+                          <button class='btn btn-contrast btn-md'><i class="fa fa-save" aria-hidden="true"></i> Edit</button>
+                      <% end %>
+                    </div>
+                    <div class = "col-sm-2">
+                      <%= form_tag "/reports/#{@report.id}", method: :delete do %>
+                          <button class='btn btn-contrast btn-md'><i class="fa fa-save" aria-hidden="true"></i> Delete</button>
+                      <% end %>
+                    </div>
                   </div>
+
+
 
      
                   <div class='row'>

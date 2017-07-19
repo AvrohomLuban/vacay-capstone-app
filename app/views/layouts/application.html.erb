@@ -192,19 +192,27 @@
                 <li class='dropdown'>
                   <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
                     <span>
-                      My Profile
+                      My Profile 
+                    <% if current_user %>
+                      <% if current_user.notifications.count > 0 %>
+                        <span id="super-badge" class="badge front_badge"><%= current_user.notifications.count %></span>
+                      <% end %>
+                    <% end %>
                       <i class='fa fa-angle-down'></i>
                     </span>
                   </a>
                   <ul class='dropdown-menu' role='menu'>
                     <li class=''>
-                      <a href='contact.html'>Contact</a>
+                      <a href='/notifications'>Notifications 
+                      <% if current_user %>
+                      <span id="super-badge" class="badge front_badge"><%= current_user.notifications.count %></span></a>
+                      <% end %>
                     </li>
                     <li class=''>
-                      <a href='contact2.html'>Contact 2</a>
+                      <a href='/bookmarks'>Bookmarks</a>
                     </li>
                     <li class=''>
-                      <a href='contact3.html'>Contact 3</a>
+                      <a href=''>My Posts</a>
                     </li>
                   </ul>
                 </li>

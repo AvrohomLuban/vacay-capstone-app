@@ -52,6 +52,10 @@ class QuestionsController < ApplicationController
   # end
 
   def show
+    if params[:notification]
+        notification = Notification.find_by(id: params[:notification])
+        notification.delete
+    end
     @question = Question.find_by(id: params[:id])
     @answers = Answer.where(question_id: @question.id)
     render "show2.html.erb"
@@ -65,6 +69,15 @@ class QuestionsController < ApplicationController
       @questions = Question.all.page(params[:page]).per(15)
     end
     render "index.html.erb"
+  end
+
+  def destroy
+    question = Question.find_by(id: params[:id])
+    question.bookmarks.destroy_all
+    question.notifications.destroy_all
+    question.destroy
+    flash[:warning]= "Question has been deleted."
+    redirect_to "/questions"
   end
 
 end

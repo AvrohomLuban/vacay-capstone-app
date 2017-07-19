@@ -50,14 +50,41 @@ class TipsController < ApplicationController
   end
 
   def index
+    if params[:notification]
+        notification = Notification.find_by(id: params[:notification])
+        notification.delete
+    end
     if params[:city]
         @tips = Location.where(city: params[:city]).first.tips.page(params[:page]).per(15)
         @city = params[:city]
+    elsif params[:id]
+        @tips = Tip.where(id: params[:id])
     else
       @tips = Tip.all.order(:created_at => "desc").page(params[:page]).per(15)
     end
     @comments = Comment.all
     render "index.html.erb"
+  end
+
+  def destroy
+        tip = Tip.find_by(id: params[:id])
+        tip.bookmarks.destroy_all
+        tip.notifications.destroy_all
+        tip.destroy
+        flash[:warning]= "Tip has been deleted."
+        redirect_to "/tips"
+  end
+
+  def edit
+    @tip = Tip.find_by(id: params[:id])
+    render "edit.html.erb"
+  end
+
+  def update
+    @tip = Tip.find_by(id: params[:id])
+    @tip.update(venue: params[:venue], text: params[:text])
+    flash[:success] = "Your tip changes have been saved"
+    redirect_to "/tips/?id=#{@tip.id}"
   end
 
 

@@ -10,7 +10,8 @@ class BookmarksController < ApplicationController
       redirect_to "/tips#tip-#{params[:id]}"
     elsif params[:question]
       @bookmark = Bookmark.create(user_id: current_user.id, question_id: params[:id])
-      redirect_to "/reports/index"
+      question_id = params[:id]
+      redirect_to "/questions/#{question_id}"
     end
     flash[:success] = "New bookmark has successfuly been created"
     

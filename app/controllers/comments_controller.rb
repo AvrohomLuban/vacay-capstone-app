@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
       if @comment.save
         flash[:success] = "Your comment has been added"
         @answer = Answer.find_by(id: params[:id])
-          notification = Notification.create(user_id: @answer.user_id, comment_id: @comment.id, question_id: @comment.answer.question.id)
+          notification = Notification.create(user_id: @answer.user_id, comment_id: @comment.id, question_id: @comment.answer.question.id, answer_id: @answer.id)
         redirect_to "/questions"
       else
         flash[:warning] = "Comment could not be saved"

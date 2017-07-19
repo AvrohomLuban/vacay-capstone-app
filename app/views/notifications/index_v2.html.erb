@@ -1,0 +1,229 @@
+<div id='main' role='main'>
+        <!-- <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  Tables
+                  <small>Lorem ipsum dolor sit amet, integer vulputate porta augue</small>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'> 
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon'>
+                  <i class='fa fa-save'></i>
+                  <h2>
+                   My Notifications
+                  </h2>
+                </div>
+
+              <% if @notifications_questions.empty? == false  %>
+                <h1 class = "new_notification_title">There are new answers to your question</h1>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <div class='table-responsive'>
+                      <table class='table table-hover'>
+                        <thead>
+                          <tr>
+                            <th>
+                              <i class='fa fa-newspaper-o text-contrast'></i>
+                              My Question
+                            </th>
+                            <th>
+                              <i class='fa fa-map text-contrast'></i>
+                              Answer
+                            </th>
+                             <th>
+                              <i class='fa fa-trash text-contrast'></i>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @notifications_questions.each do | notification | %>
+                              <tr onClick="goToQuestionNotification(<%= notification.question.id %>,<%= notification.id %>)">
+                                <td>
+                                  <%= notification.question.question %>
+                                </td>
+                                <td>
+                                  <%= notification.answer.answer %>
+                                </td>
+                              
+                                <td>
+                                <%= link_to "Remove", "/notifications/#{notification.id}", method: :delete %>
+                                </td>
+                              </tr> 
+                             
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+              <% if @notifications_reports.empty? == false  %>
+                 <h1 class = "new_notification_title">There are new comments to your report</h1>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <div class='table-responsive'>
+                      <table class='table table-hover'>
+                        <thead>
+                          <tr>
+                            <th>
+                              <i class='fa fa-tag text-contrast'></i>
+                              Report Title
+                            </th>
+                            <th>
+                            <i class='fa fa-tag text-contrast'></i>
+                              Report Location
+                            </th>
+                            <th>
+                              <i class='fa fa-map text-contrast'></i>
+                              Comment
+                            </th>
+                            <th>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @notifications_reports.each do | notification |%>
+                            <tr onClick="goToReportNotification(<%= notification.report.id %>, <%= notification.id %>)">
+                              <td>
+                                <%= notification.report.title %>
+                              </td>
+                              <td>
+                                <%= notification.report.locations.first.country %>,<%= notification.report.locations.first.state %>,<%= notification.report.locations.first.city %>
+                              </td>
+                              <td>
+                                <%= notification.comment.text %>
+                              </td>
+                              <td>
+                                <%= link_to "Remove", "/notifications/#{notification.id}", method: :delete %>
+                                </td>
+                            </tr>
+                          <% end %>
+                         
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+              <% if @notifications_answers.empty? == false  %>
+                <h1 class = "new_notification_title">There are new comments to your answers</h1>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <div class='table-responsive'>
+                      <table class='table table-hover'>
+                        <thead>
+                          <tr>
+                            <th>
+                              <i class='fa fa-tag text-contrast'></i>
+                              Question
+                            </th>
+                            <th>
+                              <i class='fa fa-map text-contrast'></i>
+                              Answer
+                            </th>
+                            <th>
+                              <i class='fa fa-map text-contrast'></i>
+                              Comment
+                            </th>
+                            <th>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @notifications_answers.each do | notification |%>
+                            <tr onClick="goToAnswerNotification(<%= notification.question.id %>, <%= notification.id %>)">
+                              <td>
+                                <%= notification.question.question %>
+                              </td>
+                              <td>
+                                <%= notification.comment.answer.answer %>
+                              </td>
+                              <td>
+                                <%= notification.comment.text %>
+                              </td>
+                              <td>
+                                <%= link_to "Remove", "/notifications/#{notification.id}", method: :delete %>
+                                </td>
+                            </tr>
+                          <% end %>
+                         
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+              <% if @notifications_tips.empty? == false  %>
+                <h1 class = "new_notification_title">There are new comments to your tip</h1>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <div class='table-responsive'>
+                      <table class='table table-hover'>
+                        <thead>
+                          <tr>
+                            <th>
+                              <i class='fa fa-trash text-contrast'></i>
+                              Venue
+                            </th>
+                            <th>
+                              <i class='fa fa-newspaper-o text-contrast'></i>
+                              Tip
+                            </th>
+                            <th>
+                              <i class='fa fa-map text-contrast'></i>
+                              Comment
+                            </th>
+                             <th>
+                              <i class='fa fa-trash text-contrast'></i>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @notifications_tips.each do | notification | %>
+                              <tr onClick="goToTipNotification(<%= notification.tip.id %>,<%= notification.id %>)">
+                                <td>
+                                  <%= notification.tip.venue %>
+                                </td>
+                                <td>
+                                  <%= notification.tip.text %>
+                                </td>
+                                <td>
+                                  <%= notification.comment.text %>
+                                </td>
+                              
+                                <td>
+                                <%= link_to "Remove", "/notifications/#{notification.id}", method: :delete %>
+                                </td>
+                              </tr> 
+                             
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+ 
+
+
+
+              </div>
+            </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>
+      
+  

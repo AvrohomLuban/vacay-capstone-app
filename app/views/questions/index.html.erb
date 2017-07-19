@@ -170,8 +170,11 @@
                             <p><%= question.question %></p>
                             <div class = "buttons-div">
                                <a class='btn btn-contrast btn-bordered btn-xs' href='/questions/<%= question.id %>'>  See answers (<%= question.answers.count %>)</a>
-                               <%= form_tag "/bookmarks/new/#{question.id}/?question=true", method: :post do %>
+                              <%= form_tag "/bookmarks/new/#{question.id}/?question=true", method: :post do %>
                                  <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
+                              <% end %>
+                              <%= form_tag "/questions/#{question.id}", method: :delete do %>
+                                 <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Delete</button>
                               <% end %>
                             </div>
                           </div>

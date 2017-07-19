@@ -4,9 +4,14 @@ class LikesController < ApplicationController
   def create
     if params[:report]
         report_id = params[:id]
-        @like = Like.create(user_id: current_user.id, report_id: params[:id], like: params[:report])
-        flash[:success] = "Thank you for your feedback."
-        redirect_to "/reports/#{report_id}#likebutton"
+        @like = Like.new(user_id: current_user.id, report_id: params[:id], like: params[:report])
+        if @like.save
+            report = Report.find_by(id: params[:id])
+            report.update(score: report.score += 1)
+            flash[:success] = "Thank you for your feedback."
+            # redirect_to "/reports/#{report_id}#likebutton"
+            redirect_to "/reports/#{report_id}"#likebutton""
+        end
     elsif params[:tip]
         @like = Like.create(user_id: current_user.id, tip_id: params[:id], like: params[:tip])
         flash[:success] = "Thank you for your feedback."

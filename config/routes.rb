@@ -36,10 +36,11 @@ Rails.application.routes.draw do
   get "/reports/indexall", to: 'reports#indexall'
   post "/reports/new", to: 'reports#create'
   post "/reports/confirm/:id", to: 'reports#confirm'
-  get "/reports/:id", to: 'reports#show'
   get "/reports/:id/edit", to: 'reports#edit'
-  patch "/reports/edit/:id", to: 'reports#update'
+  patch "/reports/:id/edit", to: 'reports#update'
   get "/reports/city/:city", to: 'reports#city'
+  delete "/reports/:id", to: 'reports#destroy'
+  get "/reports/:id", to: 'reports#show'
  
 
   get "/locations/", to: 'locations#index'
@@ -65,12 +66,13 @@ Rails.application.routes.draw do
   # post "/questions/new", to: 'questions#create'
   get "/questions", to: 'questions#index'
   get "/questions/:id", to: 'questions#show'
+  delete "/questions/:id", to: 'questions#destroy'
 
 
   post "/answers/new/:id", to: 'answers#create'
   get "/answers/edit/:id", to: 'answers#edit'
   post "/answers/edit/:id", to: 'answers#update'
-  delete "/answers/delete/:id", to: 'answers#destroy'
+  delete "/answers/:id", to: 'answers#destroy'
 
   get "/tips", to: 'tips#index'
   get "/tips/new", to: 'tips#new_part_1'
@@ -78,8 +80,12 @@ Rails.application.routes.draw do
   post "/tips/new_part_2", to: 'tips#new_part_3'
   post "/tips/new_part_3", to: 'tips#new_part_4'
   post "/tips/new_part_4", to: 'tips#create'
+  delete "/tips/:id", to: 'tips#destroy'
+  get "tips/:id/edit", to: 'tips#edit'
+  patch "tips/:id/new_part_4", to: 'tips#update'
 
   get "/notifications", to: 'notifications#index'
+  delete "/notifications/:id", to: 'notifications#destroy'
 
 
   # post "/tips/new", to: 'tips#create'

@@ -21,7 +21,8 @@
                    My Bookmarks
                   </h2>
                 </div>
-
+              
+              <% if @bookmarked_reports.empty? == false  %>
                 <h1>Reports</h1>
                 <div class='row'>
                   <div class='col-sm-12'>
@@ -78,7 +79,9 @@
                     </div>
                   </div>
                 </div>
+              <% end %>
 
+              <% if @bookmarked_tips.empty? == false  %>
                 <h1>Tips</h1>
                 <div class='row'>
                   <div class='col-sm-12'>
@@ -125,7 +128,9 @@
                     </div>
                   </div>
                 </div>
+              <% end %>
 
+              <% if @bookmarked_questions.empty? == false  %>
                 <h1>Questions</h1>
                 <div class='row'>
                   <div class='col-sm-12'>
@@ -165,6 +170,7 @@
                     </div>
                   </div>
                 </div>
+              <% end %>
 
 
 

@@ -1,0 +1,72 @@
+    <div id='main' role='main'>
+
+        <div id='main-content'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon no-mg-t'>
+                  <i class='fa fa-code-fork'></i>
+                  <h2>
+                    Create New Forum
+                  </h2>
+                </div>
+
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <%= form_tag "/forums/new", method: :post, class: 'form' do %>
+                      <fieldset class='row'>
+                        <div class='col-sm-4 mg-b-md'>
+                          <div class='lead'>Create New Forum</div>
+                          <small class='text-muted'>Make a new spot where community memebers can gather to talk about a cerrain travel topic.</small>
+                        </div>
+                        <div class='col-sm-7 col-sm-offset-1'>
+                          <div class='form-group'>
+                            <label>Forum Title</label>
+                            <input class='form-control' id='input-name' type='text' name="title" placeholder="Maldives trip planner">
+                          </div>
+                          <div class='form-group'>
+                            <label>Post</label>
+                            <textarea name="comment" cols="50" rows="10" class='form-control' id='input-name' placeholder="I'm planning a trip to the Maldives. Looking for best things to do, that are cheap!"></textarea>
+                          </div>
+
+                          
+                      </div>
+                    </div>
+
+                    
+                            
+                          </div>
+                          </div>
+
+
+                        </div>
+                      </fieldset>
+                      
+
+
+                      <div class='mg-t-lg'>
+                        <div class='row'>
+                          <div class='col-sm-7 col-sm-offset-5'>
+                            <div class='text-center-xs'>
+
+
+                              
+                                <input type = "submit" value = "Save" class='btn btn-contrast btn-lg'>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                   <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+
+          </div>
+        </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>

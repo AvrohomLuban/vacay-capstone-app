@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get "/reports/:id", to: 'reports#show'
  
 
-  get "/locations/", to: 'locations#index'
+  get "/locations/", to: 'locations#index_v3'
 
   post "/comments/:id/new", to: 'comments#create'
 
@@ -103,6 +103,11 @@ Rails.application.routes.draw do
   post "/bookmarks/new/:id", to: 'bookmarks#create'
   get "/bookmarks", to: 'bookmarks#index'
   delete "/bookmarks/:id", to: 'bookmarks#destroy'
+
+  get "/forums", to: 'forums#index'
+  get "/forums/new", to: 'forums#new'
+  post "/forums/new", to: 'forums#create'
+  get "/forums/:id", to: 'forums#show'
 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

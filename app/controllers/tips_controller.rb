@@ -83,6 +83,8 @@ class TipsController < ApplicationController
   def update
     @tip = Tip.find_by(id: params[:id])
     @tip.update(venue: params[:venue], text: params[:text])
+    Photo.find_by(tip_id: @tip.id).delete
+    @photo = Photo.create(image: params[:image], tip_id: @tip.id)
     flash[:success] = "Your tip changes have been saved"
     redirect_to "/tips/?id=#{@tip.id}"
   end

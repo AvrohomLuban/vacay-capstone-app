@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720180804) do
+ActiveRecord::Schema.define(version: 20170721002716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170720180804) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "guide_locations", force: :cascade do |t|
@@ -111,9 +112,9 @@ ActiveRecord::Schema.define(version: 20170720180804) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "image",      default: "https://s-media-cache-ak0.pinimg.com/736x/a5/2c/bb/a52cbb1b7c19e716e798fe2c0827d6f6--quotes-of-inspiration-travel-inspiration.jpg"
+    t.datetime "created_at",                                                                                                                                               null: false
+    t.datetime "updated_at",                                                                                                                                               null: false
   end
 
   create_table "notifications", force: :cascade do |t|

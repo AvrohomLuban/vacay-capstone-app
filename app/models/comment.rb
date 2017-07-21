@@ -1,5 +1,6 @@
 class Comment < ApplicationRecord
   validates :text, presence: true
+  validates :user_id, :text, presence: true
 
   belongs_to :tip, optional: true
   belongs_to :report, optional: true

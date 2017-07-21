@@ -152,28 +152,26 @@
                     <div class='col-sm-12'>
                       <h2 class='title'><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
                       <div class='toolbar'>
-                      <a class='btn btn-link' href='#'>
+                      <a class='btn btn-link'>
                           <i class='fa fa-map'></i>
                           <span><%= report.locations.first.city %>, <%= report.locations.first.state %>, <%= report.locations.first.country %></span>
                         </a>
-                        <a class='btn btn-link' href='#'>
+                        <a class='btn btn-link'>
                           <i class='fa fa-clock-o'></i>
                           <span><%= report.duration %></span>
                         </a>
-                        <a class='btn btn-link' href='#'>
+                        <a class='btn btn-link'>
                           <i class='fa fa-calendar'></i>
                           <span><%= report.season %></span>
                         </a>
-                        <a class='btn btn-link' href='#'>
+                        <a class='btn btn-link'>
                           <i class='fa fa-user'></i>
                           <span><%= report.user.username %></span>
                         </a>
                       </div>
                       <div class='row'>
                         <div class='col-sm-3'>
-                          <a href='blog_single_post.html'>
                             <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="189" height="129" src="<%= report.photos.first_image %>" />
-                          </a>
                         </div>
                         <div class='col-sm-9'>
                           <p><%= simple_format(report.text.first(400)) %> ...</p>

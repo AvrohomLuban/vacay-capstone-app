@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
     before_action :authenticate_user!, only: [:create, :edit, :confirm, :post, :update, :new]
 
-  def index
+  def indexcity
     if params[:rating]
         #following works but didnt add a city to it so just added count model to report
      # @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
@@ -27,19 +27,16 @@ class ReportsController < ApplicationController
   end
 
    def show
+    
     if params[:notification]
         notification = Notification.find_by(id: params[:notification])
-        notification.delete
+        notification.destroy
     end
     @report = Report.find_by(id: params[:id])
-    # # to mark comments as read
-    # if @report.user == current_user
-    #     # mark comments as read
-    # end
     @city = @report.locations.first.city
     @others = Location.find_by(city: @city).reports.first(5)
     @comments = Comment.where(report_id: params[:id])
-    render "show_carousel_popup.html.erb"
+    render "show.html.erb"
     end
 
     def edit
@@ -92,6 +89,23 @@ class ReportsController < ApplicationController
         @full_state = params[:full_state]
         @city = params[:city]
         render "new_part_4_version2.html.erb"
+    end
+
+    def new_images
+        @report = Report.find_by(id: params[:id])
+        render "new_images.html.erb"
+    end
+
+    def update_images
+        @report = Report.find_by(id: params[:id])
+        if params[:images] !=nil
+                img_array = params[:images]
+                success_arr =[]
+                img_array.each do | key, image | 
+                  success_arr << Photo.create(image: image, report_id: @report.id, subtitle: params[:subtitles][key])
+                end
+        end
+        redirect_to "/reports/#{@report.id}"
     end
 
     def create

@@ -39,6 +39,8 @@ gem "paperclip", "~> 5.0.0"
 gem 'city-state'
 gem 'compass-rails'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 # gem 'bootstrap-sass'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

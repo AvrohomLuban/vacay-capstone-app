@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  validates :username, uniqueness: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :bookmarks
   has_many :photos
   has_many :notifications
+  has_many :forums
 
   def posts
     return self.comments.count + self.reports.count + self.questions.count + self.answers.count

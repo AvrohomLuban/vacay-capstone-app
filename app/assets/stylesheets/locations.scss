@@ -7,3 +7,18 @@
                 }
 .other_destinations {font-family: 'Oregano', cursive;
                     font-size: 20px;}
+/*making all location boxes images same size */
+// .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+//     display: block;
+//     max-width: 100%;
+//     // height: auto;
+//   height: 171px !important;
+//   width: 263px !important;
+// }
+.all_boxes_same{
+ display: block;
+    max-width: 100%;
+    // height: auto;
+  height: 171px !important;
+  width: 263px !important;
+}

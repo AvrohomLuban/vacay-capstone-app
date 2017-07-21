@@ -1,4 +1,5 @@
 class Tip < ApplicationRecord
+  validates :text, :user_id, :location_id, :venue, presence: true
   belongs_to :user
   belongs_to :location
   has_many :likes

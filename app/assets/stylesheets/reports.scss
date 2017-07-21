@@ -67,5 +67,8 @@ body { background-image: url(‘fabric_plaid.png’)}
   padding-bottom: 0px;
 }
 .citylogo {overflow: none}
+.tighten {padding-top: 0px !important;
+          margin-top: 0px !important;}
+
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

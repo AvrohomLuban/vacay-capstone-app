@@ -1,0 +1,620 @@
+    <div id='main' role='main'>
+        <!-- <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  Add A New Trip Report
+                  <small>Lorem ipsum dolor sit amet, integer vulputate porta augue</small>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon no-mg-t'>
+                  <i class='fa fa-code-fork'></i>
+                  <h2>
+                    Add More Images
+                  </h2>
+                </div>
+
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <%= form_tag "/reports/#{@report.id}/new_images", method: :patch, class: 'form',multipart: true do %>
+                      <fieldset class='row'>
+                        <div class='col-sm-4 mg-b-md'>
+                          <div class='lead'>Step 1</div>
+                          <small class='text-muted'>Add more images here.</small>
+                        </div>
+                        <div class='col-sm-7 col-sm-offset-1'>
+                          <div class='form-group'>
+                            <label>Add Images</label>
+                          </div>
+                          <div>
+                           <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['one']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='input-name' type='text' name="subtitles['one']">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['two']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['two']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['three']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['three']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['four']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['four']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['five']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['five']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['six']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['six']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['seven']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['seven']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['eight']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['eight']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class ="col-xs-4">
+                            </div>
+                            <div class = "col-xs-7">
+                             <a onclick="displayMoreImagesForm()">Add More Images</a>
+                            </div>
+                          </div>
+                        </div>
+
+                          <div id="more_images" class = "hide_more_images">
+                                <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['nine']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='first_image' type='text' name="subtitles['nine']" placeholder="Note: First image will be big image on report page">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['ten']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['ten']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['eleven']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['eleven']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twelve']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twelve']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['thirteen']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirteen']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['fourteen]", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['fourteen]" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['fifteen']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['fifteen']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['sixteen']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['sixteen']" class = "form-control">
+                             <div class = "col-xs-7">
+                             <a onclick="displayEvenMoreImagesForm()">Add More Images</a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="even_more_images" class = "hide_more_images">
+                                <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['seventeen']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='first_image' type='text' name="subtitles['seventeen']" placeholder="Note: First image will be big image on report page">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['eighteen']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['eighteen']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['nineteen']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['nineteen']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twentyzero']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twentyzero']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['twenty_one']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_one']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twenty_two']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_two']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['twenty_three']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_three']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twenty_four']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['twenty_four']" class = "form-control">
+                             <div class = "col-xs-7">
+                             <a onclick="displayEvenEvenMoreImagesForm()">Add More Images</a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="even_even_more_images" class = "hide_more_images">
+                                <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['twenty_five']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='first_image' type='text' name="subtitles['twenty_five']" placeholder="Note: First image will be big image on report page">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twenty_six']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_six']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['twenty_seven']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_seven']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['twenty_eight']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['twenty_nine']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['twenty_nine']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['thirtyzero]", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirtyzero]" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['thirty_one']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_one']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['thirty_two']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['thirty_two']" class = "form-control">
+                             <div class = "col-xs-7">
+                             <a onclick="displayEvenEvenEvenMoreImagesForm()">Add More Images</a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="even_even_even_more_images" class = "hide_more_images">
+                                <div class = "row">
+                            <div class = "col-xs-4">
+                             <label>Image</label>
+                               <%= file_field_tag "images['thirty_three']", id: "images_field" %>
+                              </div>
+                             <div class = "col-xs-7">
+                               <label>Subtitle</label>
+                               <input class='form-control' id='first_image' type='text' name="subtitles['thirty_three']" placeholder="Note: First image will be big image on report page">
+                              </div>
+                           </div>
+                           <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['thirty_four']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_four']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['thirty_five']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_five']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['thirty_six']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_six']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['thirty_seven']" , id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['thirty_seven']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['fourtyzero]", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['fourtyzero]" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                             <%= file_field_tag "images['forty_one']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                              <input type="text" name="subtitles['forty_one']" class = "form-control">
+                            </div>
+                          </div>
+                          <div class = "row padded-row">
+                            <div class = "col-xs-4">
+                              <%= file_field_tag "images['forty_two']", id: "images_field" %>
+                            </div>
+                            <div class = "col-xs-7">
+                             <input type="text" name="subtitles['forty_two']" class = "form-control">
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+
+
+                          
+
+                        </div>
+                      </fieldset>
+
+
+                      <div class='mg-t-lg'>
+                        <div class='row'>
+                          <div class='col-sm-7 col-sm-offset-5'>
+                            <div class='text-center-xs'>
+
+                    <input type="hidden" name="title" value="<%= @title %>">
+                    <input type="hidden" name="duration" value="<%= @duration %>">
+                    <input type="hidden" name="season" value="<%= @season %>">
+                    <input type="hidden" name="full_country" value="<%= @full_country %>">
+                    <input type="hidden" name="country" value="<%= @country %>"> 
+                    <input type="hidden" name="state" value="<%= @state %>"> 
+                    <input type="hidden" name="full_state" value="<%= @full_state %>"> 
+                    <input type="hidden" name="city" value="<%= @city %>">
+
+                              
+                                <input type = "submit" value = "Post" class='btn btn-contrast btn-lg'>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+  
+            <!-- <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon'>
+                  <i class='fa fa-list'></i>
+                  <h2>
+                    List of all form elements
+                  </h2>
+                </div>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                                <form class="form form-horizontal" method="post" action="#" accept-charset="UTF-8"><input name="authenticity_token" type="hidden" /><div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-text'>Text field</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-text' placeholder='Text field' type='text'>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-password'>Password field</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-password' placeholder='Password field' type='password' value='Top secret!'>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-textarea'>Textarea</label>
+                      <div class='col-md-5'>
+                        <textarea class='form-control' id='input-textarea' placeholder='Textarea' rows='3'></textarea>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-disabled-input-1'>Disabled input</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' disabled='' id='input-disabled-input-1' placeholder='Disabled input here...' type='text'>
+                      </div>
+                    </div>
+                    <hr class='hr-dashed'>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label'>Checkboxes</label>
+                      <div class='col-md-9'>
+                        <div class='checkbox'>
+                          <label>
+                            <input type='checkbox' value=''>
+                            itaque qui eius in sunt debitis aut et porro ad
+                          </label>
+                        </div>
+                        <div class='checkbox'>
+                          <label>
+                            <input type='checkbox' value=''>
+                            distinctio rem cum qui nihil
+                          </label>
+                        </div>
+                        <div class='checkbox'>
+                          <label>
+                            <input type='checkbox' value=''>
+                            hic ratione recusandae
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label'>Inline checkboxes</label>
+                      <div class='col-md-9'>
+                        <label class='checkbox-inline'>
+                          <input type='checkbox' value=''>
+                          Qui
+                        </label>
+                        <label class='checkbox-inline'>
+                          <input type='checkbox' value=''>
+                          Nemo
+                        </label>
+                        <label class='checkbox-inline'>
+                          <input type='checkbox' value=''>
+                          Hic
+                        </label>
+                      </div>
+                    </div>
+                    <hr class='hr-dashed'>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label'>Radios</label>
+                      <div class='col-md-9'>
+                        <div class='radio'>
+                          <label>
+                            <input name='radio' type='radio' value=''>
+                            commodi est in corporis expedita numquam eum sed voluptatem
+                          </label>
+                        </div>
+                        <div class='radio'>
+                          <label>
+                            <input name='radio' type='radio' value=''>
+                            dolor cupiditate quas voluptate aut qui nobis quod
+                          </label>
+                        </div>
+                        <div class='radio'>
+                          <label>
+                            <input name='radio' type='radio' value=''>
+                            dolores excepturi officia quisquam
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label'>Inline radios</label>
+                      <div class='col-md-9'>
+                        <label class='radio radio-inline'>
+                          <input name='radio' type='radio' value=''>
+                          Voluptas
+                        </label>
+                        <label class='radio radio-inline'>
+                          <input name='radio' type='radio' value=''>
+                          Et
+                        </label>
+                        <label class='radio radio-inline'>
+                          <input name='radio' type='radio' value=''>
+                          Ut
+                        </label>
+                      </div>
+                    </div>
+                    <hr class='hr-dashed'>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-select'>Select</label>
+                      <div class='col-md-5'>
+                        <select class='form-control' id='input-select'>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='col-md-3 control-label' for='input-select-multi'>Multiple select</label>
+                      <div class='col-md-5'>
+                        <select class='form-control' id='input-select-multi' multiple='multiple'>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <hr class='hr-dashed'>
+                    <div class='form-group has-warning'>
+                      <label class='col-md-3 control-label' for='input-warning'>Input with warning</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-warning' type='text'>
+                        <span class='help-block'>Something may have gone wrong</span>
+                      </div>
+                    </div>
+                    <div class='form-group has-error'>
+                      <label class='col-md-3 control-label' for='input-error'>Input with error</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-error' type='text'>
+                        <span class='help-block'>Please correct the error</span>
+                      </div>
+                    </div>
+                    <div class='form-group has-success'>
+                      <label class='col-md-3 control-label' for='input-success'>Input with success</label>
+                      <div class='col-md-5'>
+                        <input class='form-control' id='input-success' type='text'>
+                        <span class='help-block'>Woohoo!</span>
+                      </div>
+                    </div>
+                    <div class='form-actions mg-t-lg'>
+                      <div class='row'>
+                        <div class='col-md-9 col-md-offset-3'>
+                          <button class='btn btn-contrast' type='submit'>
+                            <i class='icon-save'></i>
+                            Save
+                          </button>
+                          <button class='btn btn-very-light' type='submit'>Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                    </form>
+        
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>

@@ -32,18 +32,20 @@ Rails.application.routes.draw do
   post "/reports/new_part_2", to: 'reports#new_part_3'
   post "/reports/new_part_3", to: 'reports#new_part_4'
   post "/reports/new_part_4", to: 'reports#create'
-  get "/reports/index", to: 'reports#index'
+  get "/reports/indexcity", to: 'reports#indexcity'
   get "/reports/indexall", to: 'reports#indexall'
   post "/reports/new", to: 'reports#create'
   post "/reports/confirm/:id", to: 'reports#confirm'
   get "/reports/:id/edit", to: 'reports#edit'
   patch "/reports/:id/edit", to: 'reports#update'
+  get "/reports/:id/new_images", to: 'reports#new_images'
+  patch "/reports/:id/new_images", to: 'reports#update_images'
   get "/reports/city/:city", to: 'reports#city'
   delete "/reports/:id", to: 'reports#destroy'
   get "/reports/:id", to: 'reports#show'
  
 
-  get "/locations/", to: 'locations#index_v3'
+  get "/locations/", to: 'locations#index'
 
   post "/comments/:id/new", to: 'comments#create'
 
@@ -99,6 +101,7 @@ Rails.application.routes.draw do
   get "/photos/new", to: 'photos#new'
   post "/photos", to: 'photos#create'
   get "/photos", to: 'photos#index'
+  delete "/photos/:id", to: 'photos#delete'
 
   post "/bookmarks/new/:id", to: 'bookmarks#create'
   get "/bookmarks", to: 'bookmarks#index'

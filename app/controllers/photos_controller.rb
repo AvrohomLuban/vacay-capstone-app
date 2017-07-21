@@ -4,7 +4,6 @@ class PhotosController < ApplicationController
   end
 
   def create
-    
     if params[:images]
       img_array = params[:images]
       success_arr =[]
@@ -21,8 +20,17 @@ class PhotosController < ApplicationController
     end
   end
 
-  def index
-    @photos = Photo.all
-    render "index.html.erb"
+  def edit
+    @report = Report.find_by(id: params[:id])
+    render "edit.html.erb"
   end
+
+  def delete
+    photo = Photo.find_by(id: params[:id])
+    report_id = params[:report]
+    photo.destroy
+    redirect_to "/reports/#{report_id}"
+  end
+
+
 end

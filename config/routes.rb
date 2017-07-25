@@ -41,8 +41,11 @@ Rails.application.routes.draw do
   get "/reports/:id/new_images", to: 'reports#new_images'
   patch "/reports/:id/new_images", to: 'reports#update_images'
   get "/reports/city/:city", to: 'reports#city'
+  get "/reports/missing", to: 'reports#missing'
+  get "/reports/:id/show_edit_mode", to: 'reports#show_edit_mode'
   delete "/reports/:id", to: 'reports#destroy'
   get "/reports/:id", to: 'reports#show'
+
  
 
   get "/locations/", to: 'locations#index'

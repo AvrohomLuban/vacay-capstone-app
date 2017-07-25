@@ -18,7 +18,7 @@
                 <div class='page-header page-header-with-icon no-mg-t'>
                   <i class='fa fa-newspaper-o'></i>
                   <h2>
-                    Add A New Trip Report
+                    Missing Locations
                   </h2>
                 </div>
 
@@ -27,77 +27,29 @@
                     <%= form_tag "/reports/new_part_1", method: :post, class: 'form' do %>
                       <fieldset class='row'>
                         <div class='col-sm-4 mg-b-md'>
-                          <div class='lead'>Step 1</div>
-                          <small class='text-muted'>Give a title to your Trip Report. Add trip length, and trip season.</small>
+                          <div class='lead'>We Apalogize</div>
+                          <small class='text-muted'>We try hard to have all locations in our database, but some are still missing. If you can't find your location, check to see if its listed here. If so, select the right one, and continue on with process of posting your report.
+
+                          If your location is not in this list either, then its missing from our database & needs to be added. Please go back and post your trip under any location (preferably a close match) and contact us via contact us page & let us know of missing location. We will immediately adjust your report as well as add the location to our database. Thank you.</small>
                         </div>
                         <div class='col-sm-7 col-sm-offset-1'>
                           <div class='form-group'>
            
-                            <label>Trip Name</label>
-                            <input class='form-control' id='input-name' type='text' name="title" placeholder="America's Best Sights">
-                          </div>
-                          <div class='form-group'>
-                            <label>Length</label>
-                            <input class='form-control' id='input-street' placeholder='4 days' type='text' name="duration">
-                            </p>
-                          </div>
-                          <div class='form-group'>
-                            <label>Season</label>
-                            <input class='form-control' id='input-city' placeholder='Summer' type='text' name="season">
+                            <label>Missing Locations:</label>
+                              <ul>
+                                <% @missing_locations.each do |location|  %>
+                                  <input name='location' type='radio' value='<%= location.id %>'>
+                                  <%= location.country %>, <%= location.state %>, <%= location.city %><br>
+                                <% end %>
+                              </ul>
+                           
+
+
+                            
                           </div>
                         </div>
                       </fieldset>
-                      <hr class='hr-dashed'>
-                      <fieldset class='row'>
-                        <div class='col-sm-4 mg-b-md'>
-                          <div class='lead'>
-                            Step 2
-                          </div>
-                          <small class='text-muted'>Select a location for your trip. First choose a country, then a state, and finally a city. If you have numerous locations in one trip, you can add more lactions when done. However, first location should be the main one.</small>
-                        </div>
-                        <div class='col-sm-7 col-sm-offset-1'>
-                          <div class='form-group'>
-                            <label>Country</label>
-                             <select name="country">
-                                 <% @countries.each do |key, value| %>
-                                 <option value="<%= key %>,<%= value %>"><%= value %></option>
-                              <% end %>
-                             </select>
-
-                             <p>If you can't find your location,<a href="/reports/missing"> click here</a>.</p>
-
-                            <!-- <input class='form-control' disabled id='input-disabled-input' type='text' value='Disabled value'> -->
-                          </div>
-                          <!-- <div class='form-group'>
-                            <label class='checkbox-inline'>
-                              <input id='input-inlineCheckbox1' type='checkbox' value='option1'>
-                              Inline 1
-                            </label>
-                            <label class='checkbox-inline'>
-                              <input id='input-inlineCheckbox2' type='checkbox' value='option2'>
-                              Inline 2
-                            </label>
-                            <label class='checkbox-inline'>
-                              <input id='input-inlineCheckbox3' type='checkbox' value='option3'>
-                              Inline 3
-                            </label>
-                          </div> -->
-                         <!--  <div class='form-group'>
-                            <label>Money</label>
-                            <div class='row'>
-                              <div class='col-sm-6 col-md-6 col-lg-4'>
-                                <div class='input-group'>
-                                  <span class='input-group-addon'>
-                                    &#36;
-                                  </span>
-                                  <input class='form-control input-lg text-right' id='input-money' type='text'>
-                                  <span class='input-group-addon'>.00</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div> -->
-                        </div>
-                      </fieldset>
+                      
                       <div class='mg-t-lg'>
                         <div class='row'>
                           <div class='col-sm-7 col-sm-offset-5'>

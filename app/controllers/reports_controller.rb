@@ -36,6 +36,14 @@ class ReportsController < ApplicationController
     render "show.html.erb"
     end
 
+    def show_edit_mode
+    @report = Report.find_by(id: params[:id])
+    @city = @report.locations.first.city
+    @others = Location.find_by(city: @city).reports.first(5)
+    @comments = Comment.where(report_id: params[:id])
+    render "show_edit_mode.html.erb"
+    end
+
     def edit
     @report = Report.find_by(id: params[:id])
     render "edit2.html.erb"
@@ -91,6 +99,11 @@ class ReportsController < ApplicationController
     def new_images
         @report = Report.find_by(id: params[:id])
         render "new_images.html.erb"
+    end
+
+    def missing
+        @missing_locations = Location.where(country: "United States").order(:country)
+        render "missing.html.erb"
     end
 
     def update_images

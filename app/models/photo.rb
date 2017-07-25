@@ -26,7 +26,7 @@ class Photo < ApplicationRecord
     if first
       first.image.url
     else
-      'http://iseh.co.uk/images/noimage.png'
+      'https://image.freepik.com/free-icon/user-male-shape-in-a-circle-ios-7-interface-symbol_318-35357.jpg'
     end
   end
 

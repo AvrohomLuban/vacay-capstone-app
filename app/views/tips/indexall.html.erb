@@ -1,0 +1,255 @@
+ <div id='main' role='main'>
+
+  <div id='main-content'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-push-9 col-sm-push-8 col-sm-4 col-md-3'>
+          <nav class='sidebar'>
+            <button class='btn btn-block btn-contrast sidebar-toggle' data-target='.sidebar-collapse' data-toggle='collapse' type='button'>
+              <span class='sr-only'>Toggle navigation</span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+            </button>
+            <div class='sidebar-collapse collapse'>
+              <div class='box'>
+                <h3 class='title'>Search in blog</h3>
+                <form action='blog_large.html' method='get'>
+                  <div class='input-group'>
+                    <input class='form-control' placeholder='Search...' type='text'>
+                    <span class='input-group-btn'>
+                      <button class='btn btn-contrast' type='button'>
+                        <i class='fa fa-search'></i>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+              <div class='box'>
+                <h3 class='title'>Categories</h3>
+                <div class='list-group'>
+                  <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                    Quisque et fringilla
+                  </a>
+
+                  <a class="list-group-item active" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                    Etiam bibendum
+                  </a>
+
+                  <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                    Vestibulum
+                  </a>
+
+                  <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                    Mauris gravida
+                  </a>
+
+                  <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                    Magna dui
+                  </a>
+
+                  <a class="list-group-item" href="#"><i class='fa fa-angle-right fa fa-fixed-width'></i>
+                    Adipiscing elementum
+                  </a>
+
+                </div>
+              </div>
+              <div class='box'>
+                <h3 class='title'>Photostream</h3>
+                <ul class='list-unstyled list-inline image-list-box'>
+                  <li>
+                    <a href='#'>
+                      <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='#'>
+                      <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='#'>
+                      <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='#'>
+                      <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='#'>
+                      <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='#'>
+                      <img alt="Jednotka" width="50" height="50" src="http://placehold.it/50x50" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class='box social-box'>
+                <h3 class='title'>Latest tweets</h3>
+                <div class='icon-boxes icon-boxes-nowrap'>
+                  <div class='icon-box'>
+                    <div class='icon icon-wrap'>
+                      <i class='fa fa-twitter text-contrast'></i>
+                    </div>
+                    <div class='content'>
+                      <p>
+                        Phasellus vulputate lobortis sem. Mauris id velit in urna.
+                        <br>
+                        <a class='time' href='#'>
+                          <i>1 hour ago</i>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                  <div class='icon-box'>
+                    <div class='icon icon-wrap'>
+                      <i class='fa fa-twitter text-contrast'></i>
+                    </div>
+                    <div class='content'>
+                      <p>
+                        Etiam luctus, dui congue tempus blandit, dui.
+                        <br>
+                        <a class='time' href='#'>
+                          <i>3 hours ago</i>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class='col-md-pull-3 col-sm-pull-4 col-sm-8 col-md-9'>
+          <div class='text-boxes'>
+
+          <div class='row' id='portfolio-filter'>
+              <div class='col-sm-12'>
+                <ul class='nav nav-pills'>
+                  <li class=<%= 'active' unless params[:abc] || params[:rating] || params[:random] %>><a href="/tips/indexall">Latest</a></li>
+                  <li class=<%= 'active' if params[:abc] %>><a href="/tips/indexall/?&abc=true">By Name</a></li>
+                  <li class=<%= 'active' if params[:rating] %>><a href="/tips/indexall/?rating=true">Best Rated</a></li>
+                  <li class=<%= 'active' if params[:random] %>><a href="/tips/indexall/?random=true">Random</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <% @tips.each do | tip | %>
+            <div class='row text-box text-box-title-above'>
+              <div class='col-sm-12'>
+                <h2 class='title'><a href="/blog_single_post.html"><%= tip.venue %></a></h2>
+                <div class='toolbar'>
+                  <a class='btn btn-link' href='#'>
+                    <i class='fa fa-calendar'></i>
+                    <span><%= tip.location.city %>, <%= tip.location.state %>, <%= tip.location.country %></span>
+                  </a>
+                  <a class='btn btn-link' href='#'>
+                    <i class='fa fa-comments'></i>
+                    <span><%= tip.user.username %></span>
+                  </a>
+                </div>
+                <div class='row'>
+                  <div class='col-sm-3'>
+                    <a href='blog_single_post.html'>
+                      <img class="img-responsive center-block img-rounded-half" alt="Cras tempus ligula a tempor adipiscing" width="189" height="129" src="<%= tip.photos.tip_image%>" />
+                    </a>
+                  </div>
+                      <div class='col-sm-9'>
+                        <p id="tip-<%= tip.id %>"><%= tip.text %></p>
+                        <div class = "buttons-div">
+                               <%= form_tag "/likes/#{tip.id}/?tip=true", method: :post do %>
+                                <button id = "likebutton" class='btn btn-contrast btn-bordered btn-xs' onclick="clicked()" type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like (<%= tip.likes.count %>)</button>
+                                <% end %>
+                                <%= form_tag "/bookmarks/new/#{tip.id}/?tip=true", method: :post do %>
+                                   <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
+                                <% end %>
+                                <button class = "btn btn-contrast btn-bordered btn-xs padding_left" onclick="seeTipComments(<%= tip.id %>)">See Comments (<%= tip.comments.count %>)</button>
+                                <% if current_user == tip.user %>
+                                  <%= form_tag "/tips/#{tip.id}/edit", method: :get do %>
+                                      <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Edit</button>
+                                  <% end %>
+                                  <%= form_tag "/tips/#{tip.id}", method: :delete do %>
+                                     <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Delete</button>
+                                  <% end %>
+                                <% end %>
+                        </div>
+                        <!--hidden comment stuff start-->
+                        <div id="tipComments<%= tip.id %>" class = "hide">
+                          <% tip.comments.each do | comment | %>
+                          <hr>
+                          <div class = "row">
+                            <div class = "col-xs-2 borderright">
+                              <%= comment.user.username %>
+                            </div>
+                            <div class = "col-xs-10">
+                              <%= comment.text %>
+                              <p class='time'>
+                                <%= comment.created_at.strftime("%b %e, %l:%M %p") %>
+                              </p>
+                            </div>
+                          </div>
+                          <% end %>
+                          <!--hidden comment code is over-->
+                          <!--starting form box -->
+                          <hr>
+                          <div class='row'>
+                            <div class='col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2'>
+                              <%= form_tag "/comments/#{tip.id}/new/?tip=new", method: :post do %>
+                              <div class='row'>
+                                <div class='col-sm-12'>
+                                  <div class='form-group control-group'>
+                                    <h6 class = "text-center">Comment On Tip</h6>
+                                    <textarea class='form-control' data-rule-required='true' name='text' placeholder='Type comment here...' rows='5'></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class='row'>
+                                <div class='col-sm-12'>
+                                  <button class='btn btn-contrast btn-block form-contact-submit' data-loading-text="&lt;i class='fa fa-refresh fa-spin'&gt;&lt;/i&gt; Sending..." type='submit'>
+                                    Add Comment
+                                  </button>
+                                </div>
+                              </div>
+                              <% end %>
+                            </div>
+                          </div>
+
+                          <!--form box is over-->
+
+                        </div>
+
+                      </div>
+                      <hr class='hr-half'>
+                    </div>
+                    <hr>
+                  <!-- </div> -->
+                  <% end %>
+
+
+
+                  
+                  <hr class='hr-half'>
+                </div>
+              </div>
+              </div>
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='fade' id='scroll-to-top'>
+      <i class='fa fa-chevron-up'></i>
+    </div>
+  </div>

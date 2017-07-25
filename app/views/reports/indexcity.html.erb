@@ -31,17 +31,20 @@
                   </button>
                   <div class='sidebar-collapse collapse'>
                     <div class='box'>
-                      <h3 class='title'>Search by Title</h3>
-                      <%= form_tag "/reports/index/?search=true", method: :get do %>
+                      <h3 class='title'>Search <%= @city %> Reports</h3>
+                      <%= form_tag "/reports/indexcity/?search=true", method: :get do %>
                         <div class='input-group'>
                           <input class='form-control' placeholder='Search...' type='text' name = "searchbox">
+                          <input type = "hidden" name = "country" value = "<%= @country %>">
+                          <input type = "hidden" name = "state" value = "<%= @state %>">
+                          <input type = "hidden" name = "city" value = "<%= @city %>">
                           <span class='input-group-btn'>
                             <button class='btn btn-contrast' type='submit'>
                               <i class='fa fa-search'></i>
                             </button>
                           </span>
                         </div>
-                        <!-- <button type = "submit" value = "search"> -->
+                     
                       <% end %>
                     </div>
                     <div class = "tip_qa_boxes">
@@ -147,18 +150,29 @@
                 <div class='row' id='portfolio-filter'>
               <div class='col-sm-12'>
                 <ul class='nav nav-pills'>
-                  <li class='active'><a data-filter="*" href="/reports/index/?city=<%= @city %>">Latest</a></li>
-                  <li><a data-filter=".portfolio-filter-photography" href="/reports/index/?city=<%= @city %>&abc=true">By Name</a></li>
-                  <li><a data-filter=".portfolio-filter-identity" href="/reports/index/?city=<%= @city %>&rating=true">Best Rated</a></li>
-                  <li><a data-filter=".portfolio-filter-webdesign" href="/reports/index/?city=<%= @city %>&random=true">Random</a></li>
+                  <li class=<%= 'active' unless params[:abc] || params[:rating] || params[:random] %>><a href="/reports/indexcity/?country=<%= @country %>&state=<%= @state %>&city=<%= @city %>">Latest</a></li>
+                  <li class=<%= 'active' if params[:abc] %>><a href="/reports/indexcity/?country=<%= @country %>&state=<%= @state %>&city=<%= @city %>&abc=true">By Name</a></li>
+                  <li class=<%= 'active' if params[:rating] %>><a href="/reports/indexcity/?country=<%= @country %>&state=<%= @state %>&city=<%= @city %>&rating=true">Best Rated</a></li>
+                  <li class=<%= 'active' if params[:random] %>><a href="/reports/indexcity/?country=<%= @country %>&state=<%= @state %>&city=<%= @city %>&random=true">Random</a></li>
                 </ul>
               </div>
             </div>
 
+        <% if @reports.length < 1 %>
+        <p>There are no reports that match your search. Try searching in a differnet city or all citys.</p>
+        <% end %>   
+
         <% @reports.each do |report| %>
                   <div class='row text-box text-box-title-above'>
                     <div class='col-sm-12'>
-                      <h2 class='title'><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
+
+                      <% if params[:searchbox] %>
+                        <h2 class='title'><a href="/reports/<%= report.id %>/?searchbox=<%= params[:searchbox] %>">
+                        <%= report.title.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %></a></h2>
+                      <% else %>
+                        <h2 class='title'><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
+                      <% end %>
+                      
                       <div class='toolbar'>
                       <a class='btn btn-link' href='#'>
                           <i class='fa fa-map'></i>
@@ -188,8 +202,13 @@
                           </a>
                         </div>
                         <div class='col-sm-9'>
+                           <% if params[:searchbox] %>
+                          <p><%= simple_format(report.text.first(400).gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>")) %> ...</p>
+                          <a class='btn btn-contrast btn-bordered btn-xs' href='/reports/<%= report.id %>/?searchbox=<%= params[:searchbox] %>'>Read more</a>
+                          <% else %>
                           <p><%= simple_format(report.text.first(400)) %> ...</p>
-                          <a class='btn btn-contrast btn-bordered btn-xs' href='/reports/<%= report.id %>'>Read more</a>
+                            <a class='btn btn-contrast btn-bordered btn-xs' href='/reports/<%= report.id %>'>Read more</a>
+                          <% end %>
                         </div>
                       </div>
                       <hr class='hr-half'>

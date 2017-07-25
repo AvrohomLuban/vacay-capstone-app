@@ -20,4 +20,5 @@ class User < ApplicationRecord
     return self.comments.count + self.reports.count + self.questions.count + self.answers.count
   end
 
+
 end

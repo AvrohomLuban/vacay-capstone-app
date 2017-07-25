@@ -1,33 +1,30 @@
 class ReportsController < ApplicationController
-    before_action :authenticate_user!, only: [:create, :edit, :confirm, :post, :update, :new]
+     before_action :authenticate_user!, only: [:new_part_1]
 
   def indexcity
     if params[:rating]
-        #following works but didnt add a city to it so just added count model to report
-     # @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
-
-    #following works but not with paginate
-    # @reports = Report.all.sort_by{|report| report.likes.where(like: true).count}.reverse.page(params[:page]).per(15)
-        @reports = Location.where(city: params[:city]).first.reports.all.order("score ASC").page(params[:page]).per(15)
+        @reports = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.reports.all.order("score DESC").page(params[:page]).per(15)
     elsif params[:abc]
-        @reports = Location.where(city: params[:city]).first.reports.all.order("title ASC").page(params[:page]).per(15)
+        @reports = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.reports.all.order("title ASC").page(params[:page]).per(15)
     elsif params[:random]
-        @reports = Location.where(city: params[:city]).first.reports.all.order("RANDOM()").page(params[:page]).per(15)
+        @reports = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.reports.all.order("RANDOM()").page(params[:page]).per(15)
     elsif params[:searchbox]
-        @reports = Report.where("title ILIKE ?", "%#{params[:searchbox]}%").page(params[:page]).per(15)
+        @location = Location.where(country: params[:country], state: params[:state], city: params[:city])
+        @reports = @location.first.reports.where("title ILIKE ? OR text ILIKE ?", "%#{params[:searchbox]}%", "%#{params[:searchbox]}%").page(params[:page]).per(15)
     elsif params[:city]
-         @reports = Location.where(city: params[:city]).first.reports.all.order(:created_at => "desc").page(params[:page]).per(15)
+         @reports = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.reports.all.order(:created_at => "desc").page(params[:page]).per(15)
      else
         @reports = Report.all.page(params[:page]).per(15)
     end
     @city = params[:city]
+    @state = params[:state]
+    @country = params[:country]
     # @about_city = Wikipedia.find( @city )
     @title = "Latest Trip Reports"
     render "indexcity.html.erb"
   end
 
    def show
-    
     if params[:notification]
         notification = Notification.find_by(id: params[:notification])
         notification.destroy
@@ -109,7 +106,7 @@ class ReportsController < ApplicationController
     end
 
     def create
-      @report = Report.new(title: params[:title], duration: params[:duration], season: params[:season], text: params[:text], user_id: current_user.id, posted_live: true)
+      @report = Report.new(title: params[:title].titleize, duration: params[:duration].titleize, season: params[:season].titleize, text: params[:text].capitalize, user_id: current_user.id, about_author: params[:about_author].capitalize ,posted_live: true)
       if @report.save
         if Location.find_by(city: params[:city], state: params[:full_state], country: params[:full_country])
             @location = Location.find_by(city: params[:city], state: params[:full_state], country: params[:full_country])
@@ -150,15 +147,18 @@ class ReportsController < ApplicationController
 
     def indexall
     if params[:rating]
-         @reports = Report.select([Report.arel_table[Arel.star], Like.arel_table[:report_id].count]).joins(Report.arel_table.join(Like.arel_table).on(Like.arel_table[:report_id].eq(Report.arel_table[:id])).join_sources).order(Like.arel_table[:report_id].count.desc).group(Report.arel_table[:id]).order(Like.arel_table[:report_id].count.desc).page(params[:page]).per(15)
+         @reports = Report.all.order('score DESC').page(params[:page]).per(15)
     elsif params[:abc]
         @reports = Report.all.order("title ASC").page(params[:page]).per(15)
     elsif params[:random]
         @reports = Report.all.order("RANDOM()").page(params[:page]).per(15)
-    elsif params[:search]
-        @reports = Report.where(title: params[:searchbox]).page(params[:page]).per(15)
+    elsif params[:searchbox]
+        reports = Report.where("title ILIKE ? OR text ILIKE ?", "%#{params[:searchbox]}%", "%#{params[:searchbox]}%")
+        location = Location.all.where("country ILIKE ? OR state ILIKE ? OR city ILIKE?", "%#{params[:searchbox]}%", "%#{params[:searchbox]}%", "%#{params[:searchbox]}%").first
+        reports += location.reports if location
+        @reports = Report.where(id: reports.map(&:id)).page(params[:page]).per(15)
     else
-         @reports = Report.all.order(:created_at => "desc").where(posted_live: true).page(params[:page]).per(15)
+         @reports = Report.all.order(:created_at => "desc").page(params[:page]).per(15)
     end
     render "indexall.html.erb"
     end
@@ -167,10 +167,9 @@ class ReportsController < ApplicationController
         report = Report.find_by(id: params[:id])
         report.bookmarks.destroy_all
         report.notifications.destroy_all
-        report.locations.each do | location |
-            if location.reports.length == 1
+        location = report.locations.first
+        if location.reports.length <= 1 && location.tips.length == 0 && location.questions.length == 0
                 location.destroy
-            end
         end
         report.destroy
         flash[:warning]= "Report has been deleted."

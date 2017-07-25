@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!, only: [:new_part_1]
 
   def new_part_1
     @countries = CS.countries
@@ -39,7 +40,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(user_id: current_user.id, location_id: @location.id , question: params[:question])
     if @question.save
       flash[:success] = "Your question has been added"
-      redirect_to "/questions"
+      redirect_to "/questions/indexall"
     else
       flash[:error] = "Tip could not be saved"
       redirect_to "/questions/new"
@@ -61,23 +62,31 @@ class QuestionsController < ApplicationController
     render "show2.html.erb"
   end
 
-  def index
+  def indexcity
     if params[:city]
-        @questions = Location.where(city: params[:city]).first.questions.page(params[:page]).per(15)
-        @city = params[:city]
+         @questions = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.questions.page(params[:page]).per(15)
     else
       @questions = Question.all.page(params[:page]).per(15)
     end
-    render "index.html.erb"
+    render "indexcity.html.erb"
+  end
+
+  def indexall
+    @questions = Question.all.page(params[:page]).per(15)
+    render "indexall.html.erb"
   end
 
   def destroy
     question = Question.find_by(id: params[:id])
     question.bookmarks.destroy_all
     question.notifications.destroy_all
+    location = question.location
+        if location.reports.length == 0 && location.tips.length ==0 && location.questions.length <=1
+              location.destroy
+        end
     question.destroy
     flash[:warning]= "Question has been deleted."
-    redirect_to "/questions"
+    redirect_to "/questions/indexall"
   end
 
 end

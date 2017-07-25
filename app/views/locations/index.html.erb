@@ -14,11 +14,29 @@
         <div id='main-content'>
           <div class='container'>
           
+          <div class ="row">
+          <div class ="col-md-4">
           <a href = "/reports/indexall">
           <div class = "complete_index_link">
-          <h1 class = "text-center">All Trip Reports</h1>
+          <h1 class = "text-center">Reports</h1>
           </div>
           </a>
+          </div>
+          <div class = "col-md-4">
+          <a href = "/tips/indexall">
+          <div class = "complete_index_link">
+          <h1 class = "text-center">Tips</h1>
+          </div>
+          </a>
+          </div>
+          <div class = "col-md-4">
+          <a href = "/questions/indexall">
+          <div class = "complete_index_link">
+          <h1 class = "text-center">Q & A</h1>
+          </div>
+          </a>
+          </div>
+          </div>
 
           <h5 class = "text-center other_destinations">Or browse by destination: <%= @searching %></h5>
 
@@ -37,15 +55,17 @@
 
     <% @locations.uniq.each do |location| %>
               <div class='col-sm-3 portfolio-box portfolio-filter-photography portfolio-item'>
-                <a href="/locations/?<%= @city_state_country %>=<%= location["place"] %>">
+                <a href="/locations/?<%= @city_state_country %>=<%= location["place"] %>&country_name=<%= location["country"] %>&state_name=<%= location["state"] %>">
                   <div class='image-link'>
                     <i class='fa fa-search'></i>
                     <img class="img-responsive img-rounded center-block all_boxes_same" alt="Etiam vestibulum" width="263" height="171" src="<%= location["image"] %>" />
                   </div>
-                  <h3 class = "title"><a href = "/locations/?<%= @city_state_country %>=<%= location["place"] %>"><%= location["place"] %></a></h3>
-                  <p class='category'><%= location["r_count"] %> Reports /
-                  <%= location["t_count"] %> Tips /
-                  <%= location["q_count"] %> Questions</p>
+                  <h3 class = "title"><a href = "/locations/?<%= @city_state_country %>=<%= location["place"] %>&country_name=<%= location["country"] %>&state_name=<%= location["state"] %>"><%= location["place"] %></a></h3>
+                  <p class='category'>
+                  <span class = "<%= 'bold' if location["r_count"] >=1 %>"><%= pluralize(location["r_count"], 'Report') %></span> /
+                  <span class = "<%= 'bold' if location["t_count"] >=1 %>"><%= pluralize(location["t_count"], 'Tip') %></span> /
+                  <span class = "<%= 'bold' if location["q_count"] >=1 %>"><%= pluralize(location["q_count"], 'Question') %></span>
+                  </p>
                 </a>
               </div>
     <% end %>

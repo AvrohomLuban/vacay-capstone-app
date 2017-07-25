@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721002716) do
+ActiveRecord::Schema.define(version: 20170725004948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,9 +112,9 @@ ActiveRecord::Schema.define(version: 20170721002716) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.string   "image",      default: "https://s-media-cache-ak0.pinimg.com/736x/a5/2c/bb/a52cbb1b7c19e716e798fe2c0827d6f6--quotes-of-inspiration-travel-inspiration.jpg"
-    t.datetime "created_at",                                                                                                                                               null: false
-    t.datetime "updated_at",                                                                                                                                               null: false
+    t.string   "image",      default: "http://www.survivetravel.com/wp-content/uploads/2015/11/World-Travel-Wallpaper-3.jpg"
+    t.datetime "created_at",                                                                                                  null: false
+    t.datetime "updated_at",                                                                                                  null: false
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -158,19 +158,21 @@ ActiveRecord::Schema.define(version: 20170721002716) do
     t.text     "text"
     t.boolean  "posted_live"
     t.string   "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "score",       default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "score",        default: 0
+    t.text     "about_author"
   end
 
   create_table "tips", force: :cascade do |t|
     t.string   "text"
     t.integer  "user_id"
     t.string   "venue"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "category"
     t.integer  "location_id"
+    t.integer  "score",       default: 0
   end
 
   create_table "users", force: :cascade do |t|

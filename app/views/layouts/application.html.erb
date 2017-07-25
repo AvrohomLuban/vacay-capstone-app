@@ -25,7 +25,7 @@
     <![endif]-->
 
     <!--google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Allura|Arima+Madurai|Calligraffitti|Carter+One|Jomhuria|Kaushan+Script|Mrs+Sheppards|Oleo+Script+Swash+Caps|Oregano|Yellowtail" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allura|Arima+Madurai|Calligraffitti|Carter+One|Cinzel|Jomhuria|Kaushan+Script|Mrs+Sheppards|Oleo+Script+Swash+Caps|Oregano|Pacifico|Yellowtail" rel="stylesheet">
   </head>
 
   <body>
@@ -62,7 +62,7 @@
                   </a>
                   <ul class='dropdown-menu' role='menu'>
                     <li class=''>
-                      <a href='/locations'>Browse Reports</a>
+                      <a href='/reports/indexall'>Browse Reports</a>
                     </li>
                     <li class=''>
                       <a href='/reports/new'>Add Report</a>
@@ -78,12 +78,12 @@
                   </a>
                   <ul class='dropdown-menu' role='menu'>
                     <li class=''>
-                      <a href='/tips'>Browse Tips</a>
+                      <a href='/tips/indexall'>Browse Tips</a>
                     </li>
                     <li class=''>
-                      <a href='elements.html'>Add Tip</a>
+                      <a href='/tips/new'>Add Tip</a>
                     </li>
-                    <li class='dropdown-submenu'>
+                    <!-- <li class='dropdown-submenu'>
                       <a href='index.html'>
                         Submenu
                         <i class='fa fa-angle-right'></i>
@@ -99,7 +99,7 @@
                           <a href='index.html'>Submenu item</a>
                         </li>
                       </ul>
-                    </li>
+                    </li> -->
                   </ul>
                 </li>
                 <li class='dropdown'>
@@ -111,38 +111,30 @@
                   </a>
                   <ul class='dropdown-menu' role='menu'>
                     <li class=''>
-                      <a href='blog_small.html'>Small image</a>
+                      <a href='/questions/indexall'>Browse Q & A</a>
                     </li>
                     <li class=''>
-                      <a href='blog_large.html'>Large image</a>
-                    </li>
-                    <li class=''>
-                      <a href='blog_single_post.html'>Single post</a>
+                      <a href='/questions/new'>Ask Question</a>
                     </li>
                   </ul>
                 </li>
                 <li class='dropdown'>
                   <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
                     <span>
-                      Forums
+                      Other
                       <i class='fa fa-angle-down'></i>
                     </span>
                   </a>
                   <ul class='dropdown-menu' role='menu'>
                     <li class=''>
-                      <a href='portfolio.html'>2 columns</a>
+                      <a href='/contact'>Contact Us</a>
                     </li>
                     <li class=''>
-                      <a href='portfolio_three_cols.html'>3 columns</a>
-                    </li>
-                    <li class=''>
-                      <a href='portfolio_four_cols.html'>4 columns</a>
-                    </li>
-                    <li class=''>
-                      <a href='portfolio_detail.html'>Project detail</a>
+                      <a href=''>FAQ</a>
                     </li>
                   </ul>
                 </li>
+                <% if current_user %>
                 <li class='dropdown'>
                   <a class='dropdown-toggle' data-delay='50' data-hover='dropdown' data-toggle='dropdown' href='#'>
                     <span>
@@ -168,20 +160,22 @@
                     <li class=''>
                       <a href=''>My Posts</a>
                     </li>
-                    <% if !current_user %>
-                        <li class=''>
-                          <a href='/users/sign_up'>Sign Up</a>
-                        </li>
-                        <li class=''>
-                           <a href='/users/sign_in'>Log In</a>
-                        </li>
-                    <% else %>
-                      <li class ="">
-                        <a href='/users/sign_out'>Sign Out</a>
-                      </li>
-                    <% end %>
+                    <li> 
+                      <a href='/profiles/edit'>User Profile</a>
+                    </li>
+                    <li class ="">
+                      <a href='/users/sign_out'>Sign Out</a>
+                    </li>
                   </ul>
                 </li>
+                <% else %>
+                <li class='dropdown'>
+                  <a href='/users/sign_in'>
+                    <span>
+                      Log In 
+                    </span>
+                  </a>
+                <% end %>
               </ul>
             </div>
           </nav>

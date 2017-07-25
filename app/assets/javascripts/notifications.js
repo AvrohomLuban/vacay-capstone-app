@@ -11,5 +11,5 @@ function goToAnswerNotification(id, nId) {
 }
 
 function goToTipNotification(id, nId) {
-  window.location.href = "/tips/?id="+ id + "&notification=" + nId;
+  window.location.href = "/tips/indexall?id="+ id + "&notification=" + nId;
 }

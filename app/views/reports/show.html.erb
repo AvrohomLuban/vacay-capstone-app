@@ -136,11 +136,22 @@
                 <div class='text-boxes'>
                   <div class='row text-box text-box-title-above text-box-big-image'>
                     <div class='col-sm-12'>
-                      <h2 class='title'><a href="/blog_single_post.html"><%= @report.title %></a></h2>
+                      <h2 class='title'><a href="/blog_single_post.html">
+                      <% if params[:searchbox] %>
+                      <%= @report.title.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %>
+                      <% else %>
+                      <%= @report.title %>
+                      <% end %>
+                      </a>
+                      </h2>
                       <div class='toolbar'>
                         <a class='btn btn-link' href='#'>
                           <i class='fa fa-map'></i>
-                          <span><%= @report.locations.first.city %>, <%= @report.locations.first.state %>, <%= @report.locations.first.country %></span>
+                          <% if params[:searchbox] %>
+                            <span><%= @report.locations.first.city.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %>, <%= @report.locations.first.state.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %>, <%= @report.locations.first.country.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %></span>
+                          <% else %>
+                            <span><%= @report.locations.first.city %>, <%= @report.locations.first.state %>, <%= @report.locations.first.country %></span>
+                          <% end %>
                         </a>
                         <a class='btn btn-link' href='#'>
                           <i class='fa fa-clock-o'></i>
@@ -153,10 +164,6 @@
                         <a class='btn btn-link' href='#'>
                           <i class='fa fa-user'></i>
                           <span><%= @report.user.username %></span>
-                        </a>
-                        <!-- <a class='btn btn-link' href='#'>
-                          <i class='fa fa-user'></i>
-                          <span>Posted <%= @report.created_at.strftime("%A, %b %d")%></span> -->
                         </a>
                         <a class='btn btn-link' href='#comments'>
                           <i class='fa fa-comments'></i>
@@ -171,7 +178,6 @@
                         </div>
 
 
-
                        
 
                      
@@ -181,7 +187,11 @@
 
 
                         <div class='col-sm-12'>
+                        <% if params[:searchbox] %>
+                          <p><%= simple_format(@report.text.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>")) %></p>
+                        <% else %>
                           <p><%= simple_format(@report.text) %></p>
+                        <% end %>
                         </div>
                       </div>
 
@@ -222,7 +232,7 @@
 
                   <!-- Modal -->
                   <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+                    <div class="modal-lg">
 
                       <!-- Modal content-->
                       <div class="modal-content">
@@ -337,11 +347,11 @@
                       <div class='author-box'>
                         <div class='row'>
                           <div class='col-sm-3 col-lg-2'>
-                            <img alt="Author" width="165" height="165" class="img-circle img-responsive center-block" src="http://placehold.it/165x165" />
+                            <img alt="Author" class="user_profile" src="<%= @report.user.photos.first.image.url %>" />
                           </div>
                           <div class='col-sm-9 col-lg-10'>
                             <h3 class='title'>About author</h3>
-                            <p>Avrohom & Rivky Luban are a young couple with two daughters, aged 2 years, and 2 months. They love to travel, explore, and see lots of new places.</p>
+                            <p><%= @report.about_author %></p>
                           </div>
                         </div>
                       </div>

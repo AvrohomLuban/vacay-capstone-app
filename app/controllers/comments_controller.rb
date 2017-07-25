@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
           flash[:success] = "Your comment has been added"
           @tip = Tip.find_by(id: params[:id])
           notification = Notification.create(user_id: @tip.user_id, comment_id: @comment.id, tip_id: @tip.id)
-          redirect_to "/tips"
+          redirect_to(:back)
         else
           flash[:warning] = "Comment not saved."
           redirect_to "/"
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
         flash[:success] = "Your comment has been added"
         @answer = Answer.find_by(id: params[:id])
           notification = Notification.create(user_id: @answer.user_id, comment_id: @comment.id, question_id: @comment.answer.question.id, answer_id: @answer.id)
-        redirect_to "/questions"
+        redirect_to(:back)
       else
         flash[:warning] = "Comment could not be saved"
         redirect_to "/questions"

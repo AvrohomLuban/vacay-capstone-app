@@ -1,4 +1,5 @@
 class TipsController < ApplicationController
+  before_action :authenticate_user!, only: [:new_part_1]
 
   def new_part_1
     @countries = CS.countries
@@ -42,34 +43,65 @@ class TipsController < ApplicationController
       if params[:image]
         @photo = Photo.create(image: params[:image], tip_id: @tip.id)
       end
-      redirect_to "/tips"
+      redirect_to "/tips/indexall"
     else
       flash[:error] = "Tip could not be saved"
       redirect_to "/tips/new"
     end
   end
 
-  def index
+  def indexcity
     if params[:notification]
         notification = Notification.find_by(id: params[:notification])
         notification.delete
     end
-    if params[:city]
-        @tips = Location.where(city: params[:city]).first.tips.page(params[:page]).per(15)
-        @city = params[:city]
+    if params[:abc]
+      @tips = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.tips.order("venue ASC").page(params[:page]).per(15)
+    elsif params[:rating]
+         @tips = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.tips.all.order("score DESC").page(params[:page]).per(15)
+    elsif params[:random]
+         @tips = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.tips.all.order("RANDOM()").page(params[:page]).per(15)
+    elsif params[:city]
+         @tips = Location.where(country: params[:country], state: params[:state], city: params[:city]).first.tips.page(params[:page]).per(15)
+          @city = params[:city]
     elsif params[:id]
         @tips = Tip.where(id: params[:id])
     else
       @tips = Tip.all.order(:created_at => "desc").page(params[:page]).per(15)
     end
+    @city = params[:city]
+    @state = params[:state]
+    @country = params[:country]
     @comments = Comment.all
     render "index.html.erb"
   end
+
+  def indexall
+    if params[:notification]
+        notification = Notification.find_by(id: params[:notification])
+        notification.delete
+    end
+    if params[:abc]
+      @tips = Tip.all.order("venue ASC").page(params[:page]).per(15)
+    elsif params[:rating]
+         @tips = Tip.all.order("score DESC").page(params[:page]).per(15)
+    elsif params[:random]
+         @tips = Tip.all.order("RANDOM()").page(params[:page]).per(15)
+    else
+    @tips = Tip.all.order(:created_at => "desc").page(params[:page]).per(15)
+    end
+    render "indexall.html.erb"
+  end
+
 
   def destroy
         tip = Tip.find_by(id: params[:id])
         tip.bookmarks.destroy_all
         tip.notifications.destroy_all
+        location = tip.location
+        if location.reports.length == 0 && location.tips.length <=0 && location.questions.length ==0
+              location.destroy
+        end
         tip.destroy
         flash[:warning]= "Tip has been deleted."
         redirect_to "/tips"

@@ -9,7 +9,8 @@ class NotificationsController < ApplicationController
 
   def destroy
     notification = Notification.find_by(id: params[:id])
-    notification.delete
+    notification.destroy
+    flash[:warning] = "Notification has been removed"
     redirect_to "/notifications"
   end
 end

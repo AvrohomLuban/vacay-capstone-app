@@ -1,0 +1,89 @@
+    <div id='main' role='main'>
+        <!-- <div id='main-content-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <h1 class='title'>
+                  Add A New Trip Report
+                  <small>Lorem ipsum dolor sit amet, integer vulputate porta augue</small>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id='main-content'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='page-header page-header-with-icon no-mg-t'>
+                  <i class='fa fa-code-fork'></i>
+                  <h2>
+                    Edit Your User Profile
+                  </h2>
+                </div>
+
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <%= form_tag "/profiles/#{current_user.id}/edit", method: :patch, class: 'form', multipart: true do %>
+                      <fieldset class='row'>
+                        <div class='col-sm-4 mg-b-md'>
+                          <div class='lead'>User Profile</div>
+                          <small class='text-muted'>Enhnace your profile by giving us a bit of info about yourself. This will be displayed in the "about author" section of your published trip reports.</small>
+                        </div>
+                        <div class='col-sm-7 col-sm-offset-1'>
+                          <div class='form-group'>
+                            <label>Location</label>
+                            <input class='form-control' id='input-name' type='text' name="venue" placeholder="Sea World">
+                          </div>
+                          <div class='form-group'>
+                            <label>About You</label>
+                            <textarea name="text" cols="50" rows="10" class='form-control' id='input-name' placeholder="Parking is $35 per vehicle. However, can avoid that by just parking across the street behind the brandsmart, is an open parking lot for free. Happy savings!"></textarea>
+                          </div>
+                          <div class='form-group'>
+                            <label>Add Image</label>
+                             <%= file_field_tag "image" %>
+                          </div>
+
+                          
+                      </div>
+                    </div>
+
+                    
+                            
+                          </div>
+                          </div>
+
+
+                        </div>
+                      </fieldset>
+                      
+
+
+                      <div class='mg-t-lg'>
+                        <div class='row'>
+                          <div class='col-sm-7 col-sm-offset-5'>
+                            <div class='text-center-xs'>
+
+
+
+                              
+                                <input type = "submit" value = "Continue" class='btn btn-contrast btn-lg'>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+  
+
+          </div>
+        </div>
+        <div class='fade' id='scroll-to-top'>
+          <i class='fa fa-chevron-up'></i>
+        </div>
+      </div>

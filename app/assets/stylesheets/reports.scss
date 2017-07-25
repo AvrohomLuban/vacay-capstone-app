@@ -69,6 +69,17 @@ body { background-image: url(‘fabric_plaid.png’)}
 .citylogo {overflow: none}
 .tighten {padding-top: 0px !important;
           margin-top: 0px !important;}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {background-color: #8DC153 !important ;}
+.user_profile {  display: inline-block;
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;}
 
+.highlight {
+  background: yellow
+}
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

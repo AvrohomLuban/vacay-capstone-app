@@ -128,6 +128,17 @@
         <div class='col-md-pull-3 col-sm-pull-4 col-sm-8 col-md-9'>
           <div class='text-boxes'>
 
+          <div class='row' id='portfolio-filter'>
+              <div class='col-sm-12'>
+                <ul class='nav nav-pills'>
+                  <li class=<%= 'active' unless params[:abc] || params[:rating] || params[:random] %>><a href="/tips/indexcity/?country=<%= @country %>&state=<%= @state %>&city=<%= @city %>">Latest</a></li>
+                  <li class=<%= 'active' if params[:abc] %>><a href="/tips/indexcity/?country=<%= @country %>&state=<%= @state %>&city=<%= @city %>&abc=true">By Name</a></li>
+                  <li class=<%= 'active' if params[:rating] %>><a href="/tips/indexcity/?country=<%= @country %>&state=<%= @state %>&city=<%= @city %>&rating=true">Best Rated</a></li>
+                  <li class=<%= 'active' if params[:random] %>><a href="/tips/indexcity/?country=<%= @country %>&state=<%= @state %>&city=<%= @city %>&random=true">Random</a></li>
+                </ul>
+              </div>
+            </div>
+
             <% @tips.each do | tip | %>
             <div class='row text-box text-box-title-above'>
               <div class='col-sm-12'>
@@ -152,7 +163,7 @@
                         <p id="tip-<%= tip.id %>"><%= tip.text %></p>
                         <div class = "buttons-div">
                                <%= form_tag "/likes/#{tip.id}/?tip=true", method: :post do %>
-                                <button id = "likebutton" class='btn btn-contrast btn-bordered btn-xs' onclick="clicked()" type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like (<%= tip.likes.count %>)</button>
+                                <button id = "likebutton" class='btn btn-contrast btn-bordered btn-xs' onclick="clicked()" type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like (<%= tip.score %>)</button>
                                 <% end %>
                                 <%= form_tag "/bookmarks/new/#{tip.id}/?tip=true", method: :post do %>
                                    <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   
  
-  get"/", to: 'reports#index'
+  get"/", to: 'locations#index'
   get "/reports/newvue", to: 'reports#newvue'
   get "/reports/new", to: 'reports#new_part_1'
   post "/reports/new_part_1", to: 'reports#new_part_2'
@@ -46,6 +46,7 @@ Rails.application.routes.draw do
  
 
   get "/locations/", to: 'locations#index'
+  get "locations/indexcity", to: 'locations#indexcity'
 
   post "/comments/:id/new", to: 'comments#create'
 
@@ -63,10 +64,8 @@ Rails.application.routes.draw do
   post "/questions/new_part_2", to: 'questions#new_part_3'
   post "/questions/new_part_3", to: 'questions#new_part_4'
   post "/questions/new_part_4", to: 'questions#create'
-
-  # get "/questions/new", to: 'questions#new'
-  # post "/questions/new", to: 'questions#create'
-  get "/questions", to: 'questions#index'
+  get "/questions/indexall", to: 'questions#indexall'
+  get "/questions/indexcity", to: 'questions#indexcity'
   get "/questions/:id", to: 'questions#show'
   delete "/questions/:id", to: 'questions#destroy'
 
@@ -76,7 +75,8 @@ Rails.application.routes.draw do
   patch "/answers/:id/:edit", to: 'answers#update'
   delete "/answers/:id", to: 'answers#destroy'
 
-  get "/tips", to: 'tips#index'
+  get "/tips/indexcity", to: 'tips#indexcity'
+  get "/tips/indexall", to: 'tips#indexall'
   get "/tips/new", to: 'tips#new_part_1'
   post "/tips/new_part_1", to: 'tips#new_part_2'
   post "/tips/new_part_2", to: 'tips#new_part_3'
@@ -95,6 +95,7 @@ Rails.application.routes.draw do
   post "/inappropriates", to: 'inappropriates#create'
 
   get "/contact", to: 'contacts#index'
+  post "/contact/new", to: 'contacts#create'
 
   get "/vue", to: 'reports#vue'
 
@@ -111,6 +112,9 @@ Rails.application.routes.draw do
   get "/forums/new", to: 'forums#new'
   post "/forums/new", to: 'forums#create'
   get "/forums/:id", to: 'forums#show'
+
+  get "/profiles/edit", to: "profiles#edit"
+  patch "/profiles/:id/edit", to: "profiles#update"
 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

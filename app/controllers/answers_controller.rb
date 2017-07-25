@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
 
   def create
     @answer = Answer.create(user_id: current_user.id, question_id: params[:id], answer: params[:answer])

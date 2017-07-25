@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
       redirect_to "/reports/#{id}"
     elsif params[:tip]
       @bookmark = Bookmark.create(user_id: current_user.id, tip_id: params[:id])
-      redirect_to "/tips#tip-#{params[:id]}"
+      redirect_to "/tips/indexall#tip-#{params[:id]}"
     elsif params[:question]
       @bookmark = Bookmark.create(user_id: current_user.id, question_id: params[:id])
       question_id = params[:id]
@@ -26,7 +26,7 @@ class BookmarksController < ApplicationController
 
   def destroy
     bookmark = Bookmark.find_by(id: params[:id])
-    bookmark.delete
+    bookmark.destroy
     redirect_to "/bookmarks"
   end
 

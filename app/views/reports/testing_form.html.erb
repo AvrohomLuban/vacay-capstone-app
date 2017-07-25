@@ -18,64 +18,89 @@
                 <div class='page-header page-header-with-icon no-mg-t'>
                   <i class='fa fa-code-fork'></i>
                   <h2>
-                    Edit Your Trip Reports
+                    Add Trip Notes
                   </h2>
                 </div>
 
                 <div class='row'>
                   <div class='col-sm-12'>
-                    <%= form_tag "/reports/#{@report.id}/edit", method: :patch do %>
-                      
+                    <%= form_tag "/reports/new_part_4", method: :post, class: 'form' do %>
                       <fieldset class='row'>
                         <div class='col-sm-4 mg-b-md'>
-                          <div class='lead'>Step 1</div>
-                          <small class='text-muted'>Edit the trip basics</small>
-                        </div>
-                        <div class='col-sm-7 col-sm-offset-1'>
-                          <div class='form-group'>
-                            <label>Trip Title</label>
-                            <input class='form-control' id='input-name' type='text' name="title" value="<%= @report.title %>">
-                          </div>
-                          <div class='form-group'>
-                            <label>Trip Duration</label>
-                            <input class='form-control' id='input-street' type='text' name="duration" value="<%= @report.duration %>">
-                          </div>
-                          <div class='form-group'>
-                            <label>Season</label>
-                            <input class='form-control' id='input-city' type='text' name="season" value="<%= @report.season %>">
-                          </div>
-                        </div>
-                      </fieldset>
-                      <hr class='hr-dashed'>
-                      <fieldset class='row'>
-                        <div class='col-sm-4 mg-b-md'>
-                          <div class='lead'>Step 2</div>
-                          <small class='text-muted'>Edit Your Trip Reports.</small>
+                          <div class='lead'>Step 3</div>
+                          <small class='text-muted'>Go ahead! We want to hear all about your trip. Start from day 1, share with our readers where did you stay, what did you do, how was it, and what would you do differantly next time around. The more info, the better!</small>
                         </div>
                         <div class='col-sm-7 col-sm-offset-1'>
                           <div class='form-group'>
            
                             <label>Report Notes</label>
-                            <textarea name="text" cols="50" rows="10" class='form-control' id='input-name'><%= @report.text %></textarea>
+                            <textarea name="text" cols="50" rows="10" class='form-control' id='input-name' placeholder="Day One &#10;Arrived at PHX airport, and immediately took uber to hotel... &#10;&#10;&#10;&#10;&#10;&#10;*Drag bottom right corner to expand box"></textarea>
                           </div>
                         </div>
                       </fieldset>
                       <hr class='hr-dashed'>
                       <fieldset class='row'>
                         <div class='col-sm-4 mg-b-md'>
-                          <div class='lead'>Step 3</div>
-                          <small class='text-muted'>Edit About Author</small>
+                          <div class='lead'>Step 4</div>
+                          <small class='text-muted'>Your Trip Notes are almost complete. As a final step, add images to make your trip truly stand out. Best if add real pictures that you took, but if not, can also add url of pictures from online just to show readers where you want and better idea of what looked like.</small>
                         </div>
                         <div class='col-sm-7 col-sm-offset-1'>
                           <div class='form-group'>
-           
-                            <label>About Author</label>
-                            <textarea name="about_author" cols="50" rows="3" class='form-control' id='input-name'><%= @report.about_author %></textarea>
+                            <label>Image 1</label>
+                            <input class='form-control' id='input-name' type='text' name="image1">
+                          </div>
+                          <div class='form-group'>
+                            <label>Image 2</label>
+                            <input class='form-control' id='input-street' type='text' name="image2">
+                          </div>
+                          <div class='form-group'>
+                            <label>Image 3</label>
+                            <input class='form-control' id='input-city' type='text' name="image3">
+                          </div>
+                          <div class='form-group'>
+                            <label>Image 4</label>
+                            <input class='form-control' id='input-city' type='text' name="image4">
+                          </div>
+                          <div class='form-group'>
+                            <label>Image 5</label>
+                            <input class='form-control' id='input-city' type='text' name="image5">
+                          </div>
+                          <div class='form-group'>
+                            <label>Image 6</label>
+                            <input class='form-control' id='input-city' type='text' name="image6">
+                          </div>
+
+                          <a onclick="displayImages()">Add More Images</a>
+
+                          <div id="more_images" class = "hide_more_images">
+                              <div class='form-group'>
+                                <label>Image 7</label>
+                                <input class='form-control' id='input-name' type='text' name="title">
+                              </div>
+                              <div class='form-group'>
+                                <label>Image 8</label>
+                                <input class='form-control' id='input-street' type='text' name="duration">
+                              </div>
+                              <div class='form-group'>
+                                <label>Image 9</label>
+                                <input class='form-control' id='input-city' type='text' name="season">
+                              </div>
+                              <div class='form-group'>
+                                <label>Image 10</label>
+                                <input class='form-control' id='input-city' type='text' name="season">
+                              </div>
+                              <div class='form-group'>
+                                <label>Image 11</label>
+                                <input class='form-control' id='input-city' type='text' name="season">
+                              </div>
+                              <div class='form-group'>
+                                <label>Image 12</label>
+                                <input class='form-control' id='input-city' type='text' name="season">
+                              </div>
+
                           </div>
                         </div>
                       </fieldset>
-                      
-                      
 
 
                       <div class='mg-t-lg'>
@@ -83,10 +108,17 @@
                           <div class='col-sm-7 col-sm-offset-5'>
                             <div class='text-center-xs'>
 
-
+                    <input type="hidden" name="title" value="<%= @title %>">
+                    <input type="hidden" name="duration" value="<%= @duration %>">
+                    <input type="hidden" name="season" value="<%= @season %>">
+                    <input type="hidden" name="full_country" value="<%= @full_country %>">
+                    <input type="hidden" name="country" value="<%= @country %>"> 
+                    <input type="hidden" name="state" value="<%= @state %>"> 
+                    <input type="hidden" name="full_state" value="<%= @full_state %>"> 
+                    <input type="hidden" name="city" value="<%= @city %>">
 
                               
-                                <input type = "submit" value = "Save Changes" class='btn btn-contrast btn-lg'>
+                                <input type = "submit" value = "Continue" class='btn btn-contrast btn-lg'>
                               
                             </div>
                           </div>

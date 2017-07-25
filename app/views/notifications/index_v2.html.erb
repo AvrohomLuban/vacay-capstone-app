@@ -215,14 +215,21 @@
                 </div>
               <% end %>
 
+             <%= form_tag "/notifications/1/?user=#{current_user.id}", method: :delete do %>
+              <p class = "text-center tighten">
+                <button class='btn btn-contrast  btn-xs' align="center"> Clear All Notifications</button>
+                  <input type="hidden" name="report" value="">
+                  </p>
+            <% end %>
+
  
 
 
 
               </div>
             </div>
-        <div class='fade' id='scroll-to-top'>
-          <i class='fa fa-chevron-up'></i>
+       
+
         </div>
       </div>
       

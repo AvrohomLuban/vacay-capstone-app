@@ -1,7 +1,7 @@
 /* global Vue */
 /* global $ */
 
-function reply(id, username) {
+function replyReport(id, username) {
   var replybox = document.getElementById('comment_message');
   replybox.value += "<a href = '#comment-" + id + "'>" + "@" + username + ":" + "</a>" + "<br>";
   var top = document.getElementById('add-new-comment').offsetTop;

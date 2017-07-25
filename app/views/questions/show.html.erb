@@ -60,7 +60,7 @@
                       <div class='toolbar'>
                         <h4 class='title'><%= answer.user.username %></h4>
                         <p class='btn btn-link link-contrast btn-sm'>
-                        <i class='fa fa-reply'></i> Reply
+                        <i class='fa fa-reply'></i><span onclick = "replyAnswer(<%= answer.id %>, '<%= answer.user.username %>')"> Reply</span>
                         </p>
                       </div>
                         <p><%= simple_format(answer.answer.html_safe) %></p>
@@ -110,7 +110,7 @@
                               <div class='col-sm-12'>
                                 <div class='form-group control-group'>
                                   <h6 class = "text-center">Comment On Answer</h6>
-                                  <textarea class='form-control' data-rule-required='true' name='text' placeholder='Type comment here...' rows='5'></textarea>
+                                  <textarea class='form-control' data-rule-required='true' id = "answerMessage" name='text' placeholder='Type comment here...' rows='5'></textarea>
                                 </div>
                               </div>
                             </div>

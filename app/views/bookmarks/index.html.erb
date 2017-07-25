@@ -107,7 +107,7 @@
                         </thead>
                         <tbody>
                           <% @bookmarked_tips.each do | bookmark | %>
-                            <tr class='  '>
+                            <tr onClick="goToTipBookmark(<%= bookmark.tip.id %>)">
                               <td>
                                 <%= bookmark.tip.venue %>
                               </td>
@@ -152,7 +152,7 @@
                         </thead>
                         <tbody>
                           <% @bookmarked_questions.each do | bookmark | %>
-                            <tr class='  '>
+                            <tr onClick="goToQuestionBookmark(<%= bookmark.question.id %>)">
                               <td>
                                 <%= bookmark.question.location.country %>,<%= bookmark.question.location.state %>,<%= bookmark.question.location.city %>
                               </td>
@@ -171,6 +171,13 @@
                   </div>
                 </div>
               <% end %>
+
+               <%= form_tag "/bookmarks/1/?user=#{current_user.id}", method: :delete do %>
+              <p class = "text-center tighten">
+                <button class='btn btn-contrast  btn-xs' align="center"> Clear All Bookmarks</button>
+                  <input type="hidden" name="report" value="">
+                  </p>
+            <% end %>
 
 
 

@@ -25,8 +25,15 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
+    if params[:user]
+      bookmark = Bookmark.where(user_id: current_user.id)
+      bookmark.destroy_all
+      flash[:warning] = "All bookmarks have been cleared."
+    else
     bookmark = Bookmark.find_by(id: params[:id])
     bookmark.destroy
+    flash[:warning] = "Bookmark has been removed."
+    end
     redirect_to "/bookmarks"
   end
 

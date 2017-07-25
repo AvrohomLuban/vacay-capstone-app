@@ -147,6 +147,9 @@
               <div class='col-md-pull-3 col-sm-pull-4 col-sm-8 col-md-9'>
                 <div class='text-boxes'>
 
+                <h1 class='text-center city_city_index'><%= @city %> Trip Reports</h1>
+               <!--  <h1 class='text-center state_city_index'><%= @state %>, <%= @country %></h1> -->
+
                 <div class='row' id='portfolio-filter'>
               <div class='col-sm-12'>
                 <ul class='nav nav-pills'>
@@ -168,7 +171,7 @@
 
                       <% if params[:searchbox] %>
                         <h2 class='title'><a href="/reports/<%= report.id %>/?searchbox=<%= params[:searchbox] %>">
-                        <%= report.title.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %></a></h2>
+                        <%= report.title.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %></a></h2>
                       <% else %>
                         <h2 class='title'><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
                       <% end %>
@@ -176,7 +179,11 @@
                       <div class='toolbar'>
                       <a class='btn btn-link' href='#'>
                           <i class='fa fa-map'></i>
-                          <span><%= report.locations.first.city %>, <%= report.locations.first.state %>, <%= report.locations.first.country %></span>
+                          <% if params[:searchbox] %>
+                          <span><%= report.locations.first.city.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %>, <%= report.locations.first.state.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %>, <%= report.locations.first.country.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %></span>
+                          <% else %>
+                            <span><%= report.locations.first.city %>, <%= report.locations.first.state %>, <%= report.locations.first.country %></span>
+                          <% end %>
                         </a>
                         <a class='btn btn-link' href='#'>
                           <i class='fa fa-clock-o'></i>
@@ -203,7 +210,7 @@
                         </div>
                         <div class='col-sm-9'>
                            <% if params[:searchbox] %>
-                          <p><%= simple_format(report.text.first(400).gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>")) %> ...</p>
+                          <p><%= simple_format(report.text.first(400).gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>")) %> ...</p>
                           <a class='btn btn-contrast btn-bordered btn-xs' href='/reports/<%= report.id %>/?searchbox=<%= params[:searchbox] %>'>Read more</a>
                           <% else %>
                           <p><%= simple_format(report.text.first(400)) %> ...</p>

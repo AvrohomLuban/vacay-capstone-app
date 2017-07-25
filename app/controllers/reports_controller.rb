@@ -43,7 +43,7 @@ class ReportsController < ApplicationController
 
     def update
         @report = Report.find_by(id: params[:id])
-        @report.update(title: params[:title], duration: params[:duration], season: params[:season], text: params[:text])
+        @report.update(title: params[:title], duration: params[:duration], season: params[:season], text: params[:text], about_author: params[:about_author])
         flash["success"] = "Changes have been saved!"
         redirect_to "/reports/#{@report.id}"
 

@@ -59,7 +59,7 @@ class QuestionsController < ApplicationController
     end
     @question = Question.find_by(id: params[:id])
     @answers = Answer.where(question_id: @question.id)
-    render "show2.html.erb"
+    render "show.html.erb"
   end
 
   def indexcity
@@ -68,6 +68,7 @@ class QuestionsController < ApplicationController
     else
       @questions = Question.all.page(params[:page]).per(15)
     end
+    @city = params[:city]
     render "indexcity.html.erb"
   end
 

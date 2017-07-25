@@ -138,7 +138,7 @@
                     <div class='col-sm-12'>
                       <h2 class='title'><a href="/blog_single_post.html">
                       <% if params[:searchbox] %>
-                      <%= @report.title.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %>
+                      <%= @report.title.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %>
                       <% else %>
                       <%= @report.title %>
                       <% end %>
@@ -148,7 +148,7 @@
                         <a class='btn btn-link' href='#'>
                           <i class='fa fa-map'></i>
                           <% if params[:searchbox] %>
-                            <span><%= @report.locations.first.city.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %>, <%= @report.locations.first.state.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %>, <%= @report.locations.first.country.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %></span>
+                            <span><%= @report.locations.first.city.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %>, <%= @report.locations.first.state.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %>, <%= @report.locations.first.country.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %></span>
                           <% else %>
                             <span><%= @report.locations.first.city %>, <%= @report.locations.first.state %>, <%= @report.locations.first.country %></span>
                           <% end %>
@@ -188,7 +188,7 @@
 
                         <div class='col-sm-12'>
                         <% if params[:searchbox] %>
-                          <p><%= simple_format(@report.text.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>")) %></p>
+                          <p><%= simple_format(@report.text.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>")) %></p>
                         <% else %>
                           <p><%= simple_format(@report.text) %></p>
                         <% end %>
@@ -232,7 +232,7 @@
 
                   <!-- Modal -->
                   <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-lg">
+                    <div class="modal-lg %>">
 
                       <!-- Modal content-->
                       <div class="modal-content">
@@ -373,7 +373,7 @@
                               <h4 class='title'><%= comment.user.username %></h4>
                               <p class='btn btn-link link-contrast btn-sm'>
                                 <i class='fa fa-reply'></i>
-                                <span onclick = "reply(<%= comment.id %>, '<%= comment.user.username %>')">Reply</span>
+                                <span onclick = "replyReport(<%= comment.id %>, '<%= comment.user.username %>')">Reply</span>
                               </p>
                             </div>
                             <p><%= simple_format(comment.text.html_safe) %></p>

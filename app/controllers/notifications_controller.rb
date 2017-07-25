@@ -8,9 +8,15 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
+    if params[:user]
+      notification = Notification.where(user_id: current_user.id)
+      notification.destroy_all
+      flash[:warning] = "All notifications have been cleared."
+    else
     notification = Notification.find_by(id: params[:id])
     notification.destroy
     flash[:warning] = "Notification has been removed"
+    end
     redirect_to "/notifications"
   end
 end

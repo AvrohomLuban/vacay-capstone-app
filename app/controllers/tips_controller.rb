@@ -87,6 +87,8 @@ class TipsController < ApplicationController
          @tips = Tip.all.order("score DESC").page(params[:page]).per(15)
     elsif params[:random]
          @tips = Tip.all.order("RANDOM()").page(params[:page]).per(15)
+    elsif params[:id]
+        @tips = Tip.where(id: params[:id])
     else
     @tips = Tip.all.order(:created_at => "desc").page(params[:page]).per(15)
     end

@@ -169,7 +169,7 @@
                     <div class='col-sm-12'>
                       <% if params[:searchbox] %>
                         <h2 class='title'><a href="/reports/<%= report.id %>/?searchbox=<%= params[:searchbox] %>">
-                        <%= report.title.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %></a></h2>
+                        <%= report.title.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %></a></h2>
                       <% else %>
                         <h2 class='title'><a href="/reports/<%= report.id %>"><%= report.title %></a></h2>
                       <% end %>
@@ -178,7 +178,7 @@
                       <a class='btn btn-link'>
                           <i class='fa fa-map'></i>
                           <% if params[:searchbox] %>
-                          <span><%= report.locations.first.city.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %>, <%= report.locations.first.state.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %>, <%= report.locations.first.country.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].capitalize, "<span class='highlight'>#{params[:searchbox].capitalize}</span>").html_safe %></span>
+                          <span><%= report.locations.first.city.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %>, <%= report.locations.first.state.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %>, <%= report.locations.first.country.gsub(params[:searchbox], "<span class='highlight'>#{params[:searchbox]}</span>").gsub(params[:searchbox].titleize, "<span class='highlight'>#{params[:searchbox].titleize}</span>").html_safe %></span>
                           <% else %>
                             <span><%= report.locations.first.city %>, <%= report.locations.first.state %>, <%= report.locations.first.country %></span>
                           <% end %>

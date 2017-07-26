@@ -24,22 +24,19 @@
 
                 <div class='row'>
                   <div class='col-sm-12'>
-                    <%= form_tag "/tips/#{@tip.id}/edit", method: :patch, class: 'form', multipart: true do %>
+                    <%= form_tag "/tips/#{@tip.id}/edit_image", method: :patch, class: 'form', multipart: true do %>
                       <fieldset class='row'>
                         <div class='col-sm-4 mg-b-md'>
-                          <div class='lead'>Tip Info</div>
-                          <small class='text-muted'>Now that we got the location, its time to fill in the rest. What is this tip for, and finally, lets hear the long awaited tip.</small>
+                          <div class='lead'>Tip Image</div>
+                          <small class='text-muted'>A picture is worth a thousand words. Enhance your tip by uploading an image. Readers will thank you. </small>
                         </div>
                         <div class='col-sm-7 col-sm-offset-1'>
+                          
                           <div class='form-group'>
-                            <label>Name of Place</label>
-                            <input class='form-control' id='input-name' type='text' name="venue" value = "<%= @tip.venue %>">
+                            <label>Add Image</label>
+                             <%= file_field_tag "image" %>
                           </div>
-                          <div class='form-group'>
-                            <label>Tip</label>
-                            <textarea name="text" cols="50" rows="10" class='form-control' id='input-name'><%= @tip.text %></textarea>
-                          </div>
-                       
+
                           
                       </div>
                     </div>
@@ -60,12 +57,7 @@
                           <div class='col-sm-7 col-sm-offset-5'>
                             <div class='text-center-xs'>
 
-                 
-                    <!-- <input type="hidden" name="full_country" value="<%= @full_country %>">
-                    <input type="hidden" name="country" value="<%= @country %>"> 
-                    <input type="hidden" name="state" value="<%= @state %>"> 
-                    <input type="hidden" name="full_state" value="<%= @full_state %>"> 
-                    <input type="hidden" name="city" value="<%= @city %>"> -->
+                
 
                               
                                 <input type = "submit" value = "Save Changes" class='btn btn-contrast btn-lg'>

@@ -87,7 +87,10 @@ Rails.application.routes.draw do
   post "/tips/new_part_4", to: 'tips#create'
   delete "/tips/:id", to: 'tips#destroy'
   get "tips/:id/edit", to: 'tips#edit'
-  patch "tips/:id/new_part_4", to: 'tips#update'
+  patch "tips/:id/edit", to: 'tips#update'
+  get "tips/:id/edit_image", to: 'tips#edit_image'
+  patch "tips/:id/edit_image", to: 'tips#update_image'
+
 
   get "/notifications", to: 'notifications#index'
   delete "/notifications/:id", to: 'notifications#destroy'

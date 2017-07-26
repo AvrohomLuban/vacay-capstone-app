@@ -162,32 +162,22 @@
                       <div class='col-sm-9'>
                         <p id="tip-<%= tip.id %>"><%= tip.text %></p>
                         <div class = "buttons-div">
-                               
-                                
-                                <% if @editmode %>
-                                  <% if current_user == tip.user %>
-                                    <%= form_tag "/tips/#{tip.id}/edit", method: :get do %>
-                                        <button class='btn btn-contrast btn-bordered btn-xs'><i class="fa fa-save" aria-hidden="true"></i> Edit</button>
-                                    <% end %>
-                                    <%= form_tag "/tips/#{tip.id}/edit_image", method: :get do %>
-                                        <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Edit Image</button>
-                                    <% end %>
-                                    <%= form_tag "/tips/#{tip.id}", method: :delete do %>
-                                       <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Delete</button>
-                                    <% end %>
+                               <%= form_tag "/likes/#{tip.id}/?tip=true", method: :post do %>
+                                <button id = "likebutton" class='btn btn-contrast btn-bordered btn-xs' onclick="clicked()" type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like (<%= tip.likes.count %>)</button>
+                                <% end %>
+                                <%= form_tag "/bookmarks/new/#{tip.id}/?tip=true", method: :post do %>
+                                   <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
+                                <% end %>
+                                <button class = "btn btn-contrast btn-bordered btn-xs padding_left" onclick="seeTipComments(<%= tip.id %>)">See Comments (<%= tip.comments.count %>)</button>
+                                <% if current_user == tip.user %>
+                                  <%= form_tag "/tips/#{tip.id}/edit", method: :get do %>
+                                      <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Edit</button>
                                   <% end %>
-                                  <% else %>
-                                  <%= form_tag "/likes/#{tip.id}/?tip=true", method: :post do %>
-                                  <button id = "likebutton" class='btn btn-contrast btn-bordered btn-xs' onclick="clicked()" type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like (<%= tip.likes.count %>)</button>
-                                  <%= form_tag "/bookmarks/new/#{tip.id}/?tip=true", method: :post do %>
-                                     <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Bookmark</button>
+                                  <%= form_tag "/tips/#{tip.id}/edit_image", method: :get do %>
+                                      <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Edit Image</button>
                                   <% end %>
-                                  <button class = "btn btn-contrast btn-bordered btn-xs padding_left" onclick="seeTipComments(<%= tip.id %>)">See Comments (<%= tip.comments.count %>)</button>
-                                  <% end %>
-                                  <% if current_user == tip.user %>
-                                    <%= link_to "/tips/indexall/?editmode=true", class: "btn btn-contrast btn-bordered btn-xs padding_left", method: :get do %>
-                                      Edit Mode
-                                    <% end %>
+                                  <%= form_tag "/tips/#{tip.id}", method: :delete do %>
+                                     <button class='btn btn-contrast btn-bordered btn-xs padding_left'><i class="fa fa-save" aria-hidden="true"></i> Delete</button>
                                   <% end %>
                                 <% end %>
                         </div>

@@ -100,7 +100,7 @@
                                 <%= notification.report.locations.first.country %>,<%= notification.report.locations.first.state %>,<%= notification.report.locations.first.city %>
                               </td>
                               <td>
-                                <%= notification.comment.text %>
+                                <%= simple_format(notification.comment.text.html_safe) %>
                               </td>
                               <td>
                                 <%= link_to "Remove", "/notifications/#{notification.id}", method: :delete %>

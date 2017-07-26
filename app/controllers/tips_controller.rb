@@ -77,6 +77,7 @@ class TipsController < ApplicationController
   end
 
   def indexall
+
     if params[:notification]
         notification = Notification.find_by(id: params[:notification])
         notification.delete
@@ -92,7 +93,13 @@ class TipsController < ApplicationController
     else
     @tips = Tip.all.order(:created_at => "desc").page(params[:page]).per(15)
     end
-    render "indexall.html.erb"
+    if params[:editmode]
+      @editmode = true
+    else
+      @editmode = false
+    end
+      render "indexall.html.erb"
+    
   end
 
 
@@ -106,7 +113,7 @@ class TipsController < ApplicationController
         end
         tip.destroy
         flash[:warning]= "Tip has been deleted."
-        redirect_to "/tips"
+        redirect_to "/tips/indexall"
   end
 
   def edit
@@ -114,13 +121,26 @@ class TipsController < ApplicationController
     render "edit.html.erb"
   end
 
+  def edit_image
+    @tip = Tip.find_by(id: params[:id])
+    render "edit_image.html.erb"
+  end
+
+  def update_image
+    @tip = Tip.find_by(id: params[:id])
+    photo = Photo.find_by(tip_id: @tip.id)
+    if photo
+      photo.destroy
+    end
+    @photo = Photo.create(image: params[:image], tip_id: @tip.id)
+    redirect_to "/tips/indexall/?id=#{@tip.id}"
+  end
+
   def update
     @tip = Tip.find_by(id: params[:id])
     @tip.update(venue: params[:venue], text: params[:text])
-    Photo.find_by(tip_id: @tip.id).delete
-    @photo = Photo.create(image: params[:image], tip_id: @tip.id)
     flash[:success] = "Your tip changes have been saved"
-    redirect_to "/tips/?id=#{@tip.id}"
+    redirect_to "/tips/indexall/?id=#{@tip.id}"
   end
 
 

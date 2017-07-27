@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   patch "/reports/:id/new_images", to: 'reports#update_images'
   get "/reports/city/:city", to: 'reports#city'
   get "/reports/missing", to: 'reports#missing'
+  post "/reports/missing", to: 'reports#missing_part_2'
   get "/reports/:id/show_edit_mode", to: 'reports#show_edit_mode'
   delete "/reports/:id", to: 'reports#destroy'
   get "/reports/:id", to: 'reports#show'

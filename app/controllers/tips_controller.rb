@@ -69,6 +69,11 @@ class TipsController < ApplicationController
     else
       @tips = Tip.all.order(:created_at => "desc").page(params[:page]).per(15)
     end
+    if params[:editmode]
+      @editmode = true
+    else
+      @editmode = false
+    end
     @city = params[:city]
     @state = params[:state]
     @country = params[:country]
@@ -108,7 +113,7 @@ class TipsController < ApplicationController
         tip.bookmarks.destroy_all
         tip.notifications.destroy_all
         location = tip.location
-        if location.reports.length == 0 && location.tips.length <=0 && location.questions.length ==0
+        if location.reports.length == 0 && location.tips.length <=1 && location.questions.length ==0
               location.destroy
         end
         tip.destroy

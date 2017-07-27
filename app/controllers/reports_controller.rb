@@ -102,8 +102,19 @@ class ReportsController < ApplicationController
     end
 
     def missing
-        @missing_locations = Location.where(country: "United States").order(:country)
+        @missing_locations = Location.where(missing: true).order(:country)
         render "missing.html.erb"
+    end
+
+    def missing_part_2
+        @title = params[:title]
+        @duration = params[:duration]
+        @season = params[:season]
+        location = Location.find_by(id: params[:location])
+        @full_country = location.country
+        @full_state = location.state
+        @city = location.city
+        render "new_part_4_version2.html.erb"
     end
 
     def update_images

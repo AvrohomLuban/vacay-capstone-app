@@ -73,7 +73,7 @@ body { background-image: url(‘fabric_plaid.png’)}
 .user_profile {  display: inline-block;
   width: 115px;
   height: 115px;
-  border-radius: 50%;
+  border-radius: 10%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;}
@@ -81,5 +81,6 @@ body { background-image: url(‘fabric_plaid.png’)}
 .highlight {
   background: yellow
 }
+
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

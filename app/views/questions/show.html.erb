@@ -92,7 +92,7 @@
                             <%= comment.user.username %>
                           </div>
                           <div class = "col-xs-10">
-                            <%= comment.text %>
+                            <%= simple_format(comment.text).html_safe %>
                             <p class='time'>
                             <%= comment.created_at.strftime("%b %e, %l:%M %p") %>
                             </p>

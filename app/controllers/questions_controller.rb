@@ -73,7 +73,7 @@ class QuestionsController < ApplicationController
   end
 
   def indexall
-    @questions = Question.all.page(params[:page]).per(15)
+    @questions = Question.all.order(:created_at => "desc").page(params[:page]).per(15)
     render "indexall.html.erb"
   end
 

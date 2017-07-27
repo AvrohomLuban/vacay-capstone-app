@@ -24,7 +24,7 @@
 
                 <div class='row'>
                   <div class='col-sm-12'>
-                    <%= form_tag "/reports/new_part_1", method: :post, class: 'form' do %>
+                    <%= form_tag "/reports/missing", method: :post, class: 'form' do %>
                       <fieldset class='row'>
                         <div class='col-sm-4 mg-b-md'>
                           <div class='lead'>We Apalogize</div>
@@ -46,6 +46,29 @@
 
 
                             
+                          </div>
+                        </div>
+                      </fieldset>
+                      <hr>
+                      <fieldset class='row'>
+                        <div class='col-sm-4 mg-b-md'>
+                          <div class='lead'>Step 2</div>
+                          <small class='text-muted'>Give a title to your Trip Report. Add trip length, and trip season.</small>
+                        </div>
+                        <div class='col-sm-7 col-sm-offset-1'>
+                          <div class='form-group'>
+           
+                            <label>Trip Name</label>
+                            <input class='form-control' id='input-name' type='text' name="title" placeholder="America's Best Sights">
+                          </div>
+                          <div class='form-group'>
+                            <label>Length</label>
+                            <input class='form-control' id='input-street' placeholder='4 days' type='text' name="duration">
+                            </p>
+                          </div>
+                          <div class='form-group'>
+                            <label>Season</label>
+                            <input class='form-control' id='input-city' placeholder='Summer' type='text' name="season">
                           </div>
                         </div>
                       </fieldset>

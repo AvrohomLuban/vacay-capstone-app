@@ -3,12 +3,17 @@ class ContactsController < ApplicationController
     render "index.html.erb"
   end
 
+  # def create
+  #   @name = params[:name]
+  #   @message = params[:message]
+  #   @email = params[:email]
+  #   UserMailer.contact_us(@name, @email, @message).deliver_now!
+  #   flash[:success] = "Your message has been sent"
+  #   redirect_to "/locations"
+  # end
   def create
-    @name = params[:name]
-    @message = params[:message]
-    @email = params[:email]
-    UserMailer.contact_us(@name, @email, @message).deliver_now!
-    flash[:success] = "Your message has been sent"
-    redirect_to "/locations"
+    @record = params[:message]
+      ModelMailer.contact_us(@record).deliver
+      redirect_to "/locations"
   end
 end

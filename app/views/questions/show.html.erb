@@ -53,7 +53,9 @@
             <% @answers.each_with_index do |answer, index| %>
               <div class='media'>
                 <div class='pull-left'>
-                  <div class='media-object without-image'></div>
+                  <div>
+                    <img alt="Author" class="user_profile_comment" src="<%= answer.user.photos.user_image %>" />
+                  </div>
                   </div>
                   <div class='media-body'>
                     <div class='content'>

@@ -3,17 +3,21 @@ class BookmarksController < ApplicationController
   def create
     id = params[:id]
     if params[:report]
-      @bookmark = Bookmark.create(user_id: current_user.id, report_id: params[:id])
+      @bookmark = Bookmark.new(user_id: current_user.id, report_id: params[:id])
       redirect_to "/reports/#{id}"
     elsif params[:tip]
-      @bookmark = Bookmark.create(user_id: current_user.id, tip_id: params[:id])
+      @bookmark = Bookmark.new(user_id: current_user.id, tip_id: params[:id])
       redirect_to "/tips/indexall#tip-#{params[:id]}"
     elsif params[:question]
-      @bookmark = Bookmark.create(user_id: current_user.id, question_id: params[:id])
+      @bookmark = Bookmark.new(user_id: current_user.id, question_id: params[:id])
       question_id = params[:id]
       redirect_to "/questions/#{question_id}"
     end
-    flash[:success] = "New bookmark has successfuly been created"
+    if @bookmark.save
+      flash[:success] = "New bookmark has successfuly been created"
+    else
+      flash[:warning] = "Could not save your bookmark. #{@bookmark.errors.full_messages.join(", ")}."
+    end
     
   end
 

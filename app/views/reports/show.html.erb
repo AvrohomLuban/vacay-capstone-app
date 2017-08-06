@@ -347,7 +347,10 @@
                       <% @comments.each_with_index do |comment, index| %>
                       <div class='media'>
                         <div class='pull-left'>
-                          <div class='media-object without-image'></div>
+                          <!-- <div class='media-object without-image'> -->
+                          <div>
+                          <img alt="Author" class="user_profile_comment" src="<%= comment.user.photos.user_image %>" />
+                          </div>
                         </div>
                         <div class='media-body'>
                           <div class='content'>
